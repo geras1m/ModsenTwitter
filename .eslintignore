@@ -1,0 +1,9 @@
+*.json
+dist
+public
+node_modules
+commitlint.config.js
+yarn.lock
+jest.config.js
+__mocks__
+vite.config.ts
