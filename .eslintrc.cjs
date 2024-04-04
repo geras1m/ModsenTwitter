@@ -5,10 +5,9 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'plugin:react/jsx-runtime',
-    "plugin:prettier/recommended",
+    // 'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
-
     'prettier',
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
@@ -27,6 +26,21 @@ module.exports = {
     'simple-import-sort',
     'react-refresh'
   ],
+  settings: {
+  'import/resolver': {
+    node: {
+      paths: ['src'],
+        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
+    },
+    typescript: {
+      project: './tsconfig.json',
+    },
+    alias: {
+      map: [['@', './src']],
+        extensions: ['.js', '.jsx', '.ts', '.d.ts', '.tsx'],
+    },
+  },
+},
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -37,7 +51,7 @@ module.exports = {
       {
         "groups": [
           ["^react", "^@?\\w"],
-          ["^@"],
+          ["^@/"],
           ["^\\u0000"],
           ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
           ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
