@@ -1,3 +1,10 @@
+export const routes = {
+  home: '/',
+  sign_up: '/sign-up',
+  login: '/login',
+  notFound: '*',
+} as const;
+
 export const footerLinks = [
   'About',
   'Help Center',
@@ -16,4 +23,19 @@ export const footerLinks = [
   'Directory',
   'Settings',
   '© 2021 Twitter, Inc.',
+];
+
+export const months = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
 ];
