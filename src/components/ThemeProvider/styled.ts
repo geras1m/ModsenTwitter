@@ -29,6 +29,18 @@ const GlobalStyles = createGlobalStyle`
   }
 `;
 
+export const mixinKeyframesSpinner = css`
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
 export const mixinFlex = ({ alignItem = 'start', justifyContent = 'flex-start' }) => css`
   display: flex;
   align-items: ${alignItem};
