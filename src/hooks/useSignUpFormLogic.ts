@@ -8,6 +8,7 @@ import { inputsName } from '@/components/SignUpForm/config';
 import { db } from '@/firabase';
 import { IFirebaseError, SingUpFormDataType } from '@/types';
 import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
+// import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 export const useSignUpFormLogic = () => {
@@ -54,7 +55,7 @@ export const useSignUpFormLogic = () => {
       await setDoc(doc(db, 'users', `${user.uid}`), {
         uis: user.uid,
         born: new Date(yearBirth!, monthBirth!, dayBirth!),
-        password,
+        isGoogle: false,
         email,
         name,
         phone,

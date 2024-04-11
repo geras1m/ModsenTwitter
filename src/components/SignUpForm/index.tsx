@@ -49,6 +49,9 @@ export const SignUpForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(handlerOnSubmit)}>
+      {errors?.name && (
+        <ErrorMessage>{errors?.name?.message?.toString() || defaultErrorMessage}</ErrorMessage>
+      )}
       <Input
         placeholder={name.placeholder}
         type={name.type}
@@ -60,11 +63,10 @@ export const SignUpForm = () => {
           pattern: namePattern,
         })}
       />
-      <div>
-        {errors?.name && (
-          <ErrorMessage>{errors?.name?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-        )}
-      </div>
+
+      {errors?.phone && (
+        <ErrorMessage>{errors?.phone?.message?.toString() || defaultErrorMessage}</ErrorMessage>
+      )}
       <Input
         placeholder={phone.placeholder}
         type={phone.type}
@@ -78,11 +80,10 @@ export const SignUpForm = () => {
           onChange: (event) => getPhoneMask(event, setValue),
         })}
       />
-      <div>
-        {errors?.phone && (
-          <ErrorMessage>{errors?.phone?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-        )}
-      </div>
+
+      {errors?.email && (
+        <ErrorMessage>{errors?.email?.message?.toString() || defaultErrorMessage}</ErrorMessage>
+      )}
       <Input
         placeholder={email.placeholder}
         type={email.type}
@@ -94,12 +95,10 @@ export const SignUpForm = () => {
           },
         })}
       />
-      <div>
-        {errors?.email && (
-          <ErrorMessage>{errors?.email?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-        )}
-      </div>
 
+      {errors?.password && (
+        <ErrorMessage>{errors?.password?.message?.toString() || defaultErrorMessage}</ErrorMessage>
+      )}
       <PasswordInput
         placeholder={password.placeholder}
         register={{
@@ -112,14 +111,12 @@ export const SignUpForm = () => {
           }),
         }}
       />
-      <div>
-        {errors?.password && (
-          <ErrorMessage>
-            {errors?.password?.message?.toString() || defaultErrorMessage}
-          </ErrorMessage>
-        )}
-      </div>
 
+      {errors?.confirmPassword && (
+        <ErrorMessage>
+          {errors?.confirmPassword?.message?.toString() || defaultErrorMessage}
+        </ErrorMessage>
+      )}
       <PasswordInput
         placeholder={confirmPassword.placeholder}
         register={{
@@ -132,13 +129,6 @@ export const SignUpForm = () => {
           }),
         }}
       />
-      <div>
-        {errors?.confirmPassword && (
-          <ErrorMessage>
-            {errors?.confirmPassword?.message?.toString() || defaultErrorMessage}
-          </ErrorMessage>
-        )}
-      </div>
 
       <ToPageLink to={routes.home}>Use email</ToPageLink>
       <DateTitle>Date of birth</DateTitle>

@@ -27,6 +27,7 @@ export const colors: IColors = {
   black: '#030304',
   white: '#ffffff',
   white1: '#E4EAED',
+  grey: '#afafaf',
   red: '#ff0000',
   blue: '#1da1f2',
 };

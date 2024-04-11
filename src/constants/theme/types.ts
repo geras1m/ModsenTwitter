@@ -15,6 +15,7 @@ export interface IColors {
   black: string;
   white: string;
   white1: string;
+  grey: string;
   red: string;
   blue: string;
 }

@@ -36,7 +36,7 @@ export const SignUpPage = () => {
       await setDoc(doc(db, 'users', `${user.uid}`), {
         uis: user.uid,
         born: null,
-        password: null,
+        isGoogle: true,
         email: user.email ? user.email : null,
         name: user.displayName ? user.displayName : null,
         phone: user.phoneNumber ? user.phoneNumber : null,
