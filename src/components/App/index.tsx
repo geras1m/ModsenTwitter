@@ -1,3 +1,3 @@
-import { SignUpPage } from '@/pages/SignUpPage';
+import { PublicRoutes } from '@/components/Router';
 
-export const App = () => <SignUpPage />;
+export const App = () => <PublicRoutes />;
