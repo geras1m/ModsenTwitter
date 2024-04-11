@@ -1,6 +1,10 @@
+import { signInWithPopup } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+
 import googleIconPath from '@/assets/icons/google-icon.svg';
 import twitterIconPath from '@/assets/icons/twitter-icon.svg';
-import { footerLinks } from '@/constants';
+import { footerLinks, routes } from '@/constants';
+import { auth, db, googleAuthProvider } from '@/firabase';
 import {
   ButtonsWrapper,
   Content,
@@ -16,12 +20,33 @@ import {
   SignUpWrapper,
   Text,
   Title,
+  ToLoginPageLink,
+  ToSignUpPageLink,
   TwitterBanner,
   TwitterIcon,
 } from '@/pages/SignUpPage/styled';
 
 export const SignUpPage = () => {
   const links = footerLinks.map((link) => <LinkItem key={link}>{link}</LinkItem>);
+
+  const handleSignInWithGoogle = async () => {
+    try {
+      const { user } = await signInWithPopup(auth, googleAuthProvider);
+
+      await setDoc(doc(db, 'users', `${user.uid}`), {
+        uis: user.uid,
+        born: null,
+        password: null,
+        email: user.email ? user.email : null,
+        name: user.displayName ? user.displayName : null,
+        phone: user.phoneNumber ? user.phoneNumber : null,
+      });
+
+      console.log(user);
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   return (
     <SignUpWrapper>
@@ -33,11 +58,13 @@ export const SignUpPage = () => {
           <Title>Happening now</Title>
           <Text>Join Twitter today</Text>
           <ButtonsWrapper>
-            <SignUpButton>
+            <SignUpButton onClick={handleSignInWithGoogle}>
               <GoogleIcon src={googleIconPath} />
               Sign up with Google
             </SignUpButton>
-            <SignUpButton>Sign up with phone or email</SignUpButton>
+            <SignUpButton>
+              <ToSignUpPageLink to={routes.sign_up}>Sign up with phone or email</ToSignUpPageLink>
+            </SignUpButton>
           </ButtonsWrapper>
           <PrivacyText>
             By singing up you agree to the
@@ -45,7 +72,9 @@ export const SignUpPage = () => {
             <PrivacyLink href='#'>Privacy Policy</PrivacyLink>, including{' '}
             <PrivacyLink href='#'>Cookie Use</PrivacyLink> .
           </PrivacyText>
-          <LogInText>Already have an account? Log in</LogInText>
+          <LogInText>
+            Already have an account? <ToLoginPageLink to={routes.login}>Log in</ToLoginPageLink>{' '}
+          </LogInText>
         </SignUpBlock>
       </Content>
 

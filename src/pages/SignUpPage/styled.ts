@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import twitterBannerPath from '@/assets/images/baner-twitter.jpg';
@@ -161,6 +162,25 @@ export const FooterLinks = styled.ul`
   flex-wrap: wrap;
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
+`;
+
+export const ToLoginPageLink = styled(NavLink)`
+  font-weight: ${({ theme }) => theme.fontWeight.light};
+  font-size: ${({ theme }) => theme.fontSizes.px16};
+  text-decoration: underline;
+  color: ${({ theme }) => theme.colors.blue};
+  transition: 0.2s ease-out;
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
+export const ToSignUpPageLink = styled(NavLink)`
+  text-decoration: none;
+  display: inline-block;
+  color: ${({ theme }) => theme.colors.black};
+  width: 100%;
 `;
 
 export const LinkItem = styled.li`
