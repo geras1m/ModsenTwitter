@@ -1,4 +1,4 @@
-import { icons } from '@/assets';
+import { assets } from '@/assets';
 
 const {
   HomeIcon,
@@ -9,7 +9,7 @@ const {
   ListsIcon,
   ProfileIcon,
   MoreIcon,
-} = icons;
+} = assets;
 
 export const navBarLinksData = [
   {

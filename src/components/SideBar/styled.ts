@@ -66,7 +66,9 @@ export const ProfileInfoBlock = styled.div`
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 `;
 
-export const ProfileInfo = styled.div``;
+export const ProfileInfo = styled.div`
+  margin-left: 20px;
+`;
 
 export const ProfileName = styled.p`
   color: ${({ theme }) => theme.colors.black};
