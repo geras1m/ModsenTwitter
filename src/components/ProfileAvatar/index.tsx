@@ -1,9 +1,9 @@
 import { FC } from 'react';
 
-import { icons } from '@/assets';
+import { assets } from '@/assets';
 import { ProfileImage } from '@/components/ProfileAvatar/styled';
 
-const { AvatarSmall, AvatarLarge } = icons;
+const { AvatarSmall, AvatarLarge } = assets;
 
 export const ProfileAvatar: FC<{ size: 's' | 'l' }> = ({ size }) => (
   <ProfileImage
