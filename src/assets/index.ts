@@ -13,8 +13,9 @@ import TwitterIcon from '@/assets/icons/twitter-icon.svg';
 import AvatarLarge from '@/assets/images/avatar-l.png';
 import AvatarSmall from '@/assets/images/avatar-s.png';
 import BannerTwitterImg from '@/assets/images/baner-twitter.jpg';
+import BannerProfile from '@/assets/images/banner-profili.jpg';
 
-export const icons = {
+export const assets = {
   BookmarksIcon,
   CloseEyeIcon,
   ExploreIcon,
@@ -30,4 +31,5 @@ export const icons = {
   BannerTwitterImg,
   AvatarSmall,
   AvatarLarge,
+  BannerProfile,
 };
