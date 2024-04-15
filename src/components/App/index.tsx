@@ -1,3 +1,3 @@
-import { PublicRoutes } from '@/components/Router';
+import { AppRoutes } from '@/components/Router';
 
-export const App = () => <PublicRoutes />;
+export const App = () => <AppRoutes />;
