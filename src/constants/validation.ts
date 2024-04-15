@@ -1,6 +1,8 @@
 export const phoneNumberPattern = /^(\+375) \((29|25|44|33)\) (\d{3})(\d{2})(\d{2})$/;
 export const namePattern = /^[a-z][a-z0-9-]*$/i;
 
+export const telegramNicknamePattern = /^@(?=\w{3,20}\b)[a-z][a-z0-9-]*$/i;
+
 export const emailPattern =
   /^(([^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/iu;
 

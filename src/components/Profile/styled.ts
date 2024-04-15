@@ -5,8 +5,8 @@ import { mixinFlex } from '@/components/ThemeProvider/styled';
 
 const { BannerProfile } = assets;
 
-export const ProfileWrapper = styled.section`
-  width: 100%;
+export const ProfileWrapper = styled.main`
+  width: 60%;
   max-width: 910px;
   border: 1px solid ${({ theme }) => theme.colors.grey};
 `;
@@ -66,11 +66,15 @@ export const Tag = styled.h2`
   font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
 
-export const PlaceOfWork = styled.p`
-  margin: 17px 0 57px;
+export const UserTextData = styled.p`
+  margin: 17px 0;
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  &:last-child {
+    margin-bottom: 57px;
+  }
 `;
 
 export const FollowersWrapper = styled.div`

@@ -1,9 +1,13 @@
 export const routes = {
-  home: '/',
+  welcome: '/welcome',
   sign_up: '/sign-up',
   login: '/login',
+  profile: '/profile',
+  home: '/',
   notFound: '*',
 } as const;
+
+export const defaultErrorMessage = 'Error!';
 
 export const footerLinks = [
   'About',

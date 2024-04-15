@@ -1,3 +1,6 @@
+import { useEffect, useState } from 'react';
+
+import { EditProfileForm } from '@/components/EditProfileForm';
 import {
   AvatarContainer,
   Count,
@@ -6,45 +9,72 @@ import {
   FollowersWrapper,
   Header,
   Name,
-  PlaceOfWork,
   ProfileBanner,
   ProfileBlock,
   ProfileHeaderName,
   ProfileTweetsCount,
   ProfileWrapper,
   Tag,
+  UserTextData,
 } from '@/components/Profile/styled';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
+import { useAppSelector } from '@/hooks/reduxHooks';
 
-export const Profile = () => (
-  <ProfileWrapper>
-    <Header>
-      <ProfileHeaderName>Bobur</ProfileHeaderName>
-      <ProfileTweetsCount>1,070 Tweets</ProfileTweetsCount>
-    </Header>
+export const Profile = () => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const { name, surname, telegramLink, phone, gender, email } = useAppSelector(
+    (state) => state.user,
+  );
+  const handleOpenEditModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
 
-    <ProfileBanner />
+  useEffect(() => {
+    document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
+  }, [isOpenModal]);
 
-    <ProfileBlock>
-      <AvatarContainer>
-        <ProfileAvatar size='l' />
-      </AvatarContainer>
-      <Name>Bobur</Name>
-      <Tag>@bobur_mavlonov</Tag>
-      <PlaceOfWork>Software developer at Modsen</PlaceOfWork>
+  return (
+    <ProfileWrapper>
+      <Header>
+        <ProfileHeaderName>
+          {name} {surname}
+        </ProfileHeaderName>
+        <ProfileTweetsCount>1,070 Tweets</ProfileTweetsCount>
+      </Header>
 
-      <FollowersWrapper>
-        <FollowersText>
-          <Count>67</Count> Following
-        </FollowersText>
-        <FollowersText>
-          <Count>47</Count> Followers
-        </FollowersText>
-      </FollowersWrapper>
+      <ProfileBanner />
 
-      <EditButton>Edit profile</EditButton>
-    </ProfileBlock>
-  </ProfileWrapper>
-);
+      <ProfileBlock>
+        <AvatarContainer>
+          <ProfileAvatar size='l' />
+        </AvatarContainer>
+        <Name>
+          {name} {surname}
+        </Name>
+        {telegramLink && <Tag>{telegramLink}</Tag>}
+        {gender && <UserTextData>{gender}</UserTextData>}
+        {phone && <UserTextData>{phone}</UserTextData>}
+        <UserTextData>{email}</UserTextData>
+        <UserTextData>Software developer at Modsen</UserTextData>
 
-// через портал открывать модалку
+        <FollowersWrapper>
+          <FollowersText>
+            <Count>67</Count> Following
+          </FollowersText>
+          <FollowersText>
+            <Count>47</Count> Followers
+          </FollowersText>
+        </FollowersWrapper>
+
+        {isOpenModal && <EditProfileForm closeModal={handleOpenEditModal} />}
+
+        <EditButton
+          type='button'
+          onClick={handleOpenEditModal}
+        >
+          Edit profile
+        </EditButton>
+      </ProfileBlock>
+    </ProfileWrapper>
+  );
+};
