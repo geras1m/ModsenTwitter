@@ -17,6 +17,10 @@ const GlobalStyles = createGlobalStyle`
   #root {
     height: 100%;
   }
+  
+  #modal-root{
+      position: relative;
+  }
 
   a {
     text-decoration: none;

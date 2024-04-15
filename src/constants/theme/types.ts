@@ -18,6 +18,8 @@ export interface IColors {
   grey: string;
   red: string;
   blue: string;
+  lightGreen: string;
+  lightRed: string;
 }
 
 export interface IFontWeight {
@@ -47,3 +49,7 @@ export enum ThemeValue {
 }
 
 export type ThemeType = 'light' | 'dark';
+
+export interface IThemeState {
+  theme: ThemeType;
+}

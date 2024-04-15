@@ -30,6 +30,8 @@ export const colors: IColors = {
   grey: '#afafaf',
   red: '#ff0000',
   blue: '#1da1f2',
+  lightGreen: '#01810160',
+  lightRed: '#D9003360',
 };
 
 export const lightTheme: ITheme = {
