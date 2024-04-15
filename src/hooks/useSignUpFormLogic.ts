@@ -1,17 +1,19 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
 
 import { inputsName } from '@/components/SignUpForm/config';
-import { db } from '@/firabase';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { FirebaseService } from '@/service';
+import { setUser } from '@/store/slices/userSlice';
 import { IFirebaseError, SingUpFormDataType } from '@/types';
 import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
-// import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 export const useSignUpFormLogic = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [dayBirth, setDayBirth] = useState<null | number>(null);
   const [monthBirth, setMonthBirth] = useState<null | number>(null);
   const [yearBirth, setYearBirth] = useState<null | number>(null);
@@ -49,17 +51,18 @@ export const useSignUpFormLogic = () => {
     try {
       setIsLoading(true);
 
-      const auth = getAuth();
-      const { user } = await createUserWithEmailAndPassword(auth, email, password);
-
-      await setDoc(doc(db, 'users', `${user.uid}`), {
-        uis: user.uid,
-        born: new Date(yearBirth!, monthBirth!, dayBirth!),
-        isGoogle: false,
-        email,
+      const user = await FirebaseService.SignUpWithForm(
         name,
+        email,
+        password,
         phone,
-      });
+        yearBirth!,
+        monthBirth!,
+        dayBirth!,
+      );
+
+      dispatch(setUser({ id: user.uid, email, isGoogleAuth: false }));
+      navigate('/profile');
     } catch (error) {
       if (error instanceof FirebaseError) {
         setFirebaseError({ isError: true, message: getFirebaseErrorMessage(error) });
@@ -67,16 +70,6 @@ export const useSignUpFormLogic = () => {
         console.error(error);
       }
     }
-
-    // const docRef = doc(db, 'users', `${user.uid}`);
-    // const docSnap = await getDoc(docRef);
-    //
-    // if (docSnap.exists()) {
-    //   console.log('Document data:', docSnap.data());
-    // } else {
-    //   // docSnap.data() will be undefined in this case
-    //   console.log('No such document!');
-    // }
 
     // TODO: получить всех пользователей
     // const querySnapshot = await getDocs(collection(db, 'users'));
@@ -86,7 +79,7 @@ export const useSignUpFormLogic = () => {
 
     setIsLoading(false);
     reset();
-    // редирект на Profile
+    // редирект на AppPage
   };
 
   const dates = getDateDays(monthBirth, yearBirth);
