@@ -16,8 +16,6 @@ export const minNameInputLength = 3;
 export const maxNameInputLength = 25;
 export const maxPhoneInputLength = 17;
 
-export const defaultErrorMessage = 'Error!';
-
 export const formInputsTextData = {
   name: {
     name: 'name',

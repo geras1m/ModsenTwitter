@@ -1,7 +1,6 @@
 import { PasswordInput } from '@/components/PasswordInput';
 import { Select } from '@/components/Select';
 import {
-  defaultErrorMessage,
   formInputsTextData,
   inputsName,
   maxNameInputLength,
@@ -20,7 +19,7 @@ import {
   ToPageLink,
 } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
-import { routes } from '@/constants';
+import { defaultErrorMessage, routes } from '@/constants';
 import {
   emailPattern,
   namePattern,

@@ -59,6 +59,7 @@ export const DateWrapper = styled.div`
 `;
 
 export const ErrorMessage = styled.p`
+  display: inline-block;
   width: 100%;
   text-align: center;
   color: ${({ theme }) => theme.colors.red};
