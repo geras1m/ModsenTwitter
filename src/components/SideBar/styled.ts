@@ -1,8 +1,10 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { mixinFlex } from '@/components/ThemeProvider/styled';
 
 export const SideBarWrapper = styled.section`
+  width: 18%;
   max-width: 230px;
   padding: 30px 15px 0;
 `;
@@ -15,14 +17,15 @@ export const LinksList = styled.ul`
   margin-top: 50px;
 `;
 
-export const LinksItem = styled.li`
+export const LinksItem = styled(NavLink)`
   color: ${({ theme }) => theme.colors.black};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   margin: 30px 0;
-  ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
   transition: 0.2s ease-in;
   cursor: pointer;
+
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
 
   &:first-child {
     margin-top: 0;
@@ -34,6 +37,10 @@ export const LinksItem = styled.li`
 
   &:hover {
     opacity: 0.6;
+  }
+
+  &.active {
+    color: ${({ theme }) => theme.colors.red};
   }
 `;
 

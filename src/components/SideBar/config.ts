@@ -15,41 +15,41 @@ export const navBarLinksData = [
   {
     title: 'Home',
     icon: HomeIcon,
-    path: '',
+    path: '/',
   },
   {
     title: 'Explore',
     icon: ExploreIcon,
-    path: '',
+    path: '1',
   },
   {
     title: 'Notifications',
     icon: NotificationsIcon,
-    path: '',
+    path: '2',
   },
   {
     title: 'Messages',
     icon: MessagesIcon,
-    path: '',
+    path: '3',
   },
   {
     title: 'Bookmarks',
     icon: BookmarksIcon,
-    path: '',
+    path: '4',
   },
   {
     title: 'Lists',
     icon: ListsIcon,
-    path: '',
+    path: '5',
   },
   {
     title: 'Profile',
     icon: ProfileIcon,
-    path: '',
+    path: '/profile',
   },
   {
     title: 'More',
     icon: MoreIcon,
-    path: '',
+    path: '6',
   },
 ];

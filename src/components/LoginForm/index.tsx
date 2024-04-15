@@ -1,6 +1,6 @@
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { useNavigate } from 'react-router-dom';
 
 import TwitterIcon from '@/assets/icons/twitter-icon.svg';
 import {
@@ -17,6 +17,9 @@ import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
 import { routes } from '@/constants';
 import { passwordPattern } from '@/constants/validation';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { FirebaseService } from '@/service';
+import { setUser } from '@/store/slices/userSlice';
 
 type FormDataType = {
   email: string;
@@ -24,6 +27,8 @@ type FormDataType = {
 };
 
 export const LoginForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -32,36 +37,46 @@ export const LoginForm = () => {
     reset,
   } = useForm<FormDataType>({ mode: 'onBlur' });
 
-  const handlerOnSubmit: SubmitHandler<FormDataType> = (data) => {
+  const handlerOnSubmit: SubmitHandler<FormDataType> = async (data) => {
     const { email, password } = data;
     setIsLoading(true);
 
-    const auth = getAuth();
+    try {
+      const user = await FirebaseService.LogIn(email, password);
+      const userData = await FirebaseService.GetUserDataFromDB(user.uid);
+      if (userData) {
+        const { uis, name, surname, phone, telegramLink, gender, born } = userData;
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const { user } = userCredential;
-        console.log(user);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+        dispatch(
+          setUser({
+            id: uis,
+            isGoogleAuth: false,
+            email,
+            name,
+            surname,
+            phone,
+            telegramLink,
+            gender,
+            born,
+          }),
+        );
+        navigate('/profile');
+      }
+    } catch (error) {
+      console.error(error);
+    }
 
     setIsLoading(false);
     reset();
   };
 
-  const config = useMemo(
-    () =>
-      register('password', {
-        required: 'Required field',
-        pattern: {
-          value: passwordPattern,
-          message: 'The password should be at least 6 symbols long and contain a digit',
-        },
-      }),
-    [],
-  );
+  const config = register('password', {
+    required: 'Required field',
+    pattern: {
+      value: passwordPattern,
+      message: 'The password should be at least 6 symbols long and contain a digit',
+    },
+  });
 
   return (
     <LoginFormWrapper>

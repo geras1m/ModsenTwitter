@@ -14,30 +14,49 @@ import {
   SideBarWrapper,
   TwitterIcon,
 } from '@/components/SideBar/styled';
+import { useAppDispatch } from '@/hooks/reduxHooks';
+import { FirebaseService } from '@/service';
+import { removeUser } from '@/store/slices/userSlice';
 
-export const SideBar = () => (
-  <SideBarWrapper>
-    <TwitterIcon src={TwitterIconPath} />
-    <SideBarNav>
-      <LinksList>
-        {navBarLinksData.map(({ title, icon }) => (
-          <LinksItem key={title}>
-            <LinksImg src={icon} /> {title}
-          </LinksItem>
-        ))}
-      </LinksList>
-    </SideBarNav>
+export const SideBar = () => {
+  const dispatch = useAppDispatch();
+  const handleLogOut = async () => {
+    await FirebaseService.LogOut();
+    dispatch(removeUser());
+  };
 
-    <Button type='button'>Tweet</Button>
+  return (
+    <SideBarWrapper>
+      <TwitterIcon src={TwitterIconPath} />
+      <SideBarNav>
+        <LinksList>
+          {navBarLinksData.map(({ title, icon, path }) => (
+            <LinksItem
+              to={path}
+              key={title}
+            >
+              <LinksImg src={icon} /> {title}
+            </LinksItem>
+          ))}
+        </LinksList>
+      </SideBarNav>
 
-    <ProfileInfoBlock>
-      <ProfileAvatar size='s' />
-      <ProfileInfo>
-        <ProfileName>Bobur</ProfileName>
-        <ProfileTag>@bobur_mavlonov</ProfileTag>
-      </ProfileInfo>
-    </ProfileInfoBlock>
+      <Button type='button'>Tweet</Button>
 
-    <Button type='button'>Log out</Button>
-  </SideBarWrapper>
-);
+      <ProfileInfoBlock>
+        <ProfileAvatar size='s' />
+        <ProfileInfo>
+          <ProfileName>Bobur</ProfileName>
+          <ProfileTag>@bobur_mavlonov</ProfileTag>
+        </ProfileInfo>
+      </ProfileInfoBlock>
+
+      <Button
+        type='button'
+        onClick={handleLogOut}
+      >
+        Log out
+      </Button>
+    </SideBarWrapper>
+  );
+};

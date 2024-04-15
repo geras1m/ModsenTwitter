@@ -1,10 +1,9 @@
-import { signInWithPopup } from 'firebase/auth';
-import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 import googleIconPath from '@/assets/icons/google-icon.svg';
 import twitterIconPath from '@/assets/icons/twitter-icon.svg';
 import { footerLinks, routes } from '@/constants';
-import { auth, db, googleAuthProvider } from '@/firabase';
+import { useAppDispatch } from '@/hooks/reduxHooks';
 import {
   ButtonsWrapper,
   Content,
@@ -24,25 +23,22 @@ import {
   ToSignUpPageLink,
   TwitterBanner,
   TwitterIcon,
-} from '@/pages/SignUpPage/styled';
+} from '@/pages/WelcomePage/styled';
+import { FirebaseService } from '@/service';
+import { setUser } from '@/store/slices/userSlice';
 
 export const SignUpPage = () => {
+  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const links = footerLinks.map((link) => <LinkItem key={link}>{link}</LinkItem>);
 
   const handleSignInWithGoogle = async () => {
     try {
-      const { user } = await signInWithPopup(auth, googleAuthProvider);
+      const user = await FirebaseService.SignUpWithGoogle();
 
-      await setDoc(doc(db, 'users', `${user.uid}`), {
-        uis: user.uid,
-        born: null,
-        isGoogle: true,
-        email: user.email ? user.email : null,
-        name: user.displayName ? user.displayName : null,
-        phone: user.phoneNumber ? user.phoneNumber : null,
-      });
-
-      console.log(user);
+      dispatch(setUser({ id: user.uid, email: user.email, isGoogleAuth: true }));
+      navigate('/profile');
     } catch (error) {
       console.error(error);
     }
