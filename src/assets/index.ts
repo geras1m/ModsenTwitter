@@ -1,3 +1,4 @@
+import UploadImageIcon from '@/assets/icons/add-image.svg';
 import BookmarksIcon from '@/assets/icons/bookmarks.svg';
 import CloseEyeIcon from '@/assets/icons/close-eye.svg';
 import ExploreIcon from '@/assets/icons/explore.svg';
@@ -16,6 +17,7 @@ import BannerTwitterImg from '@/assets/images/baner-twitter.jpg';
 import BannerProfile from '@/assets/images/banner-profili.jpg';
 
 export const assets = {
+  UploadImageIcon,
   BookmarksIcon,
   CloseEyeIcon,
   ExploreIcon,

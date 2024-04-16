@@ -6,6 +6,7 @@ export const fontSizes: IFontSizes = {
   px16: '16px',
   px18: '18px',
   px20: '20px',
+  px22: '22px',
   px24: '24px',
   px40: '40px',
   px42: '42px',

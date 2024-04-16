@@ -9,8 +9,9 @@ import {
   User as FirebaseUser,
 } from 'firebase/auth';
 import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
-import { auth, db, googleAuthProvider } from '@/firabase';
+import { auth, db, googleAuthProvider, storage } from '@/firabase';
 
 interface IChangeUserDataProps {
   id: string;
@@ -108,5 +109,29 @@ export const FirebaseService = {
     const docSnap = await getDoc(docRef);
 
     return docSnap.exists() ? docSnap.data() : null;
+  },
+
+  async CreateNewTweetInDB(
+    id: string | number,
+    text: string,
+    imgLink: string | null,
+    date: Date,
+    authorId: string,
+  ) {
+    await setDoc(doc(db, 'tweets', `${id}`), {
+      uis: id,
+      authorId,
+      date,
+      text,
+      imgLink,
+      likes: [],
+    });
+  },
+
+  async AddImageToStorage(id: number | string, selectedImage: File): Promise<string> {
+    const storageRef = ref(storage, `images/${id}`);
+    await uploadBytes(storageRef, selectedImage);
+    const imageUrl = await getDownloadURL(storageRef);
+    return imageUrl;
   },
 };

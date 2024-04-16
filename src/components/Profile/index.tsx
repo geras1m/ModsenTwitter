@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { CreateTweet } from '@/components/CreateTweet';
 import { EditProfileForm } from '@/components/EditProfileForm';
 import {
   AvatarContainer,
@@ -75,6 +76,7 @@ export const Profile = () => {
           Edit profile
         </EditButton>
       </ProfileBlock>
+      <CreateTweet />
     </ProfileWrapper>
   );
 };

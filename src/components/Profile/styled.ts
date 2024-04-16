@@ -42,6 +42,7 @@ export const ProfileBlock = styled.div`
   position: relative;
   width: 100%;
   padding: 20px 25px 50px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 `;
 
 export const AvatarContainer = styled.div`

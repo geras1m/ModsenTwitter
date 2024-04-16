@@ -4,6 +4,7 @@ export interface IFontSizes {
   px16: string;
   px18: string;
   px20: string;
+  px22: string;
   px24: string;
   px40: string;
   px42: string;
