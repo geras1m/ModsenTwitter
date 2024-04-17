@@ -73,6 +73,13 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
 
       const updatedUserData = await FirebaseService.GetUserDataFromDB(id);
       if (updatedUserData)
+        await FirebaseService.UpdateUserDataInTweets(
+          id,
+          updatedUserData.name,
+          updatedUserData.telegramLink,
+        );
+
+      if (updatedUserData)
         dispatch(
           setUser({
             id: updatedUserData.uis,
