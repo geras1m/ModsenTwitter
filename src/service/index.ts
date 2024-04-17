@@ -8,7 +8,16 @@ import {
   updatePassword,
   User as FirebaseUser,
 } from 'firebase/auth';
-import { doc, getDoc, setDoc, updateDoc } from 'firebase/firestore';
+import {
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  query,
+  setDoc,
+  updateDoc,
+  where,
+} from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 import { auth, db, googleAuthProvider, storage } from '@/firabase';
@@ -115,16 +124,33 @@ export const FirebaseService = {
     id: string | number,
     text: string,
     imgLink: string | null,
-    date: Date,
+    date: string,
     authorId: string,
+    authorName: string,
+    authorTag: string,
   ) {
     await setDoc(doc(db, 'tweets', `${id}`), {
       uis: id,
       authorId,
+      authorName,
+      authorTag,
       date,
       text,
       imgLink,
       likes: [],
+    });
+  },
+
+  async UpdateUserDataInTweets(userId: number | string, newName: string, newTag: string) {
+    const q = query(collection(db, 'tweets'), where('authorId', '==', userId));
+
+    const tweetsSnapshot = await getDocs(q);
+
+    tweetsSnapshot.forEach((tweetDoc) => {
+      updateDoc(tweetDoc.ref, {
+        authorTag: newTag,
+        authorName: newName,
+      });
     });
   },
 
