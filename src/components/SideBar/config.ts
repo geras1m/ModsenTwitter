@@ -1,4 +1,5 @@
 import { assets } from '@/assets';
+import { routes } from '@/constants';
 
 const {
   HomeIcon,
@@ -15,41 +16,41 @@ export const navBarLinksData = [
   {
     title: 'Home',
     icon: HomeIcon,
-    path: '/',
+    path: routes.home,
   },
   {
     title: 'Explore',
     icon: ExploreIcon,
-    path: '1',
+    path: routes.notFound,
   },
   {
     title: 'Notifications',
     icon: NotificationsIcon,
-    path: '2',
+    path: routes.notFound,
   },
   {
     title: 'Messages',
     icon: MessagesIcon,
-    path: '3',
+    path: routes.notFound,
   },
   {
     title: 'Bookmarks',
     icon: BookmarksIcon,
-    path: '4',
+    path: routes.notFound,
   },
   {
     title: 'Lists',
     icon: ListsIcon,
-    path: '5',
+    path: routes.notFound,
   },
   {
     title: 'Profile',
     icon: ProfileIcon,
-    path: '/profile',
+    path: routes.profile,
   },
   {
     title: 'More',
     icon: MoreIcon,
-    path: '6',
+    path: routes.notFound,
   },
 ];

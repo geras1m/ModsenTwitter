@@ -14,11 +14,13 @@ import {
   SideBarWrapper,
   TwitterIcon,
 } from '@/components/SideBar/styled';
-import { useAppDispatch } from '@/hooks/reduxHooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
 import { removeUser } from '@/store/slices/userSlice';
 
 export const SideBar = () => {
+  const { name, telegramLink } = useAppSelector((state) => state.user);
+
   const dispatch = useAppDispatch();
   const handleLogOut = async () => {
     await FirebaseService.LogOut();
@@ -46,8 +48,8 @@ export const SideBar = () => {
       <ProfileInfoBlock>
         <ProfileAvatar size='s' />
         <ProfileInfo>
-          <ProfileName>Bobur</ProfileName>
-          <ProfileTag>@bobur_mavlonov</ProfileTag>
+          <ProfileName>{name}</ProfileName>
+          <ProfileTag>{telegramLink}</ProfileTag>
         </ProfileInfo>
       </ProfileInfoBlock>
 

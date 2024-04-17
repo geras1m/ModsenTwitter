@@ -40,7 +40,7 @@ export const LinksItem = styled(NavLink)`
   }
 
   &.active {
-    color: ${({ theme }) => theme.colors.red};
+    color: ${({ theme }) => theme.colors.blue};
   }
 `;
 
@@ -68,9 +68,10 @@ export const Button = styled.button`
 `;
 
 export const ProfileInfoBlock = styled.div`
+  overflow: hidden;
   padding: 20px 17px;
   margin-top: 75px;
-  ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
 `;
 
 export const ProfileInfo = styled.div`
