@@ -19,6 +19,7 @@ import {
   UserTextData,
 } from '@/components/Profile/styled';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
+import { TweetsBlock } from '@/components/TweetsBlock';
 import { useAppSelector } from '@/hooks/reduxHooks';
 
 export const Profile = () => {
@@ -77,6 +78,7 @@ export const Profile = () => {
         </EditButton>
       </ProfileBlock>
       <CreateTweet />
+      <TweetsBlock page='profile' />
     </ProfileWrapper>
   );
 };
