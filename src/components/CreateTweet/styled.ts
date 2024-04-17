@@ -42,6 +42,8 @@ export const UploadWrapper = styled.div`
   position: relative;
   transition: 0.2s ease-in;
 
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'space-between' })}
+
   & label:hover {
     opacity: 0.7;
   }
@@ -58,6 +60,12 @@ export const Image = styled.img`
 `;
 
 export const UploadImageLabel = styled.label``;
+
+export const Notification = styled.span`
+  margin-left: 10px;
+  color: ${({ theme }) => theme.colors.grey};
+  font-size: ${({ theme }) => theme.fontSizes.px16};
+`;
 
 export const AddTweetButton = styled.button`
   padding: 15px 30px;

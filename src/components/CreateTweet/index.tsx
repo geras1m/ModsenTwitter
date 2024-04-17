@@ -7,6 +7,7 @@ import {
   ControlButtonsWrapper,
   CreateTweetWrapper,
   Image,
+  Notification,
   Textarea,
   TweetForm,
   UploadImageInput,
@@ -19,6 +20,7 @@ import { Spinner } from '@/components/Spinner';
 import { defaultErrorMessage } from '@/constants';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
+import { getTweetDateForTweet } from '@/utils/getTweetDateForTweet';
 
 type CreateTweetFormDataType = {
   textarea: string;
@@ -29,7 +31,8 @@ const bytesInMb = 1048576;
 export const CreateTweet = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<null | File>(null);
-  const { id: userId } = useAppSelector((state) => state.user);
+  const [isUploadFile, setIsUploadFile] = useState<boolean>(false);
+  const { id: userId, name: authorName, telegramLink } = useAppSelector((state) => state.user);
   const {
     register,
     formState: { errors },
@@ -51,15 +54,29 @@ export const CreateTweet = () => {
 
     setIsLoading(true);
 
-    const id = Date.now();
-    const date = new Date();
+    try {
+      const id = Date.now();
+      const date = getTweetDateForTweet();
 
-    const savedImageUrl = selectedImage
-      ? await FirebaseService.AddImageToStorage(id, selectedImage)
-      : null;
-    await FirebaseService.CreateNewTweetInDB(id, textarea, savedImageUrl, date, userId);
+      const savedImageUrl = selectedImage
+        ? await FirebaseService.AddImageToStorage(id, selectedImage)
+        : null;
+
+      await FirebaseService.CreateNewTweetInDB(
+        id,
+        textarea,
+        savedImageUrl,
+        date,
+        userId,
+        authorName,
+        telegramLink,
+      );
+    } catch (error) {
+      console.log(error);
+    }
 
     reset();
+    setIsUploadFile(false);
     setSelectedImage(null);
     setIsLoading(false);
   };
@@ -71,6 +88,7 @@ export const CreateTweet = () => {
         return;
       }
       clearErrors();
+      setIsUploadFile(true);
       setSelectedImage(e.target.files[0]);
     }
   };
@@ -101,6 +119,7 @@ export const CreateTweet = () => {
             <UploadImageLabel htmlFor='file'>
               <Image src={UploadImageIcon} />
             </UploadImageLabel>
+            {isUploadFile && <Notification>File is attached!</Notification>}
           </UploadWrapper>
           <AddTweetButton disabled={isLoading}>
             {isLoading ? (
