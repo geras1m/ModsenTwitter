@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { routes } from '@/constants';
 import {
   privateRedirectRoutesMap,
   privateRouteMap,
@@ -33,14 +34,24 @@ export const AppRoutes = () => {
   const { path: rootPath, component: Component, routes: authUserRoutesData } = privateRouteMap;
 
   const authUserRoutes = authUserRoutesData.map(
-    ({ path: privatePath, component: PrivateComponent }) => (
-      <Route
-        index
-        key={privatePath}
-        path={privatePath}
-        element={<PrivateComponent />}
-      />
-    ),
+    ({ path: privatePath, component: PrivateComponent }) => {
+      if (privatePath === routes.home)
+        return (
+          <Route
+            index
+            key={privatePath}
+            element={<PrivateComponent />}
+          />
+        );
+
+      return (
+        <Route
+          key={privatePath}
+          path={privatePath}
+          element={<PrivateComponent />}
+        />
+      );
+    },
   );
 
   const redirectPrivateRoutes = privateRedirectRoutesMap.map(({ path, to }) => (

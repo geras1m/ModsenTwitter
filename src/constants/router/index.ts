@@ -20,23 +20,23 @@ const MainAppPage = lazy(() =>
   import('@/pages/AppPage').then(({ AppPage }) => ({ default: AppPage })),
 );
 
-const MainProfile = lazy(() =>
+const ProfilePage = lazy(() =>
   import('@/components/Profile').then(({ Profile }) => ({ default: Profile })),
 );
 
 const HomePage = lazy(() => import('@/components/Home').then(({ Home }) => ({ default: Home })));
 
 export const privateRouteMap = {
-  path: '/',
+  path: routes.home,
   component: MainAppPage,
   routes: [
     {
-      path: routes.profile,
-      component: MainProfile,
-    },
-    {
       path: routes.home,
       component: HomePage,
+    },
+    {
+      path: routes.profile,
+      component: ProfilePage,
     },
   ],
 };

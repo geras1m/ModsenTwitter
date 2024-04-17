@@ -1,9 +1,10 @@
 export const routes = {
+  home: '/',
+  profile: '/profile',
+  tweet: 'tweet/:id',
   welcome: '/welcome',
   sign_up: '/sign-up',
   login: '/login',
-  profile: '/profile',
-  home: '/home',
   notFound: '*',
 } as const;
 
