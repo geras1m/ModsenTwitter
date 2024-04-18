@@ -48,6 +48,57 @@ export const LinksImg = styled.img`
   margin-right: 20px;
 `;
 
+export const BackgroundModal = styled.div`
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: ${({ theme }) => theme.colors.black2};
+
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
+`;
+
+export const ModalWrapper = styled.div`
+  position: relative;
+  padding: 15px;
+  border-radius: 6px;
+  width: 100%;
+  max-width: 800px;
+  background-color: ${({ theme }) => theme.colors.white};
+`;
+
+export const CloseModalButton = styled.button`
+  position: absolute;
+  top: -25px;
+  right: -25px;
+  width: 20px;
+  height: 20px;
+  background-color: ${({ theme }) => theme.colors.red};
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    30% 50%,
+    0% 80%,
+    20% 100%,
+    50% 70%,
+    80% 100%,
+    100% 80%,
+    70% 50%,
+    100% 20%,
+    80% 0%,
+    50% 30%
+  );
+
+  &:hover {
+    opacity: 0.7;
+  }
+`;
+
 export const Button = styled.button`
   margin-top: 30px;
   width: 100%;

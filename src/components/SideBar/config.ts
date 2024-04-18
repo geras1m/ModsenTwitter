@@ -21,27 +21,27 @@ export const navBarLinksData = [
   {
     title: 'Explore',
     icon: ExploreIcon,
-    path: routes.notFound,
+    path: routes.welcome,
   },
   {
     title: 'Notifications',
     icon: NotificationsIcon,
-    path: routes.notFound,
+    path: routes.welcome,
   },
   {
     title: 'Messages',
     icon: MessagesIcon,
-    path: routes.notFound,
+    path: routes.welcome,
   },
   {
     title: 'Bookmarks',
     icon: BookmarksIcon,
-    path: routes.notFound,
+    path: routes.welcome,
   },
   {
     title: 'Lists',
     icon: ListsIcon,
-    path: routes.notFound,
+    path: routes.welcome,
   },
   {
     title: 'Profile',
@@ -51,6 +51,6 @@ export const navBarLinksData = [
   {
     title: 'More',
     icon: MoreIcon,
-    path: routes.notFound,
+    path: routes.welcome,
   },
 ];

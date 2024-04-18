@@ -27,6 +27,7 @@ export const fontWeight: IFontWeight = {
 export const colors: IColors = {
   black: '#030304',
   black1: '#272727FF',
+  black2: '#070505BC',
   white: '#ffffff',
   white1: '#E4EAED',
   white2: '#F7F9F9',
