@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Unsubscribe } from 'firebase/firestore';
 
+import { SearchHeader } from '@/components/SearchHeader';
 import { TweetItem } from '@/components/TweetItem';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { TweetSearchPageWrapper } from '@/pages/TweetSearchPage/styled';
@@ -51,6 +52,7 @@ export const TweetSearchPage = () => {
 
   return (
     <TweetSearchPageWrapper>
+      <SearchHeader />
       {tweet && (
         <TweetItem
           uis={tweet.uis}

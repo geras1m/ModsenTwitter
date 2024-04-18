@@ -5,6 +5,7 @@ import EllipsisIcon from '@/assets/icons/ellipsis.svg';
 import ExploreIcon from '@/assets/icons/explore.svg';
 import GoogleIcon from '@/assets/icons/google-icon.svg';
 import HomeIcon from '@/assets/icons/home.svg';
+import LeftArrowIcon from '@/assets/icons/left-arrow.svg';
 import ActiveLikeIcon from '@/assets/icons/like-active.svg';
 import DefaultLikeIcon from '@/assets/icons/like-default.svg';
 import ListsIcon from '@/assets/icons/lists.svg';
@@ -21,6 +22,7 @@ import BannerTwitterImg from '@/assets/images/baner-twitter.jpg';
 import BannerProfile from '@/assets/images/banner-profili.jpg';
 
 export const assets = {
+  LeftArrowIcon,
   SearchIcon,
   EllipsisIcon,
   ActiveLikeIcon,
