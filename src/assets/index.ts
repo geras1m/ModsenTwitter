@@ -13,6 +13,7 @@ import MoreIcon from '@/assets/icons/more.svg';
 import NotificationsIcon from '@/assets/icons/notifications.svg';
 import OpenEyeIcon from '@/assets/icons/open-eye.svg';
 import ProfileIcon from '@/assets/icons/profile.svg';
+import SearchIcon from '@/assets/icons/search.svg';
 import TwitterIcon from '@/assets/icons/twitter-icon.svg';
 import AvatarLarge from '@/assets/images/avatar-l.png';
 import AvatarSmall from '@/assets/images/avatar-s.png';
@@ -20,6 +21,7 @@ import BannerTwitterImg from '@/assets/images/baner-twitter.jpg';
 import BannerProfile from '@/assets/images/banner-profili.jpg';
 
 export const assets = {
+  SearchIcon,
   EllipsisIcon,
   ActiveLikeIcon,
   DefaultLikeIcon,
