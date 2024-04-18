@@ -1,3 +1,4 @@
+import { Dispatch, SetStateAction } from 'react';
 import {
   createUserWithEmailAndPassword,
   EmailAuthProvider,
@@ -10,9 +11,11 @@ import {
 } from 'firebase/auth';
 import {
   collection,
+  deleteDoc,
   doc,
   getDoc,
   getDocs,
+  onSnapshot,
   query,
   setDoc,
   updateDoc,
@@ -21,6 +24,7 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 import { auth, db, googleAuthProvider, storage } from '@/firabase';
+import { ITweetData } from '@/types';
 
 interface IChangeUserDataProps {
   id: string;
@@ -88,7 +92,7 @@ export const FirebaseService = {
     const { id, name, gender, surname, email, telegramLink, newPassword, currentPassword } = props;
 
     const docRef = doc(db, 'users', `${id}`);
-    const userDataFromDB = await this.GetUserDataFromDB(id);
+    const userDataFromDB = await this.GetDataItemFromDB(id, 'users');
 
     if (userDataFromDB) {
       await updateDoc(docRef, {
@@ -113,8 +117,8 @@ export const FirebaseService = {
     }
   },
 
-  async GetUserDataFromDB(id: string) {
-    const docRef = doc(db, 'users', `${id}`);
+  async GetDataItemFromDB(id: string, databaseName: 'users' | 'tweets') {
+    const docRef = doc(db, databaseName, `${id}`);
     const docSnap = await getDoc(docRef);
 
     return docSnap.exists() ? docSnap.data() : null;
@@ -159,5 +163,57 @@ export const FirebaseService = {
     await uploadBytes(storageRef, selectedImage);
     const imageUrl = await getDownloadURL(storageRef);
     return imageUrl;
+  },
+
+  async RemoveTweet(tweetId: string) {
+    await deleteDoc(doc(db, 'tweets', tweetId));
+  },
+
+  async ChangeTweetLike(userId: string, tweetId: string) {
+    const tweetRef = doc(db, 'tweets', tweetId.toString());
+
+    const docSnap = await getDoc(tweetRef);
+
+    const likesList: string[] = docSnap.exists() ? docSnap.data().likes : null;
+
+    const likes =
+      likesList.indexOf(userId) !== -1
+        ? likesList.filter((likedId) => likedId !== userId)
+        : [...likesList, userId];
+
+    await updateDoc(tweetRef, {
+      likes,
+    });
+  },
+
+  async SubscriptionOnTweetUpdateForSearchPage(
+    id: string,
+    setTweets: Dispatch<SetStateAction<ITweetData | null>>,
+  ) {
+    const tweetRef = doc(db, 'tweets', id);
+    const unsubscribe = onSnapshot(tweetRef, (snapshot) => {
+      setTweets(snapshot.data() as ITweetData);
+    });
+    return unsubscribe;
+  },
+
+  async SubscribeOnTweetsUpdate(
+    id: string,
+    page: string,
+    setTweets: Dispatch<SetStateAction<ITweetData[]>>,
+  ) {
+    let queryTweets;
+    if (page === 'home') queryTweets = query(collection(db, 'tweets'));
+    else queryTweets = query(collection(db, 'tweets'), where('authorId', '==', id));
+
+    const unsubscribe = onSnapshot(queryTweets, (querySnapshot) => {
+      const tweetsFromDB: ITweetData[] = [];
+      querySnapshot.docs.forEach((docItem) => {
+        tweetsFromDB.push(docItem.data() as ITweetData);
+      });
+      setTweets(tweetsFromDB.reverse());
+    });
+
+    return unsubscribe;
   },
 };
