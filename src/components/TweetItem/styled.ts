@@ -32,6 +32,9 @@ export const UserTeg = styled.span`
 `;
 
 export const TweetText = styled.p`
+  width: 100%;
+  max-width: 750px;
+  word-break: break-word;
   margin-bottom: 15px;
   font-size: ${({ theme }) => theme.fontSizes.px18};
 `;
@@ -47,7 +50,7 @@ export const TweetImage = styled.img`
 export const LikeWrapper = styled.div`
   margin-top: 22px;
 
-  ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })}
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
 `;
 
 export const LikeCount = styled.span`

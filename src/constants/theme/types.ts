@@ -14,8 +14,10 @@ export interface IFontSizes {
 
 export interface IColors {
   black: string;
+  black1: string;
   white: string;
   white1: string;
+  white2: string;
   grey: string;
   red: string;
   blue: string;
