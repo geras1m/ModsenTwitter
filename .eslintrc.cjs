@@ -5,7 +5,6 @@ module.exports = {
     'airbnb',
     'airbnb-typescript',
     'plugin:react/jsx-runtime',
-    // 'plugin:prettier/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:react-hooks/recommended',
     'prettier',
@@ -96,7 +95,7 @@ module.exports = {
     "import/newline-after-import": "error",
     "import/no-duplicates": "error",
     "import/prefer-default-export": "off",
-    "no-shadow": "off",
+    'no-shadow': "warn",
     "react-hooks/rules-of-hooks": "warn",
     "react/jsx-props-no-spreading": "warn",
     "react/no-array-index-key": "warn"
