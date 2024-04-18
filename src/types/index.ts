@@ -41,6 +41,19 @@ export interface ITweetData {
   authorTag: string;
 }
 
+export interface IUserData {
+  id?: string;
+  uis?: string;
+  born: string;
+  isGoogleAuth: false;
+  email: string;
+  surname: string;
+  gender: string;
+  telegramLink: string;
+  name: string;
+  phone: string;
+}
+
 type TweetDataWithoutLikesPropType = Omit<ITweetData, 'likes'>;
 
 export type TweetItemType = TweetDataWithoutLikesPropType & {

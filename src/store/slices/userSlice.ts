@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+import { IUserData } from '@/types';
+
+const initialState: IUserData = {
   id: '',
   born: '',
   isGoogleAuth: false,
