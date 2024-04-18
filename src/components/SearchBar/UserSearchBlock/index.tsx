@@ -54,13 +54,22 @@ export const UserSearchBlock = () => {
     }
   }, [debouncedValue]);
 
+  const users = usersList.map(({ uis, name, telegramLink }) => (
+    <UserCard
+      id={uis!}
+      name={name}
+      tag={telegramLink}
+      handleOpenUser={handleOpenUserOnNewPage}
+    />
+  ));
+
   return (
     <>
       <InputWrapper>
         <Image src={SearchIcon} />
         <Input
           type='text'
-          placeholder='Search Twitter'
+          placeholder='Search Users'
           value={searchValue}
           onChange={handleChangeValue}
         />
@@ -68,18 +77,10 @@ export const UserSearchBlock = () => {
       <SuggestionBlock>
         <SuggestionTitle>Search results</SuggestionTitle>
         <div>
-          {searchValue.length !== 0 && usersList.length === 0 ? (
-            usersList.map(({ uis, name, telegramLink }) => (
-              <UserCard
-                id={uis!}
-                name={name}
-                tag={telegramLink}
-                handleOpenUser={handleOpenUserOnNewPage}
-              />
-            ))
-          ) : (
+          {debouncedValue.length !== 0 && usersList.length === 0 && (
             <NotFoundMessage>The user was not found for your query &#128577;</NotFoundMessage>
           )}
+          {debouncedValue.length !== 0 ? users : null}
         </div>
       </SuggestionBlock>
     </>

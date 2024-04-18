@@ -17,6 +17,7 @@ import {
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
 import { removeUser } from '@/store/slices/userSlice';
+import { getCutString } from '@/utils/getCutString';
 
 export const SideBar = () => {
   const { name, telegramLink } = useAppSelector((state) => state.user);
@@ -48,8 +49,8 @@ export const SideBar = () => {
       <ProfileInfoBlock>
         <ProfileAvatar size='s' />
         <ProfileInfo>
-          <ProfileName>{name}</ProfileName>
-          <ProfileTag>{telegramLink}</ProfileTag>
+          <ProfileName>{name ? getCutString(name, 12) : 'no name'}</ProfileName>
+          <ProfileTag>{telegramLink ? getCutString(telegramLink, 14) : 'no telegram'}</ProfileTag>
         </ProfileInfo>
       </ProfileInfoBlock>
 
