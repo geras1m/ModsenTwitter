@@ -15,11 +15,13 @@ import {
   UserName,
   UserTeg,
 } from '@/components/TweetItem/styled';
+import { useAppSelector } from '@/hooks/reduxHooks';
 import { TweetItemType } from '@/types';
 
 const { ActiveLikeIcon, DefaultLikeIcon } = assets;
 
 export const TweetItem = memo((data: TweetItemType) => {
+  const { id: authUserId } = useAppSelector((state) => state.user);
   const {
     uis,
     authorName,
@@ -55,7 +57,7 @@ export const TweetItem = memo((data: TweetItemType) => {
           <LikeCount>{likes}</LikeCount>
         </LikeWrapper>
       </MainTweetContent>
-      {authorId === userId && (
+      {authorId === userId && authUserId === userId && (
         <RemoveTweetButton
           tweetId={uis.toString()}
           handleRemoveTweet={handleRemoveTweet}

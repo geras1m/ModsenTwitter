@@ -1,8 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
+import { ProfileAvatar } from '@/components/ProfileAvatar';
+import { SearchHeader } from '@/components/SearchHeader';
 import { TweetsBlock } from '@/components/TweetsBlock';
-import { UserSearchPageWrapper } from '@/pages/UserSearchPage/styled';
+import {
+  AvatarContainer,
+  ProfileBanner,
+  UserInformBlock,
+  UserName,
+  UserSearchPageWrapper,
+  UserTag,
+} from '@/pages/UserSearchPage/styled';
 import { FirebaseService } from '@/service';
 import { IUserData } from '@/types';
 
@@ -23,7 +32,19 @@ export const UserSearchPage = () => {
 
   return (
     <UserSearchPageWrapper>
-      {user && <p>{user.name}</p>}
+      <SearchHeader />
+      <ProfileBanner />
+      <UserInformBlock>
+        <AvatarContainer>
+          <ProfileAvatar size='l' />
+        </AvatarContainer>
+        {user && (
+          <UserName>
+            {user.name} <UserTag>{user.telegramLink}</UserTag>
+          </UserName>
+        )}
+      </UserInformBlock>
+
       {id && (
         <TweetsBlock
           page='users-search'
