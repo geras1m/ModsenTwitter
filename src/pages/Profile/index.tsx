@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { CreateTweet } from '@/components/CreateTweet';
 import { EditProfileForm } from '@/components/EditProfileForm';
+import { ProfileAvatar } from '@/components/ProfileAvatar';
+import { TweetsBlock } from '@/components/TweetsBlock';
+import { useAppSelector } from '@/hooks/reduxHooks';
 import {
   AvatarContainer,
   Count,
@@ -17,14 +20,11 @@ import {
   ProfileWrapper,
   Tag,
   UserTextData,
-} from '@/components/Profile/styled';
-import { ProfileAvatar } from '@/components/ProfileAvatar';
-import { TweetsBlock } from '@/components/TweetsBlock';
-import { useAppSelector } from '@/hooks/reduxHooks';
+} from '@/pages/Profile/styled';
 
 export const Profile = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
-  const { name, surname, telegramLink, phone, gender, email } = useAppSelector(
+  const { id, name, surname, telegramLink, phone, gender, email } = useAppSelector(
     (state) => state.user,
   );
   const handleOpenEditModal = () => {
@@ -78,7 +78,10 @@ export const Profile = () => {
         </EditButton>
       </ProfileBlock>
       <CreateTweet />
-      <TweetsBlock page='profile' />
+      <TweetsBlock
+        page='profile'
+        id={id!}
+      />
     </ProfileWrapper>
   );
 };

@@ -37,7 +37,19 @@ export const SignUpPage = () => {
     try {
       const user = await FirebaseService.SignUpWithGoogle();
 
-      dispatch(setUser({ id: user.uid, email: user.email, isGoogleAuth: true }));
+      dispatch(
+        setUser({
+          id: user.uid,
+          email: user.email,
+          isGoogleAuth: true,
+          name: user.displayName,
+          surname: null,
+          phone: user.phoneNumber,
+          telegramLink: null,
+          gender: null,
+          born: null,
+        }),
+      );
       navigate('/profile');
     } catch (error) {
       console.error(error);
