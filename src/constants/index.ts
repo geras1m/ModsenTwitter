@@ -1,7 +1,8 @@
 export const routes = {
   home: '/',
   profile: '/profile',
-  tweet: 'tweet/:id',
+  tweetsSearch: 'tweets-search/:id',
+  usersSearch: 'users-search/:id',
   welcome: '/welcome',
   sign_up: '/sign-up',
   login: '/login',

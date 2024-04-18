@@ -21,10 +21,22 @@ const MainAppPage = lazy(() =>
 );
 
 const ProfilePage = lazy(() =>
-  import('@/components/Profile').then(({ Profile }) => ({ default: Profile })),
+  import('@/pages/Profile').then(({ Profile }) => ({ default: Profile })),
 );
 
-const HomePage = lazy(() => import('@/components/Home').then(({ Home }) => ({ default: Home })));
+const HomePage = lazy(() => import('@/pages/Home').then(({ Home }) => ({ default: Home })));
+
+const TweetSearchPage = lazy(() =>
+  import('@/pages/TweetSearchPage').then(({ TweetSearchPage: TweetSearch }) => ({
+    default: TweetSearch,
+  })),
+);
+
+const UserSearchPage = lazy(() =>
+  import('@/pages/UserSearchPage').then(({ UserSearchPage: UserSearch }) => ({
+    default: UserSearch,
+  })),
+);
 
 export const privateRouteMap = {
   path: routes.home,
@@ -37,6 +49,14 @@ export const privateRouteMap = {
     {
       path: routes.profile,
       component: ProfilePage,
+    },
+    {
+      path: routes.tweetsSearch,
+      component: TweetSearchPage,
+    },
+    {
+      path: routes.usersSearch,
+      component: UserSearchPage,
     },
   ],
 };
@@ -78,6 +98,14 @@ export const publicRedirectRoutesMap = [
   },
   {
     path: routes.home,
+    to: routes.welcome,
+  },
+  {
+    path: routes.tweetsSearch,
+    to: routes.welcome,
+  },
+  {
+    path: routes.usersSearch,
     to: routes.welcome,
   },
 ];
