@@ -61,7 +61,21 @@ export const useSignUpFormLogic = () => {
         dayBirth!,
       );
 
-      dispatch(setUser({ id: user.uid, email, isGoogleAuth: false }));
+      const born = new Date(yearBirth!, monthBirth!, dayBirth!);
+
+      dispatch(
+        setUser({
+          id: user.uid,
+          isGoogleAuth: false,
+          surname: null,
+          telegramLink: null,
+          gender: null,
+          email,
+          born,
+          phone,
+          name,
+        }),
+      );
       navigate('/profile');
     } catch (error) {
       if (error instanceof FirebaseError) {
@@ -71,15 +85,8 @@ export const useSignUpFormLogic = () => {
       }
     }
 
-    // TODO: получить всех пользователей
-    // const querySnapshot = await getDocs(collection(db, 'users'));
-    // querySnapshot.forEach((docc) => {
-    //   console.log(`${docc.id} => ${docc.data().name}`);
-    // });
-
     setIsLoading(false);
     reset();
-    // редирект на AppPage
   };
 
   const dates = getDateDays(monthBirth, yearBirth);
