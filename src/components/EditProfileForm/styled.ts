@@ -61,7 +61,7 @@ export const Input = styled.input`
   padding: 24px 20px;
   border-radius: 6px;
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  color: rgb(39, 39, 39);
+  color: ${({ theme }) => theme.colors.black1};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 15px;

@@ -43,7 +43,7 @@ export const LoginForm = () => {
 
     try {
       const user = await FirebaseService.LogIn(email, password);
-      const userData = await FirebaseService.GetUserDataFromDB(user.uid);
+      const userData = await FirebaseService.GetDataItemFromDB(user.uid, 'users');
       if (userData) {
         const { uis, name, surname, phone, telegramLink, gender, born } = userData;
 

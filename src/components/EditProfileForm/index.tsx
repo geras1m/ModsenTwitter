@@ -61,7 +61,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
 
     try {
       await FirebaseService.ChangeUserData({
-        id,
+        id: id!,
         email,
         name,
         surname,
@@ -71,10 +71,10 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
         newPassword,
       });
 
-      const updatedUserData = await FirebaseService.GetUserDataFromDB(id);
+      const updatedUserData = await FirebaseService.GetDataItemFromDB(id!, 'users');
       if (updatedUserData)
         await FirebaseService.UpdateUserDataInTweets(
-          id,
+          id!,
           updatedUserData.name,
           updatedUserData.telegramLink,
         );
