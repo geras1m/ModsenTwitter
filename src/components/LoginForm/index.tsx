@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
+import { FirebaseError } from 'firebase/app';
 
 import TwitterIcon from '@/assets/icons/twitter-icon.svg';
+import { formInputsTextData } from '@/components/LoginForm/config';
 import {
   Form,
   Icon,
@@ -15,11 +17,14 @@ import {
 import { PasswordInput } from '@/components/PasswordInput';
 import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
-import { routes } from '@/constants';
+import { defaultErrorMessage, routes, successMessage } from '@/constants';
 import { passwordPattern } from '@/constants/validation';
+import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
+import { ToastType } from '@/types';
+import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 type FormDataType = {
   email: string;
@@ -27,6 +32,7 @@ type FormDataType = {
 };
 
 export const LoginForm = () => {
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,6 +45,7 @@ export const LoginForm = () => {
 
   const handlerOnSubmit: SubmitHandler<FormDataType> = async (data) => {
     const { email, password } = data;
+
     setIsLoading(true);
 
     try {
@@ -60,21 +67,27 @@ export const LoginForm = () => {
             born,
           }),
         );
-        navigate('/profile');
+        toast?.open(successMessage, ToastType.success);
+        navigate(routes.profile);
       }
     } catch (error) {
-      console.error(error);
+      if (error instanceof FirebaseError) {
+        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
+      } else {
+        console.error(error);
+      }
     }
 
     setIsLoading(false);
     reset();
   };
+  const { email, password } = formInputsTextData;
 
   const config = register('password', {
-    required: 'Required field',
+    required: password.required,
     pattern: {
       value: passwordPattern,
-      message: 'The password should be at least 6 symbols long and contain a digit',
+      message: password.pattern,
     },
   });
 
@@ -84,20 +97,22 @@ export const LoginForm = () => {
       <Title>Log in to Twitter</Title>
       <Form onSubmit={handleSubmit(handlerOnSubmit)}>
         {errors?.email && (
-          <ErrorMessage>{errors?.email?.message?.toString() || 'Error!'}</ErrorMessage>
+          <ErrorMessage>{errors?.email?.message?.toString() || defaultErrorMessage}</ErrorMessage>
         )}
 
         <Input
-          placeholder='Email address'
+          placeholder={email.placeholder}
           {...register('email', {
-            required: 'Required field',
+            required: email.required,
           })}
         />
         {errors?.password && (
-          <ErrorMessage>{errors?.password?.message?.toString() || 'Error!'}</ErrorMessage>
+          <ErrorMessage>
+            {errors?.password?.message?.toString() || defaultErrorMessage}
+          </ErrorMessage>
         )}
         <PasswordInput
-          placeholder='Password'
+          placeholder={password.placeholder}
           register={config}
         />
 

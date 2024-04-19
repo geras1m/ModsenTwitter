@@ -80,8 +80,9 @@ export const CreateTweet = memo(() => {
     } catch (error) {
       if (error instanceof FirebaseError) {
         toast?.open(ErrorsMessages.unexpectedError, ToastType.error);
+      } else {
+        console.error(error);
       }
-      console.error(error);
     }
 
     reset();
