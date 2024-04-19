@@ -1,8 +1,9 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { collection, getDocs } from 'firebase/firestore';
+import { FirebaseError } from 'firebase/app';
 
 import { assets } from '@/assets';
+import { searchTweetPlaceholder } from '@/components/SearchBar/config';
 import {
   Image,
   Input,
@@ -12,9 +13,11 @@ import {
 } from '@/components/SearchBar/styled';
 import { TweetCard } from '@/components/SearchBar/TweetCard';
 import { SuggestionTitle } from '@/components/SearchBar/TweetSearchBlock/styled';
-import { db } from '@/firabase';
+import { useToast } from '@/context/toastContext';
 import { useDebounce } from '@/hooks/useDebounce';
-import { ITweetData } from '@/types';
+import { FirebaseService } from '@/service';
+import { ITweetData, ToastType } from '@/types';
+import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 const { SearchIcon } = assets;
 
@@ -23,6 +26,7 @@ export const TweetSearchBlock = () => {
   const [tweetsList, setTweetsList] = useState<ITweetData[]>([]);
   const debouncedValue = useDebounce(searchValue);
   const navigate = useNavigate();
+  const toast = useToast();
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -33,30 +37,27 @@ export const TweetSearchBlock = () => {
   }, []);
 
   useEffect(() => {
-    if (debouncedValue.length !== 0) {
-      const getTweetsData = async () => {
-        const querySnapshot = await getDocs(collection(db, 'tweets'));
-
-        const tweetsDataFromDB: ITweetData[] = [];
-        querySnapshot.forEach((doc) => {
-          tweetsDataFromDB.push(doc.data() as ITweetData);
+    try {
+      if (debouncedValue.length !== 0) {
+        FirebaseService.GetTweetDataCollectionFromDB().then((data) => {
+          const filteredTweetsData = data.filter((tweetData) =>
+            tweetData.text.toLowerCase().includes(debouncedValue.toLowerCase()),
+          );
+          setTweetsList(filteredTweetsData);
         });
-
-        return tweetsDataFromDB;
-      };
-
-      getTweetsData().then((data) => {
-        const filteredTweetsData = data.filter((tweetData) =>
-          tweetData.text.toLowerCase().includes(debouncedValue.toLowerCase()),
-        );
-        console.log(filteredTweetsData);
-        setTweetsList(filteredTweetsData);
-      });
+      }
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
+      } else {
+        console.error(error);
+      }
     }
   }, [debouncedValue]);
 
   const tweets = tweetsList.map(({ authorName, text, date, uis }) => (
     <TweetCard
+      key={uis}
       authorName={authorName}
       date={date}
       text={text}
@@ -71,20 +72,22 @@ export const TweetSearchBlock = () => {
         <Image src={SearchIcon} />
         <Input
           type='text'
-          placeholder='Search Twitter'
+          placeholder={searchTweetPlaceholder}
           value={searchValue}
           onChange={handleChangeValue}
         />
       </InputWrapper>
-      <SuggestionBlock>
-        <SuggestionTitle>Search results</SuggestionTitle>
-        <div>
-          {debouncedValue.length !== 0 ? tweets : null}
-          {debouncedValue.length !== 0 && tweetsList.length === 0 && (
-            <NotFoundMessage>The tweet was not found for your query &#128577;</NotFoundMessage>
-          )}
-        </div>
-      </SuggestionBlock>
+      {debouncedValue.length !== 0 && (
+        <SuggestionBlock>
+          <SuggestionTitle>Search results</SuggestionTitle>
+          <div>
+            {tweets}
+            {tweetsList.length === 0 && (
+              <NotFoundMessage>The tweet was not found for your query &#128577;</NotFoundMessage>
+            )}
+          </div>
+        </SuggestionBlock>
+      )}
     </>
   );
 };
