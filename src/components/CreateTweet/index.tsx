@@ -1,7 +1,9 @@
 import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
+import { FirebaseError } from 'firebase/app';
 
 import { assets } from '@/assets';
+import { errorMessages, inputName, placeholderTextarea } from '@/components/CreateTweet/config';
 import {
   AddTweetButton,
   ControlButtonsWrapper,
@@ -17,9 +19,11 @@ import {
 import { ProfileAvatar } from '@/components/ProfileAvatar';
 import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
-import { defaultErrorMessage } from '@/constants';
+import { defaultErrorMessage, successMessage } from '@/constants';
+import { useToast } from '@/context/toastContext';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
+import { ErrorsMessages, ToastType } from '@/types';
 import { getTweetDateForTweet } from '@/utils/getTweetDateForTweet';
 
 type CreateTweetFormDataType = {
@@ -33,6 +37,7 @@ export const CreateTweet = () => {
   const [selectedImage, setSelectedImage] = useState<null | File>(null);
   const [isUploadFile, setIsUploadFile] = useState<boolean>(false);
   const { id: userId, name: authorName, telegramLink } = useAppSelector((state) => state.user);
+  const toast = useToast();
   const {
     register,
     formState: { errors },
@@ -48,7 +53,7 @@ export const CreateTweet = () => {
     const { textarea } = data;
 
     if (textarea.length === 0) {
-      setError('textarea', { message: 'Please, add some text!' });
+      setError(inputName, { message: errorMessages.textarea });
       return;
     }
 
@@ -67,12 +72,16 @@ export const CreateTweet = () => {
         textarea,
         savedImageUrl,
         date,
-        userId,
+        userId!,
         authorName,
         telegramLink,
       );
+      toast?.open(successMessage, ToastType.success);
     } catch (error) {
-      console.log(error);
+      if (error instanceof FirebaseError) {
+        toast?.open(ErrorsMessages.unexpectedError, ToastType.error);
+      }
+      console.error(error);
     }
 
     reset();
@@ -84,7 +93,7 @@ export const CreateTweet = () => {
   const handleUploadFile = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files?.[0]) {
       if (2 * bytesInMb < e.target.files[0].size) {
-        setError('textarea', { message: 'Overweight, maximum size of image is 2MB' });
+        setError(inputName, { message: errorMessages.maxWeightOfFile });
         return;
       }
       clearErrors();
@@ -103,9 +112,9 @@ export const CreateTweet = () => {
           </ErrorMessage>
         )}
         <Textarea
-          placeholder='What’s happening'
-          {...register('textarea', {
-            maxLength: { value: 200, message: 'The maximum number of symbols is 200' },
+          placeholder={placeholderTextarea}
+          {...register(inputName, {
+            maxLength: { value: 200, message: errorMessages.symbolLimit },
           })}
         />
         <ControlButtonsWrapper>
