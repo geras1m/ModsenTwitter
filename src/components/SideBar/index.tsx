@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom';
 import TwitterIconPath from '@/assets/icons/twitter-icon.svg';
 import { CreateTweet } from '@/components/CreateTweet';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
-import { navBarLinksData } from '@/components/SideBar/config';
+import { navBarLinksData, noName, noTelegram } from '@/components/SideBar/config';
 import {
   BackgroundModal,
   Button,
@@ -21,6 +21,7 @@ import {
   SideBarWrapper,
   TwitterIcon,
 } from '@/components/SideBar/styled';
+import { routes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
 import { removeUser } from '@/store/slices/userSlice';
@@ -83,11 +84,11 @@ export const SideBar = memo(() => {
       <ProfileInfoBlock>
         <ProfileAvatar size='s' />
         <ProfileInfo>
-          <ProfileName>{name ? getCutString(name, 12) : 'no name'}</ProfileName>
-          <ProfileTag>{telegramLink ? getCutString(telegramLink, 14) : 'no telegram'}</ProfileTag>
+          <ProfileName>{name ? getCutString(name, 12) : noName}</ProfileName>
+          <ProfileTag>{telegramLink ? getCutString(telegramLink, 14) : noTelegram}</ProfileTag>
         </ProfileInfo>
       </ProfileInfoBlock>
-      {location.pathname === '/profile' && (
+      {location.pathname === routes.profile && (
         <Button
           type='button'
           onClick={handleLogOut}

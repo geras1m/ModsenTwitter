@@ -12,6 +12,10 @@ const {
   MoreIcon,
 } = assets;
 
+export const noName = 'No name';
+
+export const noTelegram = 'No telegram';
+
 export const navBarLinksData = [
   {
     title: 'Home',

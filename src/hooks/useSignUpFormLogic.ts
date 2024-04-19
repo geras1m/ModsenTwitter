@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
 
 import { inputsName } from '@/components/SignUpForm/config';
+import { routes, successMessage } from '@/constants';
+import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
-import { IFirebaseError, SingUpFormDataType } from '@/types';
+import { SingUpFormDataType, ToastType } from '@/types';
 import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
@@ -18,10 +20,7 @@ export const useSignUpFormLogic = () => {
   const [monthBirth, setMonthBirth] = useState<null | number>(null);
   const [yearBirth, setYearBirth] = useState<null | number>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [firebaseError, setFirebaseError] = useState<IFirebaseError>({
-    isError: false,
-    message: '',
-  });
+  const toast = useToast();
   const {
     register,
     formState: { errors },
@@ -51,15 +50,15 @@ export const useSignUpFormLogic = () => {
     try {
       setIsLoading(true);
 
-      const user = await FirebaseService.SignUpWithForm(
+      const user = await FirebaseService.SignUpWithForm({
         name,
         email,
         password,
         phone,
-        yearBirth!,
-        monthBirth!,
-        dayBirth!,
-      );
+        yearBirth: yearBirth!,
+        monthBirth: monthBirth!,
+        dayBirth: dayBirth!,
+      });
 
       const born = new Date(yearBirth!, monthBirth!, dayBirth!);
 
@@ -76,10 +75,12 @@ export const useSignUpFormLogic = () => {
           name,
         }),
       );
-      navigate('/profile');
+
+      toast?.open(successMessage, ToastType.success);
+      navigate(routes.profile);
     } catch (error) {
       if (error instanceof FirebaseError) {
-        setFirebaseError({ isError: true, message: getFirebaseErrorMessage(error) });
+        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
       } else {
         console.error(error);
       }
@@ -100,7 +101,6 @@ export const useSignUpFormLogic = () => {
     handlerOnSubmit,
     handleChange,
     isLoading,
-    firebaseError,
     register,
     errors,
     handleSubmit,
