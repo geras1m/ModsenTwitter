@@ -1,6 +1,11 @@
 import React, { ErrorInfo, ReactNode } from 'react';
 
-import { ErrorMessage, ErrorWrapper } from '@/components/ErrorBoundary/styled';
+import {
+  Button,
+  ErrorBoundaryWrapper,
+  ErrorMessage,
+  ErrorWrapper,
+} from '@/components/ErrorBoundary/styled';
 
 export interface IErrorBoundaryProps {
   children: ReactNode | undefined;
@@ -11,9 +16,12 @@ interface IErrorBoundaryState {
 }
 
 export class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBoundaryState> {
+  onRefresh;
+
   constructor(props: IErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false };
+    this.onRefresh = () => window.location.reload();
   }
 
   static getDerivedStateFromError() {
@@ -30,9 +38,12 @@ export class ErrorBoundary extends React.Component<IErrorBoundaryProps, IErrorBo
 
     if (hasError) {
       return (
-        <ErrorWrapper>
-          <ErrorMessage>Sorry.. there was an error :(</ErrorMessage>
-        </ErrorWrapper>
+        <ErrorBoundaryWrapper>
+          <ErrorWrapper>
+            <ErrorMessage>Sorry.. there was an error :(</ErrorMessage>
+            <Button onClick={this.onRefresh}>Reload the page</Button>
+          </ErrorWrapper>
+        </ErrorBoundaryWrapper>
       );
     }
 

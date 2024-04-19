@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, memo, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { FirebaseError } from 'firebase/app';
 
@@ -32,7 +32,7 @@ type CreateTweetFormDataType = {
 
 const bytesInMb = 1048576;
 
-export const CreateTweet = () => {
+export const CreateTweet = memo(() => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [selectedImage, setSelectedImage] = useState<null | File>(null);
   const [isUploadFile, setIsUploadFile] = useState<boolean>(false);
@@ -144,4 +144,4 @@ export const CreateTweet = () => {
       </TweetForm>
     </CreateTweetWrapper>
   );
-};
+});
