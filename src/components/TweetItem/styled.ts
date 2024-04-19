@@ -41,6 +41,7 @@ export const TweetText = styled.p`
 
 export const TweetImage = styled.img`
   border-radius: 6px;
+  width: 100%;
   max-width: 679px;
   height: 100%;
   max-height: 450px;

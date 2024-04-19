@@ -13,9 +13,7 @@ export const Toast = ({
   useTimeout(close, 4000);
   return (
     <ToastWrapper $toastType={type}>
-      <ToastText>
-        {message} {type}
-      </ToastText>
+      <ToastText>{message}</ToastText>
       <CloseToastButton onClick={close} />
     </ToastWrapper>
   );

@@ -35,7 +35,6 @@ export const SignUpForm = () => {
     months,
     dates,
     isLoading,
-    firebaseError,
     handleChange,
     handlerOnSubmit,
     handleSubmit,
@@ -154,7 +153,6 @@ export const SignUpForm = () => {
         />
       </DateWrapper>
 
-      {firebaseError.isError && <ErrorMessage>{firebaseError.message}</ErrorMessage>}
       <SubmitButton
         type='submit'
         disabled={isLoading}

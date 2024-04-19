@@ -67,15 +67,15 @@ export const CreateTweet = memo(() => {
         ? await FirebaseService.AddImageToStorage(id, selectedImage)
         : null;
 
-      await FirebaseService.CreateNewTweetInDB(
+      await FirebaseService.CreateNewTweetInDB({
         id,
-        textarea,
-        savedImageUrl,
-        date,
-        userId!,
         authorName,
-        telegramLink,
-      );
+        authorId: userId!,
+        text: textarea!,
+        imgLink: savedImageUrl,
+        authorTag: telegramLink,
+        date,
+      });
       toast?.open(successMessage, ToastType.success);
     } catch (error) {
       if (error instanceof FirebaseError) {

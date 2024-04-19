@@ -6,7 +6,7 @@ interface IToast {
 
 export const ToastWrapper = styled.div<IToast>`
   position: fixed;
-  z-index: 999;
+  z-index: 100;
   bottom: 20px;
   right: 20px;
   width: 100%;
