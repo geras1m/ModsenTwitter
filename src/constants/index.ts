@@ -9,6 +9,8 @@ export const routes = {
   notFound: '*',
 } as const;
 
+export const successMessage = 'Success!';
+
 export const defaultErrorMessage = 'Error!';
 
 export const footerLinks = [

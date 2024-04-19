@@ -1,18 +1,22 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { FirebaseError } from 'firebase/app';
 import { Unsubscribe } from 'firebase/firestore';
 
 import { SearchHeader } from '@/components/SearchHeader';
 import { TweetItem } from '@/components/TweetItem';
+import { useToast } from '@/context/toastContext';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { TweetSearchPageWrapper } from '@/pages/TweetSearchPage/styled';
 import { FirebaseService } from '@/service';
-import { ITweetData } from '@/types';
+import { ITweetData, ToastType } from '@/types';
+import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 export const TweetSearchPage = () => {
   const { id } = useAppSelector((state) => state.user);
   const { id: paramId } = useParams();
   const [tweet, setTweet] = useState<ITweetData | null>(null);
+  const toast = useToast();
 
   useEffect(() => {
     let unsubscribe: Unsubscribe = () => {};
@@ -33,8 +37,12 @@ export const TweetSearchPage = () => {
     if (tweet) {
       try {
         await FirebaseService.RemoveTweet(tweet.uis.toString());
-      } catch (e) {
-        console.log(e);
+      } catch (error) {
+        if (error instanceof FirebaseError) {
+          toast?.open(getFirebaseErrorMessage(error), ToastType.error);
+        } else {
+          console.error(error);
+        }
       }
     }
   };
@@ -42,8 +50,12 @@ export const TweetSearchPage = () => {
   const handleChangeLike = useCallback(async (tweetId: string | number, userId: string) => {
     try {
       await FirebaseService.ChangeTweetLike(userId, tweetId.toString());
-    } catch (e) {
-      console.log(e);
+    } catch (error) {
+      if (error instanceof FirebaseError) {
+        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
+      } else {
+        console.error(error);
+      }
     }
   }, []);
 

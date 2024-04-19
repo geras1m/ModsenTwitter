@@ -1,8 +1,10 @@
 import { useNavigate } from 'react-router-dom';
+import { FirebaseError } from 'firebase/app';
 
 import googleIconPath from '@/assets/icons/google-icon.svg';
 import twitterIconPath from '@/assets/icons/twitter-icon.svg';
 import { footerLinks, routes } from '@/constants';
+import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import {
   ButtonsWrapper,
@@ -26,10 +28,13 @@ import {
 } from '@/pages/WelcomePage/styled';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
+import { ToastType } from '@/types';
+import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const toast = useToast();
 
   const links = footerLinks.map((link) => <LinkItem key={link}>{link}</LinkItem>);
 
@@ -50,9 +55,13 @@ export const SignUpPage = () => {
           born: null,
         }),
       );
-      navigate('/profile');
+      navigate(routes.profile);
     } catch (error) {
-      console.error(error);
+      if (error instanceof FirebaseError) {
+        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
+      } else {
+        console.error(error);
+      }
     }
   };
 
