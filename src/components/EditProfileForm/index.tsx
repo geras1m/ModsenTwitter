@@ -21,25 +21,26 @@ import { PasswordInput } from '@/components/PasswordInput';
 import { Portal } from '@/components/Portal';
 import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
-import { defaultErrorMessage } from '@/constants';
+import { defaultErrorMessage, successMessage } from '@/constants';
 import { namePattern, passwordPattern, telegramNicknamePattern } from '@/constants/validation';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
+import { ErrorsMessages, ToastType } from '@/types';
 
 interface IEditProfileFormProps {
   closeModal: () => void;
 }
 
-type EditProfileFormDataType = {
+interface EditProfileFormDataType {
   name?: string;
   surname?: string;
   gender?: string;
   currentPassword?: string;
   newPassword?: string;
   telegramLink?: string;
-};
+}
 
 export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -94,11 +95,12 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
           }),
         );
 
-      toast?.open('good work!', 'success');
+      toast?.open(successMessage, ToastType.success);
     } catch (error) {
       if (error instanceof FirebaseError) {
-        toast?.open('errrrrrror!', 'error');
+        toast?.open(ErrorsMessages.unexpectedError, ToastType.error);
       }
+      console.error(error);
     }
 
     setIsLoading(false);

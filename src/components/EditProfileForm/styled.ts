@@ -8,7 +8,7 @@ export const Background = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: ${({ theme }) => theme.colors.black2};
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 `;
