@@ -17,13 +17,15 @@ export const EditProfileFormWrapper = styled.form`
   position: relative;
   max-width: 500px;
   padding: 20px 10px;
-  background-color: ${({ theme }) => theme.colors.white};
+  border: 1px solid ${({ theme }) => theme.colors.grey};
+  background-color: ${({ theme }) => theme.colors.bg};
   border-radius: 6px;
 `;
 
 export const Legend = styled.legend`
   margin-left: 20px;
   font-size: ${({ theme }) => theme.fontSizes.px18};
+  color: ${({ theme }) => theme.colors.text};
 `;
 
 export const GenderInputWrapper = styled.fieldset`
@@ -42,6 +44,7 @@ export const GenderInputWrapper = styled.fieldset`
 
 export const Label = styled.label`
   font-size: ${({ theme }) => theme.fontSizes.px18};
+  color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
   margin-bottom: 10px;
 
@@ -60,8 +63,9 @@ export const Input = styled.input`
   width: 100%;
   padding: 24px 20px;
   border-radius: 6px;
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  color: ${({ theme }) => theme.colors.black1};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 15px;

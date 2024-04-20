@@ -24,18 +24,8 @@ import {
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
 import { auth, db, googleAuthProvider, storage } from '@/firabase';
-import { ITweetData } from '@/types';
-
-interface IChangeUserDataProps {
-  id: string;
-  email: string;
-  name: string | undefined;
-  surname: string | undefined;
-  gender: string | undefined;
-  telegramLink: string | undefined;
-  currentPassword: string | undefined;
-  newPassword: string | undefined;
-}
+import { IChangeUserDataProps, ICreateNewTweetInDB, ISignUpWithFormProps } from '@/service/types';
+import { ITweetData, IUserData } from '@/types';
 
 export const FirebaseService = {
   async LogIn(email: string, password: string): Promise<FirebaseUser> {
@@ -43,9 +33,11 @@ export const FirebaseService = {
     const { user } = userCredential;
     return user;
   },
+
   async LogOut() {
     await signOut(auth);
   },
+
   async SignUpWithGoogle(): Promise<FirebaseUser> {
     const { user } = await signInWithPopup(auth, googleAuthProvider);
 
@@ -63,15 +55,9 @@ export const FirebaseService = {
 
     return user;
   },
-  async SignUpWithForm(
-    name: string,
-    email: string,
-    password: string,
-    phone: string,
-    yearBirth: number,
-    monthBirth: number,
-    dayBirth: number,
-  ): Promise<FirebaseUser> {
+
+  async SignUpWithForm(data: ISignUpWithFormProps): Promise<FirebaseUser> {
+    const { email, name, phone, password, monthBirth, dayBirth, yearBirth } = data;
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
     await setDoc(doc(db, 'users', `${user.uid}`), {
@@ -88,6 +74,7 @@ export const FirebaseService = {
 
     return user;
   },
+
   async ChangeUserData(props: IChangeUserDataProps) {
     const { id, name, gender, surname, email, telegramLink, newPassword, currentPassword } = props;
 
@@ -124,15 +111,8 @@ export const FirebaseService = {
     return docSnap.exists() ? docSnap.data() : null;
   },
 
-  async CreateNewTweetInDB(
-    id: string | number,
-    text: string,
-    imgLink: string | null,
-    date: string,
-    authorId: string,
-    authorName: string,
-    authorTag: string,
-  ) {
+  async CreateNewTweetInDB(data: ICreateNewTweetInDB) {
+    const { id, authorId, authorName, authorTag, text, imgLink, date } = data;
     await setDoc(doc(db, 'tweets', `${id}`), {
       uis: id,
       authorId,
@@ -215,5 +195,29 @@ export const FirebaseService = {
     });
 
     return unsubscribe;
+  },
+
+  async GetQuerySnapshotFromDB(path: 'users' | 'tweets') {
+    return getDocs(collection(db, path));
+  },
+
+  async GetUserDataCollectionFromDB() {
+    const querySnapshot = await this.GetQuerySnapshotFromDB('users');
+
+    const tweetsDataFromDB: IUserData[] = [];
+    querySnapshot.forEach((userDoc) => {
+      tweetsDataFromDB.push(userDoc.data() as IUserData);
+    });
+    return tweetsDataFromDB;
+  },
+
+  async GetTweetDataCollectionFromDB() {
+    const querySnapshot = await this.GetQuerySnapshotFromDB('tweets');
+
+    const tweetsDataFromDB: ITweetData[] = [];
+    querySnapshot.forEach((tweetDoc) => {
+      tweetsDataFromDB.push(tweetDoc.data() as ITweetData);
+    });
+    return tweetsDataFromDB;
   },
 };

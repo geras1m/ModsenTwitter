@@ -21,6 +21,7 @@ export const UserInformWrapper = styled.div`
 
 export const UserName = styled.h3`
   display: inline-block;
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px20};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-right: 5px;
@@ -36,6 +37,7 @@ export const TweetText = styled.p`
   max-width: 750px;
   word-break: break-word;
   margin-bottom: 15px;
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px18};
 `;
 
@@ -55,6 +57,7 @@ export const LikeWrapper = styled.div`
 `;
 
 export const LikeCount = styled.span`
+  color: ${({ theme }) => theme.colors.text};
   margin-left: 10px;
 `;
 

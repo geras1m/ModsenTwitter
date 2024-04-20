@@ -1,5 +1,3 @@
-import { ThemeType } from '@/constants/theme/types';
-
 export interface IInputsName {
   year: 'year';
   month: 'month';
@@ -8,12 +6,19 @@ export interface IInputsName {
 
 export type FormInputsNameTypes = 'name' | 'email' | 'phone' | 'password' | 'confirmPassword';
 
+export const enum ToastType {
+  success = 'success',
+  error = 'error',
+}
+
 export const enum FirebaseErrorCodes {
   emailAlreadyInUse = 'auth/email-already-in-use',
+  invalidPassword = 'auth/invalid-credential',
 }
 
 export const enum ErrorsMessages {
   userExist = 'The user with this email already exists',
+  invalidPassword = 'Invalid password or email',
   unexpectedError = 'Unexpected error',
 }
 
@@ -63,8 +68,3 @@ export type TweetItemType = TweetDataWithoutLikesPropType & {
   likes: number;
   isActiveLikeIcon: boolean;
 };
-
-export interface IThemeProps {
-  theme: ThemeType;
-  switchTheme: (theme: ThemeType) => void;
-}

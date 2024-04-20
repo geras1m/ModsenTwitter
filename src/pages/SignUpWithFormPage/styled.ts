@@ -24,6 +24,7 @@ export const TwitterLogo = styled.img`
 `;
 
 export const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.text};
   font-size: 30px;
   align-self: flex-start;
   margin-bottom: 40px;

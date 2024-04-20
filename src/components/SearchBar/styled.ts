@@ -23,11 +23,11 @@ export const Input = styled.input`
   padding: 15px 20px 15px 64px;
   border-radius: 31px;
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  color: ${({ theme }) => theme.colors.black1};
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 15px;
-  background-color: ${({ theme }) => theme.colors.white2};
 
   &:last-child {
     margin-bottom: 0;
@@ -42,7 +42,7 @@ export const SuggestionBlock = styled.div`
   padding: 43px 15px 15px;
   border-radius: 10px;
   margin-top: 32px;
-  background-color: ${({ theme }) => theme.colors.white2};
+  background-color: ${({ theme }) => theme.colors.bgSuggestion};
 `;
 
 export const NotFoundMessage = styled.p`

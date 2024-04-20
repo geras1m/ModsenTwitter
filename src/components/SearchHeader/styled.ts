@@ -17,7 +17,7 @@ export const Image = styled.img`
 export const LinkItem = styled(NavLink)`
   transition: 0.2s ease-in;
   cursor: pointer;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px24};
   font-weight: ${({ theme }) => theme.fontWeight.semiBold};
 

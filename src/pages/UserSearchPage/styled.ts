@@ -37,7 +37,7 @@ export const UserInformBlock = styled.div`
 `;
 
 export const UserName = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px24};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;

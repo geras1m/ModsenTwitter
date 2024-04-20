@@ -16,9 +16,11 @@ export const TweetForm = styled.form`
 export const Textarea = styled.textarea`
   resize: none;
   border: 1px solid transparent;
+  background-color: transparent;
   border-radius: 6px;
   width: 100%;
   font-size: ${({ theme }) => theme.fontSizes.px18};
+  color: ${({ theme }) => theme.colors.text};
   transition: 0.2s ease-in;
   padding: 10px;
   height: 80px;

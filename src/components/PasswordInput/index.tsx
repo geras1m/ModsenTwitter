@@ -1,18 +1,25 @@
 import { memo, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
-import CloseEye from '@/assets/icons/close-eye.svg';
-import OpenEye from '@/assets/icons/open-eye.svg';
+import { assets } from '@/assets';
 import { Button, EyeImage, Input, PasswordInputWrapper } from '@/components/PasswordInput/styled';
+import { ThemeValue } from '@/constants/theme/types';
+import { useAppSelector } from '@/hooks/reduxHooks';
 
 interface PasswordInputProps {
   placeholder: string;
   register: UseFormRegisterReturn;
 }
 
+const { CloseEyeIcon, CloseEyeLightIcon, OpenEyeIcon, OpenEyeLightIcon } = assets;
+
 export const PasswordInput = memo((config: PasswordInputProps) => {
   const { placeholder, register } = config;
   const [isShowPassword, setIsShowPassword] = useState(false);
+  const { theme } = useAppSelector((state) => state.theme);
+
+  const CloseIcon = theme === ThemeValue.dark ? CloseEyeLightIcon : CloseEyeIcon;
+  const OpenIcon = theme === ThemeValue.dark ? OpenEyeLightIcon : OpenEyeIcon;
 
   const handleChangeVisibilityOfPassword = () => setIsShowPassword(!isShowPassword);
 
@@ -27,7 +34,7 @@ export const PasswordInput = memo((config: PasswordInputProps) => {
         type='button'
         onClick={handleChangeVisibilityOfPassword}
       >
-        <EyeImage src={isShowPassword ? CloseEye : OpenEye} />
+        <EyeImage src={isShowPassword ? CloseIcon : OpenIcon} />
       </Button>
     </PasswordInputWrapper>
   );

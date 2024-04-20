@@ -1,6 +1,8 @@
 import { Suspense } from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 
+import { BackgroundLoader } from '@/components/Router/styled';
+import { Spinner } from '@/components/Spinner';
 import { routes } from '@/constants';
 import {
   privateRedirectRoutesMap,
@@ -9,6 +11,7 @@ import {
   publicRoutesMap,
 } from '@/constants/router';
 import { useAuth } from '@/hooks/useAuth';
+import { NotFoundPage } from '@/pages/NotFoundPage';
 
 export const AppRoutes = () => {
   const { isAuth } = useAuth();
@@ -73,10 +76,22 @@ export const AppRoutes = () => {
   );
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
+    <Suspense
+      fallback={
+        <BackgroundLoader>
+          <Spinner
+            width='100px'
+            border='10px'
+          />
+        </BackgroundLoader>
+      }
+    >
       <Routes>
         {isAuth ? privateRoutes : publicRoutes}
-        {/* <Route path={routes.notFound}>{<NotFoundPage />}</Route> */}
+        <Route
+          path={routes.notFound}
+          element={<NotFoundPage />}
+        />
       </Routes>
     </Suspense>
   );

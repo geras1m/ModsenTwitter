@@ -5,6 +5,8 @@ export const SelectItem = styled.select`
   margin-right: 20px;
   padding: 24px 20px;
   border-radius: 6px;
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
   cursor: pointer;
   transition: 0.2s ease-in;
@@ -19,4 +21,7 @@ export const SelectItem = styled.select`
   }
 `;
 
-export const Option = styled.option``;
+export const Option = styled.option`
+  background-color: ${({ theme }) => theme.colors.bg};
+  color: ${({ theme }) => theme.colors.text};
+`;

@@ -15,6 +15,7 @@ export const Icon = styled.img``;
 
 export const Title = styled.h2`
   margin: 35px 0;
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px42};
   font-weight: ${({ theme }) => theme.fontWeight.black};
 `;
@@ -27,8 +28,9 @@ export const Input = styled.input`
   width: 100%;
   padding: 24px 20px;
   border-radius: 6px;
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  color: rgb(39, 39, 39);
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 25px;

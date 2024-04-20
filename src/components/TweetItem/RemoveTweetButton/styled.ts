@@ -59,7 +59,8 @@ export const ConfirmModal = styled.div`
   border-radius: 6px;
   width: 100%;
   max-width: 400px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.bg};
+  border: 1px solid ${({ theme }) => theme.colors.grey};
   flex-direction: column;
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
@@ -67,7 +68,7 @@ export const ConfirmModal = styled.div`
 
 export const WarningText = styled.p`
   text-align: center;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px18};
 `;
 

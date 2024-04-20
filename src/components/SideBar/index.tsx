@@ -4,20 +4,17 @@ import { useLocation } from 'react-router-dom';
 import TwitterIconPath from '@/assets/icons/twitter-icon.svg';
 import { CreateTweet } from '@/components/CreateTweet';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
-import { navBarLinksData, noName, noTelegram } from '@/components/SideBar/config';
+import { noName, noTelegram } from '@/components/SideBar/config';
+import { NavBar } from '@/components/SideBar/NavBar';
 import {
   BackgroundModal,
   Button,
   CloseModalButton,
-  LinksImg,
-  LinksItem,
-  LinksList,
   ModalWrapper,
   ProfileInfo,
   ProfileInfoBlock,
   ProfileName,
   ProfileTag,
-  SideBarNav,
   SideBarWrapper,
   TwitterIcon,
 } from '@/components/SideBar/styled';
@@ -49,18 +46,8 @@ export const SideBar = memo(() => {
   return (
     <SideBarWrapper>
       <TwitterIcon src={TwitterIconPath} />
-      <SideBarNav>
-        <LinksList>
-          {navBarLinksData.map(({ title, icon, path }) => (
-            <LinksItem
-              to={path}
-              key={title}
-            >
-              <LinksImg src={icon} /> {title}
-            </LinksItem>
-          ))}
-        </LinksList>
-      </SideBarNav>
+
+      <NavBar />
 
       <Button
         type='button'

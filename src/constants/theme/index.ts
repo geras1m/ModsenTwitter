@@ -28,12 +28,16 @@ export const colors: IColors = {
   black: '#030304',
   black1: '#272727FF',
   black2: '#070505BC',
+  black3: '#00000080',
   white: '#ffffff',
   white1: '#E4EAED',
   white2: '#F7F9F9',
+  white3: '#ffffff29',
+  white4: '#FDFDFDCC',
   grey: '#afafaf',
   red: '#ff0000',
   blue: '#1da1f2',
+  blue1: '#141D26FF',
   lightGreen: '#01810160',
   lightRed: '#D9003360',
 };
@@ -43,6 +47,9 @@ export const lightTheme: ITheme = {
   fontWeight: { ...fontWeight },
   colors: {
     ...colors,
+    bgLoader: colors.white4,
+    bgSuggestion: colors.white2,
+    text: colors.black,
     bg: colors.white,
     toggle: colors.black,
   },
@@ -53,7 +60,10 @@ export const darkTheme: ITheme = {
   fontWeight: { ...fontWeight },
   colors: {
     ...colors,
-    bg: colors.black,
+    bgLoader: colors.black3,
+    bgSuggestion: colors.white3,
+    text: colors.white,
+    bg: colors.blue1,
     toggle: colors.white,
   },
 };

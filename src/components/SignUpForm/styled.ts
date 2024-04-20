@@ -14,8 +14,9 @@ export const Input = styled.input`
   width: 100%;
   padding: 24px 20px;
   border-radius: 6px;
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  color: rgb(39, 39, 39);
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 25px;
@@ -39,12 +40,14 @@ export const ToPageLink = styled(NavLink)`
 `;
 
 export const DateTitle = styled.h2`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   align-self: flex-start;
   margin-bottom: 32px;
 `;
 
 export const PolicyText = styled.p`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px16};
   line-height: 24px;
   opacity: 0.7;

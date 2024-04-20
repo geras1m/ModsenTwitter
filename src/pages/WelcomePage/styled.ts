@@ -59,6 +59,7 @@ export const TwitterIcon = styled.img`
 `;
 
 export const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px80};
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 46px;
@@ -73,6 +74,7 @@ export const Title = styled.h1`
 `;
 
 export const Text = styled.p`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px42};
   font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 30px;
@@ -97,7 +99,7 @@ export const SignUpButton = styled.button`
   font-weight: ${({ theme }) => theme.fontWeight.medium};
   padding: 18px 0;
   border-radius: 42px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
   cursor: pointer;
   background-color: transparent;
@@ -120,6 +122,7 @@ export const SignUpButton = styled.button`
 `;
 
 export const PrivacyText = styled.p`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px14};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
   line-height: 20px;
@@ -132,6 +135,7 @@ export const PrivacyText = styled.p`
 `;
 
 export const LogInText = styled.p`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px16};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
 `;
@@ -179,7 +183,7 @@ export const ToLoginPageLink = styled(NavLink)`
 export const ToSignUpPageLink = styled(NavLink)`
   text-decoration: none;
   display: inline-block;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   width: 100%;
 `;
 
@@ -187,6 +191,7 @@ export const LinkItem = styled.li`
   margin-right: 15px;
   cursor: pointer;
   transition: 0.2s ease-in;
+  color: ${({ theme }) => theme.colors.text};
 
   &:last-child {
     margin-right: 0;

@@ -30,7 +30,7 @@ export const UserInformWrapper = styled.div`
 
 export const UserName = styled.p`
   margin-right: 5px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
@@ -41,7 +41,7 @@ export const TweetDate = styled.p`
 `;
 
 export const TweetText = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px14};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;

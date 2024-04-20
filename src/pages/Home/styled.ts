@@ -6,9 +6,11 @@ export const HomeWrapper = styled.main`
   width: 60%;
   max-width: 910px;
   border: 1px solid ${({ theme }) => theme.colors.grey};
+  border-top: none;
 `;
 
 export const PageName = styled.h1`
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px24};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;

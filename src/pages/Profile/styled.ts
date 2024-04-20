@@ -9,6 +9,7 @@ export const ProfileWrapper = styled.main`
   width: 60%;
   max-width: 910px;
   border: 1px solid ${({ theme }) => theme.colors.grey};
+  border-top: none;
 `;
 
 export const Header = styled.header`
@@ -17,7 +18,7 @@ export const Header = styled.header`
 `;
 
 export const ProfileHeaderName = styled.p`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px20};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-bottom: 5px;
@@ -55,7 +56,7 @@ export const AvatarContainer = styled.div`
 
 export const Name = styled.h1`
   margin-top: 65px;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px24};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
 `;
@@ -69,7 +70,7 @@ export const Tag = styled.h2`
 
 export const UserTextData = styled.p`
   margin: 17px 0;
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   font-weight: ${({ theme }) => theme.fontWeight.normal};
 
@@ -94,24 +95,6 @@ export const FollowersText = styled.p`
 `;
 
 export const Count = styled.span`
-  color: ${({ theme }) => theme.colors.black};
+  color: ${({ theme }) => theme.colors.text};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-`;
-
-export const EditButton = styled.button`
-  position: absolute;
-  top: 20px;
-  right: 25px;
-  border-radius: 50px;
-  border: 1px solid ${({ theme }) => theme.colors.grey};
-  padding: 10px 15px;
-  background-color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-  cursor: pointer;
-  transition: 0.2s ease-in;
-
-  &:hover {
-    opacity: 0.7;
-  }
 `;

@@ -16,12 +16,16 @@ export interface IColors {
   black: string;
   black1: string;
   black2: string;
+  black3: string;
   white: string;
   white1: string;
   white2: string;
+  white3: string;
+  white4: string;
   grey: string;
   red: string;
   blue: string;
+  blue1: string;
   lightGreen: string;
   lightRed: string;
 }
@@ -37,8 +41,11 @@ export interface IFontWeight {
 }
 
 interface IThemeColorsExtensions extends IColors {
+  bgSuggestion: string;
+  text: string;
   bg: string;
   toggle: string;
+  bgLoader: string;
 }
 
 export interface ITheme {

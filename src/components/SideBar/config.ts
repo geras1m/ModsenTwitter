@@ -3,13 +3,21 @@ import { routes } from '@/constants';
 
 const {
   HomeIcon,
+  HomeLightIcon,
   ExploreIcon,
+  ExploreLightIcon,
   NotificationsIcon,
+  NotificationsLightIcon,
   MessagesIcon,
+  MessagesLightIcon,
   BookmarksIcon,
+  BookmarksLightIcon,
   ListsIcon,
+  ListsLightIcon,
   ProfileIcon,
+  ProfileLightIcon,
   MoreIcon,
+  MoreLightIcon,
 } = assets;
 
 export const noName = 'No name';
@@ -20,41 +28,49 @@ export const navBarLinksData = [
   {
     title: 'Home',
     icon: HomeIcon,
+    iconLight: HomeLightIcon,
     path: routes.home,
   },
   {
     title: 'Explore',
     icon: ExploreIcon,
-    path: routes.welcome,
+    iconLight: ExploreLightIcon,
+    path: routes.notFound,
   },
   {
     title: 'Notifications',
     icon: NotificationsIcon,
-    path: routes.welcome,
+    iconLight: NotificationsLightIcon,
+    path: routes.notFound,
   },
   {
     title: 'Messages',
     icon: MessagesIcon,
-    path: routes.welcome,
+    iconLight: MessagesLightIcon,
+    path: routes.notFound,
   },
   {
     title: 'Bookmarks',
     icon: BookmarksIcon,
-    path: routes.welcome,
+    iconLight: BookmarksLightIcon,
+    path: routes.notFound,
   },
   {
     title: 'Lists',
     icon: ListsIcon,
-    path: routes.welcome,
+    iconLight: ListsLightIcon,
+    path: routes.notFound,
   },
   {
     title: 'Profile',
     icon: ProfileIcon,
+    iconLight: ProfileLightIcon,
     path: routes.profile,
   },
   {
     title: 'More',
     icon: MoreIcon,
-    path: routes.welcome,
+    iconLight: MoreLightIcon,
+    path: routes.notFound,
   },
 ];

@@ -1,14 +1,13 @@
-import { useEffect, useState } from 'react';
+import { memo } from 'react';
 
 import { CreateTweet } from '@/components/CreateTweet';
-import { EditProfileForm } from '@/components/EditProfileForm';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
 import { TweetsBlock } from '@/components/TweetsBlock';
 import { useAppSelector } from '@/hooks/reduxHooks';
+import { EditProfileButton } from '@/pages/Profile/EditProfileButton';
 import {
   AvatarContainer,
   Count,
-  EditButton,
   FollowersText,
   FollowersWrapper,
   Header,
@@ -22,18 +21,10 @@ import {
   UserTextData,
 } from '@/pages/Profile/styled';
 
-export const Profile = () => {
-  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+export const Profile = memo(() => {
   const { id, name, surname, telegramLink, phone, gender, email } = useAppSelector(
     (state) => state.user,
   );
-  const handleOpenEditModal = () => {
-    setIsOpenModal(!isOpenModal);
-  };
-
-  useEffect(() => {
-    document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
-  }, [isOpenModal]);
 
   return (
     <ProfileWrapper>
@@ -68,14 +59,7 @@ export const Profile = () => {
           </FollowersText>
         </FollowersWrapper>
 
-        {isOpenModal && <EditProfileForm closeModal={handleOpenEditModal} />}
-
-        <EditButton
-          type='button'
-          onClick={handleOpenEditModal}
-        >
-          Edit profile
-        </EditButton>
+        <EditProfileButton />
       </ProfileBlock>
       <CreateTweet />
       <TweetsBlock
@@ -84,4 +68,4 @@ export const Profile = () => {
       />
     </ProfileWrapper>
   );
-};
+});

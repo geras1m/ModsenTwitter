@@ -6,7 +6,7 @@ export const routes = {
   welcome: '/welcome',
   sign_up: '/sign-up',
   login: '/login',
-  notFound: '*',
+  notFound: '/*',
 } as const;
 
 export const successMessage = 'Success!';

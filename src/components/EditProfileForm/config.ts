@@ -12,7 +12,7 @@ export const editFormInputsTextData = {
   },
   surname: {
     name: 'surname',
-    placeholder: 'surname',
+    placeholder: 'Surname',
     type: 'text',
     minLength: `The minimum line length is ${minNameInputLength}`,
     maxLength: `The maximum line length is ${maxNameInputLength}`,

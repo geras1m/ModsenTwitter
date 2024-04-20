@@ -12,6 +12,7 @@ const GlobalStyles = createGlobalStyle`
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: ${({ theme }) => theme.colors.bg};
   }
   
   #root {
@@ -19,7 +20,7 @@ const GlobalStyles = createGlobalStyle`
   }
   
   #modal-root{
-      position: relative;
+    position: relative;
   }
 
   a {
