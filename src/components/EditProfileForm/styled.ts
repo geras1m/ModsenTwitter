@@ -14,12 +14,16 @@ export const Background = styled.div`
 `;
 
 export const EditProfileFormWrapper = styled.form`
-  position: relative;
+  position: fixed;
   max-width: 500px;
-  padding: 20px 10px;
+  height: 100%;
+  max-height: 700px;
+  padding: 40px 10px 20px;
   border: 1px solid ${({ theme }) => theme.colors.grey};
   background-color: ${({ theme }) => theme.colors.bg};
   border-radius: 6px;
+  margin: 30px;
+  overflow-y: scroll;
 `;
 
 export const Legend = styled.legend`
@@ -105,8 +109,8 @@ export const Button = styled.button`
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: -25px;
-  right: -25px;
+  top: 7px;
+  right: 5px;
   width: 20px;
   height: 20px;
   background-color: ${({ theme }) => theme.colors.red};

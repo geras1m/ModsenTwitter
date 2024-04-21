@@ -8,6 +8,7 @@ export const fontSizes: IFontSizes = {
   px20: '20px',
   px22: '22px',
   px24: '24px',
+  px30: '30px',
   px40: '40px',
   px42: '42px',
   px60: '60px',
@@ -72,4 +73,5 @@ export const mediaSizes = {
   px1500: '1500px',
   px1150: '1150px',
   px800: '800px',
+  px500: '500px',
 };

@@ -1,16 +1,70 @@
 import styled from 'styled-components';
 
 import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mediaSizes } from '@/constants/theme';
 
-export const SideBarWrapper = styled.section`
+const { px1150 } = mediaSizes;
+
+interface ISideBarWrapperProps {
+  $isShow: boolean;
+}
+
+export const SideBarWrapper = styled.section<ISideBarWrapperProps>`
   width: 18%;
   max-width: 230px;
   padding: 30px 15px 0;
+  transition: 0.2s ease-in;
+
+  @media (max-width: ${px1150}) {
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    left: ${({ $isShow }) => ($isShow ? '0' : '-240px')};
+    z-index: 10;
+    background-color: ${({ theme }) => theme.colors.bg};
+  }
 `;
 
 export const TwitterIcon = styled.img``;
 
+export const CloseButton = styled.button`
+  display: none;
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 20px;
+  height: 20px;
+  background-color: ${({ theme }) => theme.colors.red};
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    30% 50%,
+    0% 80%,
+    20% 100%,
+    50% 70%,
+    80% 100%,
+    100% 80%,
+    70% 50%,
+    100% 20%,
+    80% 0%,
+    50% 30%
+  );
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: ${px1150}) {
+    display: block;
+  }
+`;
+
 export const BackgroundModal = styled.div`
+  padding: 0 30px;
   z-index: 999;
   position: fixed;
   top: 0;
@@ -28,7 +82,7 @@ export const ModalWrapper = styled.div`
   border-radius: 6px;
   width: 100%;
   max-width: 800px;
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.bg};
 `;
 
 export const CloseModalButton = styled.button`

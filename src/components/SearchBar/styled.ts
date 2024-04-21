@@ -1,10 +1,31 @@
 import styled from 'styled-components';
 
-export const SearchBarWrapper = styled.section`
+import { mediaSizes } from '@/constants/theme';
+
+const { px1150 } = mediaSizes;
+
+interface ISearchBarWrapperProps {
+  $isShow: boolean;
+}
+
+export const SearchBarWrapper = styled.section<ISearchBarWrapperProps>`
   width: 26%;
   max-width: 373px;
   padding-top: 30px;
   margin: 0 15px;
+  transition: 0.2s ease-in;
+
+  @media (max-width: ${px1150}) {
+    padding: 60px 10px;
+    width: 100%;
+    height: 100vh;
+    overflow-y: scroll;
+    margin: 0;
+    position: fixed;
+    right: ${({ $isShow }) => ($isShow ? '0' : '-400px')};
+    z-index: 10;
+    background-color: ${({ theme }) => theme.colors.bg};
+  }
 `;
 
 export const InputWrapper = styled.div`
@@ -49,4 +70,40 @@ export const NotFoundMessage = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.colors.red};
   font-size: ${({ theme }) => theme.fontSizes.px14};
+`;
+
+export const CloseButton = styled.button`
+  display: none;
+  position: absolute;
+  z-index: 5;
+  top: 30px;
+  left: 20px;
+  width: 20px;
+  height: 20px;
+  background-color: ${({ theme }) => theme.colors.red};
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    30% 50%,
+    0% 80%,
+    20% 100%,
+    50% 70%,
+    80% 100%,
+    100% 80%,
+    70% 50%,
+    100% 20%,
+    80% 0%,
+    50% 30%
+  );
+
+  &:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: ${px1150}) {
+    display: block;
+  }
 `;

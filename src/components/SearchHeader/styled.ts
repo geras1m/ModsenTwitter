@@ -27,3 +27,9 @@ export const LinkItem = styled(NavLink)`
     opacity: 0.6;
   }
 `;
+
+export const ToggleWrapper = styled.div`
+  gap: 20px;
+
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
+`;

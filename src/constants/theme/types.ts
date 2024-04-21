@@ -6,6 +6,7 @@ export interface IFontSizes {
   px20: string;
   px22: string;
   px24: string;
+  px30: string;
   px40: string;
   px42: string;
   px60: string;
@@ -63,4 +64,6 @@ export type ThemeType = 'light' | 'dark';
 
 export interface IThemeState {
   theme: ThemeType;
+  isOpenNavBar: boolean;
+  isOpenSearchBar: boolean;
 }

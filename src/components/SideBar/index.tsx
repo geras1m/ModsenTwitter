@@ -9,6 +9,7 @@ import { NavBar } from '@/components/SideBar/NavBar';
 import {
   BackgroundModal,
   Button,
+  CloseButton,
   CloseModalButton,
   ModalWrapper,
   ProfileInfo,
@@ -21,6 +22,7 @@ import {
 import { routes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
+import { setIsOpenNavBar } from '@/store/slices/themeSlice';
 import { removeUser } from '@/store/slices/userSlice';
 import { getCutString } from '@/utils/getCutString';
 
@@ -28,6 +30,7 @@ export const SideBar = memo(() => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const location = useLocation();
   const { name, telegramLink } = useAppSelector((state) => state.user);
+  const { isOpenNavBar } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -44,8 +47,13 @@ export const SideBar = memo(() => {
   };
 
   return (
-    <SideBarWrapper>
+    <SideBarWrapper $isShow={isOpenNavBar}>
       <TwitterIcon src={TwitterIconPath} />
+
+      <CloseButton
+        type='button'
+        onClick={() => dispatch(setIsOpenNavBar(false))}
+      />
 
       <NavBar />
 

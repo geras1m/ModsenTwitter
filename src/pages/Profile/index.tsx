@@ -1,7 +1,9 @@
 import { memo } from 'react';
 
+import { BurgerMenu } from '@/components/BurgerMenu';
 import { CreateTweet } from '@/components/CreateTweet';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
+import { SearchButton } from '@/components/SearchBar/SearchButton';
 import { TweetsBlock } from '@/components/TweetsBlock';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { EditProfileButton } from '@/pages/Profile/EditProfileButton';
@@ -11,6 +13,7 @@ import {
   FollowersText,
   FollowersWrapper,
   Header,
+  HeaderInfoWrapper,
   Name,
   ProfileBanner,
   ProfileBlock,
@@ -29,10 +32,14 @@ export const Profile = memo(() => {
   return (
     <ProfileWrapper>
       <Header>
-        <ProfileHeaderName>
-          {name} {surname}
-        </ProfileHeaderName>
-        <ProfileTweetsCount>1,070 Tweets</ProfileTweetsCount>
+        <BurgerMenu />
+        <HeaderInfoWrapper>
+          <ProfileHeaderName>
+            {name} {surname}
+          </ProfileHeaderName>
+          <ProfileTweetsCount>1,070 Tweets</ProfileTweetsCount>
+        </HeaderInfoWrapper>
+        <SearchButton />
       </Header>
 
       <ProfileBanner />

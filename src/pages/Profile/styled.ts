@@ -2,19 +2,36 @@ import styled from 'styled-components';
 
 import { assets } from '@/assets';
 import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mediaSizes } from '@/constants/theme';
 
 const { BannerProfile } = assets;
+
+const { px1150 } = mediaSizes;
 
 export const ProfileWrapper = styled.main`
   width: 60%;
   max-width: 910px;
   border: 1px solid ${({ theme }) => theme.colors.grey};
   border-top: none;
+
+  @media (max-width: ${px1150}) {
+    width: 100%;
+    max-width: 100%;
+  }
 `;
 
 export const Header = styled.header`
   width: 100%;
   padding: 20px 15px;
+
+  ${mixinFlex({ alignItem: 'center', justifyContent: 'space-between' })};
+`;
+
+export const HeaderInfoWrapper = styled.div`
+  @media (max-width: ${px1150}) {
+    margin-left: 20px;
+    ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
+  }
 `;
 
 export const ProfileHeaderName = styled.p`
@@ -22,6 +39,11 @@ export const ProfileHeaderName = styled.p`
   font-size: ${({ theme }) => theme.fontSizes.px20};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-bottom: 5px;
+
+  @media (max-width: ${px1150}) {
+    margin-right: 20px;
+    margin-bottom: 0;
+  }
 `;
 
 export const ProfileTweetsCount = styled.p`

@@ -1,16 +1,27 @@
 import styled from 'styled-components';
 
 import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mediaSizes } from '@/constants/theme';
+
+const { px800 } = mediaSizes;
 
 export const CreateTweetWrapper = styled.div`
   padding: 18px 12px 12px 27px;
 
   ${mixinFlex({ alignItem: 'start', justifyContent: 'space-between' })};
+
+  @media (max-width: ${px800}) {
+    padding: 18px 5px 12px;
+  }
 `;
 
 export const TweetForm = styled.form`
   margin-left: 28px;
   width: 100%;
+
+  @media (max-width: ${px800}) {
+    margin-left: 5px;
+  }
 `;
 
 export const Textarea = styled.textarea`
@@ -88,5 +99,10 @@ export const AddTweetButton = styled.button`
   &:disabled {
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.white1};
+  }
+
+  @media (max-width: ${px800}) {
+    padding: 10px 15px;
+    font-size: ${({ theme }) => theme.fontSizes.px16};
   }
 `;

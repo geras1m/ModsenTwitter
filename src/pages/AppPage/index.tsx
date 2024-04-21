@@ -10,6 +10,7 @@ import { Container } from '@/pages/AppPage/styled';
 export const AppPage = () => (
   <Container>
     <SideBar />
+
     <Suspense
       fallback={
         <BackgroundLoader>

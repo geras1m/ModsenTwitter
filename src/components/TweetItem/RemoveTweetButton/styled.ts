@@ -62,6 +62,7 @@ export const ConfirmModal = styled.div`
   background-color: ${({ theme }) => theme.colors.bg};
   border: 1px solid ${({ theme }) => theme.colors.grey};
   flex-direction: column;
+  margin: 0 30px;
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 `;

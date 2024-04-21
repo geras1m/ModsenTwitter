@@ -6,6 +6,23 @@ const GlobalStyles = createGlobalStyle`
     font-family: "Roboto", sans-serif;
     padding: 0;
     margin: 0;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      border-radius: 5px;
+      background-color: ${({ theme }) => theme.colors.white};
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: ${({ theme }) => theme.colors.blue};
+    }
+
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+      border-radius: 5px;
+      background-color: ${({ theme }) => theme.colors.white};
+    }
   }
   
   body{

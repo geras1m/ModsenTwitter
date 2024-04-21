@@ -2,6 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mediaSizes } from '@/constants/theme';
 
 export const LoginFormWrapper = styled.section`
   width: 100%;
@@ -18,6 +19,10 @@ export const Title = styled.h2`
   color: ${({ theme }) => theme.colors.text};
   font-size: ${({ theme }) => theme.fontSizes.px42};
   font-weight: ${({ theme }) => theme.fontWeight.black};
+
+  @media (max-width: ${mediaSizes.px500}) {
+    font-size: ${({ theme }) => theme.fontSizes.px30};
+  }
 `;
 
 export const Form = styled.form`

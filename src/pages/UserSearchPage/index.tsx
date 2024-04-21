@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
 
@@ -18,7 +18,7 @@ import { FirebaseService } from '@/service';
 import { IUserData, ToastType } from '@/types';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
-export const UserSearchPage = () => {
+export const UserSearchPage = memo(() => {
   const [user, setUser] = useState<IUserData | null>(null);
   const { id } = useParams();
   const toast = useToast();
@@ -61,4 +61,4 @@ export const UserSearchPage = () => {
       )}
     </UserSearchPageWrapper>
   );
-};
+});

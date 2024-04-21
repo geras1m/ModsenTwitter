@@ -1,13 +1,20 @@
 import styled from 'styled-components';
 
 import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mediaSizes } from '@/constants/theme';
+
+const { px800 } = mediaSizes;
 
 export const TweetWrapper = styled.article`
   padding: 10px 34px 20px;
   width: 100%;
   border-bottom: 1px solid ${({ theme }) => theme.colors.grey};
 
-  ${mixinFlex({ alignItem: 'start', justifyContent: 'space-between' })}
+  ${mixinFlex({ alignItem: 'start', justifyContent: 'space-between' })};
+
+  @media (max-width: ${px800}) {
+    padding: 10px 5px 20px;
+  }
 `;
 
 export const MainTweetContent = styled.div`
@@ -25,6 +32,10 @@ export const UserName = styled.h3`
   font-size: ${({ theme }) => theme.fontSizes.px20};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-right: 5px;
+
+  @media (max-width: ${px800}) {
+    font-size: ${({ theme }) => theme.fontSizes.px18};
+  }
 `;
 
 export const UserTeg = styled.span`
