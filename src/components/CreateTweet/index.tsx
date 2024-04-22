@@ -113,6 +113,7 @@ export const CreateTweet = memo(() => {
           </ErrorMessage>
         )}
         <Textarea
+          data-testid='tweet-textarea-input'
           placeholder={placeholderTextarea}
           {...register(inputName, {
             maxLength: { value: 200, message: errorMessages.symbolLimit },
@@ -121,6 +122,7 @@ export const CreateTweet = memo(() => {
         <ControlButtonsWrapper>
           <UploadWrapper>
             <UploadImageInput
+              data-testid='tweet-image-input'
               id='file'
               type='file'
               accept='image/jpeg'
@@ -131,7 +133,10 @@ export const CreateTweet = memo(() => {
             </UploadImageLabel>
             {isUploadFile && <Notification>File is attached!</Notification>}
           </UploadWrapper>
-          <AddTweetButton disabled={isLoading}>
+          <AddTweetButton
+            data-testid='tweet-create-button'
+            disabled={isLoading}
+          >
             {isLoading ? (
               <Spinner
                 width='20px'

@@ -6,4 +6,7 @@ commitlint.config.js
 yarn.lock
 jest.config.js
 __mocks__
+__tests__
 vite.config.ts
+cypress.config.ts
+cypress

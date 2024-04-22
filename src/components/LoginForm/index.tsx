@@ -95,12 +95,16 @@ export const LoginForm = () => {
     <LoginFormWrapper>
       <Icon src={TwitterIcon} />
       <Title>Log in to Twitter</Title>
-      <Form onSubmit={handleSubmit(handlerOnSubmit)}>
+      <Form
+        data-testid='login-form'
+        onSubmit={handleSubmit(handlerOnSubmit)}
+      >
         {errors?.email && (
           <ErrorMessage>{errors?.email?.message?.toString() || defaultErrorMessage}</ErrorMessage>
         )}
 
         <Input
+          data-testid='login-email-input'
           placeholder={email.placeholder}
           {...register('email', {
             required: email.required,
@@ -118,6 +122,7 @@ export const LoginForm = () => {
 
         <SubmitButton
           type='submit'
+          data-testid='login-submit-button'
           disabled={isLoading}
         >
           {isLoading ? (

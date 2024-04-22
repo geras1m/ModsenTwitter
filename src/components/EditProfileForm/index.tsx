@@ -115,6 +115,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
       <Background>
         <EditProfileFormWrapper onSubmit={handleSubmit(handleSubmitUpdatedUserData)}>
           <CloseButton
+            data-testid='edit-form'
             type='button'
             onClick={closeModal}
           />
@@ -122,6 +123,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
             <ErrorMessage>{errors?.name?.message?.toString() || defaultErrorMessage}</ErrorMessage>
           )}
           <Input
+            data-testid='profile-input-name'
             type={name.type}
             placeholder={name.placeholder}
             {...register('name', {
@@ -143,6 +145,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
           )}
 
           <Input
+            data-testid='profile-input-surname'
             type={surname.type}
             placeholder={surname.placeholder}
             {...register('surname', {
@@ -241,6 +244,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
           )}
 
           <Button
+            data-testid='profile-edit-button'
             disabled={isLoading}
             type='submit'
           >

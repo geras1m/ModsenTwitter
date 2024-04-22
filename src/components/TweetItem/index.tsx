@@ -51,6 +51,7 @@ export const TweetItem = memo((data: TweetItemType) => {
         {imgLink && <TweetImage src={imgLink} />}
         <LikeWrapper>
           <LikeImage
+            data-testid={`active-like-${isActiveLikeIcon}`}
             onClick={() => handleChangeLike(uis, userId)}
             src={isActiveLikeIcon ? ActiveLikeIcon : DefaultLikeIcon}
           />

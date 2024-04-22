@@ -15,8 +15,14 @@ export const EditProfileButton = () => {
 
   return (
     <>
-      {isOpenModal && <EditProfileForm closeModal={handleOpenEditModal} />}
+      {isOpenModal && (
+        <EditProfileForm
+          data-testid='edit-modal'
+          closeModal={handleOpenEditModal}
+        />
+      )}
       <EditButton
+        data-testid='edit-button'
         type='button'
         onClick={handleOpenEditModal}
       >

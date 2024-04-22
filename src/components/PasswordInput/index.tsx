@@ -26,6 +26,7 @@ export const PasswordInput = memo((config: PasswordInputProps) => {
   return (
     <PasswordInputWrapper>
       <Input
+        data-testid={`login-password-input-${placeholder.split(' ').join('-').toLowerCase()}`}
         type={isShowPassword ? 'text' : 'password'}
         placeholder={placeholder}
         {...register}

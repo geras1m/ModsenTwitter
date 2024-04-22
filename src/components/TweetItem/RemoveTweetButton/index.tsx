@@ -40,6 +40,7 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
   return (
     <>
       <MenuButton
+        data-testid='remove-tweet-menu-button'
         type='button'
         onClick={() => setIsOpen(!isOpen)}
       >
@@ -47,6 +48,7 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
 
         {isOpen && (
           <RemoveButton
+            data-testid='remove-tweet-button'
             type='button'
             onClick={() => setIsOpenConfirmModal(!isOpenConfirmModal)}
           >
@@ -61,6 +63,7 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
             <ConfirmModal>
               <WarningText>Are you sure you want to delete the tweet?</WarningText>
               <ConfirmRemoveButton
+                data-testid='remove-confirm-tweet-remove-button'
                 type='button'
                 onClick={handleRemove}
               >

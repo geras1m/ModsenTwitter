@@ -13,7 +13,7 @@ export const Toast = ({
   useTimeout(close, 4000);
   return (
     <ToastWrapper $toastType={type}>
-      <ToastText>{message}</ToastText>
+      <ToastText data-testid='toast'>{message}</ToastText>
       <CloseToastButton onClick={close} />
     </ToastWrapper>
   );

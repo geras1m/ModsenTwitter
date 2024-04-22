@@ -51,6 +51,7 @@ export const SignUpForm = () => {
         <ErrorMessage>{errors?.name?.message?.toString() || defaultErrorMessage}</ErrorMessage>
       )}
       <Input
+        data-testid='signup-input-name'
         placeholder={name.placeholder}
         type={name.type}
         maxLength={maxNameInputLength}
@@ -66,6 +67,7 @@ export const SignUpForm = () => {
         <ErrorMessage>{errors?.phone?.message?.toString() || defaultErrorMessage}</ErrorMessage>
       )}
       <Input
+        data-testid='signup-input-phone'
         placeholder={phone.placeholder}
         type={phone.type}
         maxLength={maxPhoneInputLength}
@@ -80,9 +82,12 @@ export const SignUpForm = () => {
       />
 
       {errors?.email && (
-        <ErrorMessage>{errors?.email?.message?.toString() || defaultErrorMessage}</ErrorMessage>
+        <ErrorMessage data-testid='signup-error-email'>
+          {errors?.email?.message?.toString() || defaultErrorMessage}
+        </ErrorMessage>
       )}
       <Input
+        data-testid='signup-input-email'
         placeholder={email.placeholder}
         type={email.type}
         {...register('email', {
@@ -154,6 +159,7 @@ export const SignUpForm = () => {
       </DateWrapper>
 
       <SubmitButton
+        data-testid='signup-button'
         type='submit'
         disabled={isLoading}
       >

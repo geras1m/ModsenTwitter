@@ -14,6 +14,7 @@ export const Select = memo((options: ISelectProps) => {
 
   return (
     <SelectItem
+      data-testid={`signup-select-${inputsName}`}
       required
       name={inputsName}
       onChange={handleChange}
@@ -24,6 +25,7 @@ export const Select = memo((options: ISelectProps) => {
       />
       {data.map((item, index) => (
         <Option
+          data-testid={`signup-select-${inputsName}-${item}`}
           key={item}
           value={inputsName === 'month' ? index : Number(item)}
         >
