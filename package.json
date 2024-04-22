@@ -68,6 +68,7 @@
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
     "process": "^0.11.10",
+    "react-remove-attr": "^0.0.6",
     "start-server-and-test": "^2.0.3",
     "ts-jest": "^29.1.2",
     "ts-jest-mock-import-meta": "^1.2.0",
