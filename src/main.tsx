@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { HashRouter } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
@@ -24,11 +24,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       >
         <ErrorBoundary>
           <ThemeProvider>
-            <HashRouter>
+            <BrowserRouter>
               <ToastProvider>
                 <App />
               </ToastProvider>
-            </HashRouter>
+            </BrowserRouter>
           </ThemeProvider>
         </ErrorBoundary>
       </PersistGate>
