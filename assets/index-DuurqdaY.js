@@ -1,4 +1,4 @@
-import{u as s,m as d,a as N,e as c,l as W,d as k,j as t,i as A,S as B,h as O,F as J}from"./index-CH48g1iu.js";import{u as P,E as R}from"./index.esm-BrkksOYA.js";import{a as q}from"./index-CsqDV37B.js";import{P as G}from"./index-DSf54jhu.js";import{F as $,a as I,E as H}from"./index-C86McuiY.js";const m="textarea",K="What’s happening",x={textarea:"Please, add some text.",maxWeightOfFile:"Overweight, maximum size of image is 2MB",symbolLimit:"The maximum number of symbols is 200"},{px800:g}=N,Q=s.div`
+import{u as s,m as d,a as N,e as c,l as W,d as k,j as t,i as A,S as B,h as O,F as J}from"./index-DUdeovaR.js";import{u as P,E as R}from"./index.esm-VvRJ2cnM.js";import{a as q}from"./index-Ca9tUTrv.js";import{P as G}from"./index-DUMPB9Vk.js";import{F as $,a as I,E as H}from"./index-C_Oo3Dte.js";const m="textarea",K="What’s happening",x={textarea:"Please, add some text.",maxWeightOfFile:"Overweight, maximum size of image is 2MB",symbolLimit:"The maximum number of symbols is 200"},{px800:g}=N,Q=s.div`
   padding: 18px 12px 12px 27px;
 
   ${d({alignItem:"start",justifyContent:"space-between"})};

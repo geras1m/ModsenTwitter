@@ -1,1 +1,0 @@
-import{u as s,j as t}from"./index-CH48g1iu.js";import{a as r}from"./index-CsqDV37B.js";const o=s.img``,{AvatarSmall:e,AvatarLarge:m}=r,c=({size:a})=>t.jsx(o,{alt:"Avater",src:a==="s"?e:m});export{c as P};
