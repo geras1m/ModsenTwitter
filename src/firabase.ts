@@ -10,7 +10,7 @@ const {
   VITE_APP_FIREBASE_STORAGE_BUCKET,
   VITE_APP_FIREBASE_MESSAGING_SENDER_ID,
   VITE_APP_FIREBASE_APP_ID,
-} = process.env;
+} = import.meta.env;
 
 const firebaseConfig = {
   apiKey: VITE_APP_FIREBASE_API_KEY,
