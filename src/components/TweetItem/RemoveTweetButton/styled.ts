@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
 import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mediaSizes } from '@/constants/theme';
+
+const { px800 } = mediaSizes;
 
 export const Image = styled.img`
   transition: 0.2s ease-in;
@@ -10,7 +13,7 @@ export const Image = styled.img`
   }
 `;
 
-export const MenuButton = styled.button`
+export const MenuButton = styled.div`
   position: relative;
   border: none;
   background-color: transparent;
@@ -39,6 +42,10 @@ export const RemoveButton = styled.button`
 
   &:hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: ${px800}) {
+    right: 0;
   }
 `;
 

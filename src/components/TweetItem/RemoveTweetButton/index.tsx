@@ -44,7 +44,6 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
     <>
       <MenuButton
         data-testid='remove-tweet-menu-button'
-        type='button'
         onClick={() => setIsOpen(!isOpen)}
       >
         <Image src={EllipsisIcon} />
