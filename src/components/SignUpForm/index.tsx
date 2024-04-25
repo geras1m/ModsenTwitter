@@ -27,7 +27,6 @@ import {
   phoneNumberPattern,
 } from '@/constants/validation';
 import { useSignUpFormLogic } from '@/hooks/useSignUpFormLogic';
-import { getPhoneMask } from '@/utils/getPhoneMask';
 
 export const SignUpForm = () => {
   const {
@@ -40,7 +39,7 @@ export const SignUpForm = () => {
     handleSubmit,
     register,
     errors,
-    setValue,
+    handleGetPhoneMask,
   } = useSignUpFormLogic();
 
   const { name, phone, email, password, confirmPassword } = formInputsTextData;
@@ -77,7 +76,7 @@ export const SignUpForm = () => {
             value: phoneNumberPattern,
             message: phone.pattern,
           },
-          onChange: (event) => getPhoneMask(event, setValue),
+          onChange: handleGetPhoneMask,
         })}
       />
 

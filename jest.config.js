@@ -1,10 +1,9 @@
 /** @type {import("jest").Config} */
 
 export default {
-  preset: 'ts-jest',
   clearMocks: true,
   testEnvironment: 'jsdom',
-  presets: 'ts-jest/presets/default-esm',
+  preset: 'ts-jest/presets/default-esm',
   moduleFileExtensions: ['tsx', 'ts', 'js'],
   modulePaths: ['<rootDir>'],
   transform: {

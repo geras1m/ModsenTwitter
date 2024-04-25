@@ -16,6 +16,7 @@ import { setUser } from '@/store/slices/userSlice';
 import { SingUpFormDataType, ToastType } from '@/types';
 import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
+import { getPhoneMask } from '@/utils/getPhoneMask';
 
 export const useSignUpFormLogic = () => {
   const navigate = useNavigate();
@@ -121,10 +122,19 @@ export const useSignUpFormLogic = () => {
     reset();
   };
 
+  const handleGetPhoneMask = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = event.target;
+    if (value.length >= 18) return;
+
+    const formattedValue = getPhoneMask(value);
+    setValue('phone', formattedValue);
+  };
+
   return {
     dates,
     months,
     years,
+    handleGetPhoneMask,
     handlerOnSubmit,
     handleChange,
     isLoading,
