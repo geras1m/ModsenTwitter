@@ -77,17 +77,13 @@ export const UserSearchBlock = () => {
         />
       </InputWrapper>
 
-      {debouncedValue.length !== 0 && (
-        <SuggestionBlock>
-          <SuggestionTitle>Search results</SuggestionTitle>
-          <div>
-            {usersList.length === 0 && (
-              <NotFoundMessage>The user was not found for your query &#128577;</NotFoundMessage>
-            )}
-            {users}
-          </div>
-        </SuggestionBlock>
-      )}
+      <SuggestionBlock>
+        <SuggestionTitle>Search results</SuggestionTitle>
+        {debouncedValue.length !== 0 && usersList.length !== 0 && <div>{users}</div>}
+        {debouncedValue.length !== 0 && usersList.length === 0 && (
+          <NotFoundMessage>The user was not found for your query &#128577;</NotFoundMessage>
+        )}
+      </SuggestionBlock>
     </>
   );
 };

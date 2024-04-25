@@ -77,17 +77,14 @@ export const TweetSearchBlock = () => {
           onChange={handleChangeValue}
         />
       </InputWrapper>
-      {debouncedValue.length !== 0 && (
-        <SuggestionBlock>
-          <SuggestionTitle>Search results</SuggestionTitle>
-          <div>
-            {tweets}
-            {tweetsList.length === 0 && (
-              <NotFoundMessage>The tweet was not found for your query &#128577;</NotFoundMessage>
-            )}
-          </div>
-        </SuggestionBlock>
-      )}
+
+      <SuggestionBlock>
+        <SuggestionTitle>Search results</SuggestionTitle>
+        {debouncedValue.length !== 0 && tweetsList.length !== 0 && <div>{tweets}</div>}
+        {debouncedValue.length !== 0 && tweetsList.length === 0 && (
+          <NotFoundMessage>The tweet was not found for your query &#128577;</NotFoundMessage>
+        )}
+      </SuggestionBlock>
     </>
   );
 };
