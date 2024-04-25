@@ -21,6 +21,7 @@ import {
 } from '@/components/SideBar/styled';
 import { routes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { useOutsideClick } from '@/hooks/useOutClick';
 import { FirebaseService } from '@/service';
 import { setIsOpenNavBar } from '@/store/slices/themeSlice';
 import { removeUser } from '@/store/slices/userSlice';
@@ -33,6 +34,12 @@ export const SideBar = memo(() => {
   const { isOpenNavBar } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
+  const handleOpenCloseTweetModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+
+  const outsideRef = useOutsideClick(handleOpenCloseTweetModal);
+
   useEffect(() => {
     document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
   }, [isOpenModal]);
@@ -40,10 +47,6 @@ export const SideBar = memo(() => {
   const handleLogOut = async () => {
     await FirebaseService.LogOut();
     dispatch(removeUser());
-  };
-
-  const handleOpenCloseTweetModal = () => {
-    setIsOpenModal(!isOpenModal);
   };
 
   return (
@@ -66,7 +69,7 @@ export const SideBar = memo(() => {
 
       {isOpenModal && (
         <BackgroundModal>
-          <ModalWrapper>
+          <ModalWrapper ref={outsideRef}>
             <CreateTweet />
             <CloseModalButton
               type='button'

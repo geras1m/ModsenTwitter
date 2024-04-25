@@ -12,6 +12,7 @@ import {
   RemoveButton,
   WarningText,
 } from '@/components/TweetItem/RemoveTweetButton/styled';
+import { useOutsideClick } from '@/hooks/useOutClick';
 
 const { EllipsisIcon } = assets;
 
@@ -24,16 +25,18 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
 
+  const handleCloseConfirmModal = () => {
+    setIsOpenConfirmModal(false);
+  };
+
+  const outsideRef = useOutsideClick(handleCloseConfirmModal);
+
   useEffect(() => {
     document.body.style.overflow = isOpenConfirmModal ? 'hidden' : 'auto';
   }, [isOpenConfirmModal]);
 
   const handleRemove = () => {
     handleRemoveTweet(tweetId);
-    setIsOpenConfirmModal(false);
-  };
-
-  const handleCloseConfirmModal = () => {
     setIsOpenConfirmModal(false);
   };
 
@@ -60,7 +63,7 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
       {isOpenConfirmModal && (
         <Portal>
           <BackgroundModal>
-            <ConfirmModal>
+            <ConfirmModal ref={outsideRef}>
               <WarningText>Are you sure you want to delete the tweet?</WarningText>
               <ConfirmRemoveButton
                 data-testid='remove-confirm-tweet-remove-button'

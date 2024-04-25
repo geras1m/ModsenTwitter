@@ -13,7 +13,7 @@ export const Background = styled.div`
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 `;
 
-export const EditProfileFormWrapper = styled.form`
+export const EditProfileFormWrapper = styled.div`
   position: fixed;
   max-width: 500px;
   height: 100%;
@@ -25,6 +25,8 @@ export const EditProfileFormWrapper = styled.form`
   margin: 30px;
   overflow-y: scroll;
 `;
+
+export const EditForm = styled.form``;
 
 export const Legend = styled.legend`
   margin-left: 20px;
