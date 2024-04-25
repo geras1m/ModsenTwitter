@@ -1,9 +1,13 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
 
-import { inputsName } from '@/components/SignUpForm/config';
+import {
+  inputsName,
+  messagePasswordsShouldMatch,
+  messageToSelectDay,
+} from '@/components/SignUpForm/config';
 import { routes, successMessage } from '@/constants';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
@@ -28,22 +32,49 @@ export const useSignUpFormLogic = () => {
     reset,
     setValue,
     setError,
-  } = useForm<SingUpFormDataType>({ mode: 'onBlur' });
+    clearErrors,
+  } = useForm<SingUpFormDataType>({ mode: 'onChange' });
 
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectName = e.target.name;
+  const dates = getDateDays(monthBirth, yearBirth);
+  const months = getMonths(yearBirth);
+  const years = getYears();
 
-    const { year, month, day } = inputsName;
+  const handleChange = useCallback(
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      const { name: selectName, value } = e.target;
 
-    if (selectName === month) setMonthBirth(Number(e.target.value));
-    if (selectName === year) setYearBirth(Number(e.target.value));
-    if (selectName === day) setDayBirth(Number(e.target.value));
-  };
+      const { year, month, day } = inputsName;
+
+      const getNewDaysListForSelectedMonth = getDateDays(Number(value), yearBirth);
+      const isThereDayInDaysList =
+        dayBirth !== null && getNewDaysListForSelectedMonth.includes(dayBirth);
+
+      if (selectName === month) {
+        setMonthBirth(Number(e.target.value));
+
+        if (!isThereDayInDaysList) {
+          setError(day, { message: messageToSelectDay });
+          setDayBirth(null);
+        } else {
+          clearErrors(day);
+        }
+      }
+      if (selectName === year) {
+        setYearBirth(Number(e.target.value));
+      }
+      if (selectName === day) {
+        setDayBirth(Number(e.target.value));
+
+        clearErrors(day);
+      }
+    },
+    [dates, monthBirth, dayBirth, yearBirth, clearErrors, setError],
+  );
 
   const handlerOnSubmit: SubmitHandler<SingUpFormDataType> = async (data) => {
     const { email, name, phone, password, confirmPassword } = data;
     if (password !== confirmPassword) {
-      setError('confirmPassword', { message: 'Password and Confirm password fields must match!' });
+      setError('confirmPassword', { message: messagePasswordsShouldMatch });
       return;
     }
 
@@ -89,10 +120,6 @@ export const useSignUpFormLogic = () => {
     setIsLoading(false);
     reset();
   };
-
-  const dates = getDateDays(monthBirth, yearBirth);
-  const months = getMonths(yearBirth);
-  const years = getYears();
 
   return {
     dates,

@@ -30,7 +30,7 @@ export const footerLinks = [
   'Developers',
   'Directory',
   'Settings',
-  '© 2021 Twitter, Inc.',
+  '© 2024 Twitter, Inc.',
 ];
 
 export const months = [

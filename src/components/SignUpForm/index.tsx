@@ -137,6 +137,10 @@ export const SignUpForm = () => {
       <DateTitle>Date of birth</DateTitle>
       <PolicyText>{policyText}</PolicyText>
 
+      {errors?.day && (
+        <ErrorMessage>{errors?.day?.message?.toString() || defaultErrorMessage}</ErrorMessage>
+      )}
+
       <DateWrapper>
         <Select
           label='Month'

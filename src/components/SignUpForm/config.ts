@@ -12,6 +12,9 @@ export const inputsName: IInputsName = {
   day: 'day',
 };
 
+export const messagePasswordsShouldMatch = 'Password and Confirm password fields must match!';
+export const messageToSelectDay = `Please, choose the ${inputsName.day} again!`;
+
 export const minNameInputLength = 3;
 export const maxNameInputLength = 25;
 export const maxPhoneInputLength = 17;

@@ -28,6 +28,9 @@ export type SingUpFormDataType = {
   phone: string;
   password: string;
   confirmPassword: string;
+  year: string;
+  month: string;
+  day: string;
 };
 
 export interface IFirebaseError {
