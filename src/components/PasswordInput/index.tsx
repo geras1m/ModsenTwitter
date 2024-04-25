@@ -35,7 +35,7 @@ export const PasswordInput = memo((config: PasswordInputProps) => {
         type='button'
         onClick={handleChangeVisibilityOfPassword}
       >
-        <EyeImage src={isShowPassword ? CloseIcon : OpenIcon} />
+        <EyeImage src={isShowPassword ? OpenIcon : CloseIcon} />
       </Button>
     </PasswordInputWrapper>
   );
