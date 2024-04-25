@@ -9,6 +9,7 @@ import {
   ControlButtonsWrapper,
   CreateTweetWrapper,
   Image,
+  LimitNotificationMessage,
   Notification,
   Textarea,
   TweetForm,
@@ -37,6 +38,7 @@ export const CreateTweet = memo(() => {
   const [selectedImage, setSelectedImage] = useState<null | File>(null);
   const [isUploadFile, setIsUploadFile] = useState<boolean>(false);
   const { id: userId, name: authorName, telegramLink } = useAppSelector((state) => state.user);
+  const [isShowLimitNotification, setIsShowLimitNotification] = useState<boolean>(false);
   const toast = useToast();
   const {
     register,
@@ -118,6 +120,8 @@ export const CreateTweet = memo(() => {
           {...register(inputName, {
             maxLength: { value: 200, message: errorMessages.symbolLimit },
           })}
+          onBlur={() => setIsShowLimitNotification(false)}
+          onFocus={() => setIsShowLimitNotification(true)}
         />
         <ControlButtonsWrapper>
           <UploadWrapper>
@@ -133,6 +137,11 @@ export const CreateTweet = memo(() => {
             </UploadImageLabel>
             {isUploadFile && <Notification>File is attached!</Notification>}
           </UploadWrapper>
+
+          {isShowLimitNotification && (
+            <LimitNotificationMessage>Remember, the symbol limit is 200</LimitNotificationMessage>
+          )}
+
           <AddTweetButton
             data-testid='tweet-create-button'
             disabled={isLoading}

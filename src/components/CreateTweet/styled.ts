@@ -51,6 +51,15 @@ export const ControlButtonsWrapper = styled.div`
   ${mixinFlex({ alignItem: 'center', justifyContent: 'space-between' })}
 `;
 
+export const LimitNotificationMessage = styled.p`
+  color: ${({ theme }) => theme.colors.grey};
+  text-align: center;
+
+  @media (max-width: ${px800}) {
+    font-size: ${({ theme }) => theme.fontSizes.px14};
+  }
+`;
+
 export const UploadWrapper = styled.div`
   position: relative;
   transition: 0.2s ease-in;
