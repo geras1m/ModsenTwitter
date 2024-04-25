@@ -123,11 +123,10 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               type='button'
               onClick={closeModal}
             />
-            {errors?.name && (
-              <ErrorMessage>
-                {errors?.name?.message?.toString() || defaultErrorMessage}
-              </ErrorMessage>
-            )}
+
+            <ErrorMessage>
+              {errors?.name && (errors?.name?.message?.toString() || defaultErrorMessage)}
+            </ErrorMessage>
             <Input
               data-testid='profile-input-name'
               type={name.type}
@@ -144,12 +143,10 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
                 },
               })}
             />
-            {errors?.surname && (
-              <ErrorMessage>
-                {errors?.surname?.message?.toString() || defaultErrorMessage}
-              </ErrorMessage>
-            )}
 
+            <ErrorMessage>
+              {errors?.surname && (errors?.surname?.message?.toString() || defaultErrorMessage)}
+            </ErrorMessage>
             <Input
               data-testid='profile-input-surname'
               type={surname.type}
@@ -190,11 +187,11 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               </Label>
             </GenderInputWrapper>
 
-            {errors?.telegramLink && (
-              <ErrorMessage>
-                {errors?.telegramLink?.message?.toString() || defaultErrorMessage}
-              </ErrorMessage>
-            )}
+            <ErrorMessage>
+              {errors?.telegramLink &&
+                (errors?.telegramLink?.message?.toString() || defaultErrorMessage)}
+            </ErrorMessage>
+
             <Input
               type={telegramLink.type}
               placeholder={telegramLink.placeholder}
@@ -211,11 +208,10 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               })}
             />
 
-            {errors?.currentPassword && (
-              <ErrorMessage>
-                {errors?.currentPassword?.message?.toString() || defaultErrorMessage}
-              </ErrorMessage>
-            )}
+            <ErrorMessage>
+              {errors?.currentPassword &&
+                (errors?.currentPassword?.message?.toString() || defaultErrorMessage)}
+            </ErrorMessage>
             {!isGoogleAuth && (
               <PasswordInput
                 placeholder={currentPassword.placeholder}
@@ -230,11 +226,10 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               />
             )}
 
-            {errors?.newPassword && (
-              <ErrorMessage>
-                {errors?.newPassword?.message?.toString() || defaultErrorMessage}
-              </ErrorMessage>
-            )}
+            <ErrorMessage>
+              {errors?.newPassword &&
+                (errors?.newPassword?.message?.toString() || defaultErrorMessage)}
+            </ErrorMessage>
             {!isGoogleAuth && (
               <PasswordInput
                 placeholder={newPassword.placeholder}

@@ -99,10 +99,9 @@ export const LoginForm = () => {
         data-testid='login-form'
         onSubmit={handleSubmit(handlerOnSubmit)}
       >
-        {errors?.email && (
-          <ErrorMessage>{errors?.email?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-        )}
-
+        <ErrorMessage>
+          {errors?.email && (errors?.email?.message?.toString() || defaultErrorMessage)}
+        </ErrorMessage>
         <Input
           data-testid='login-email-input'
           placeholder={email.placeholder}
@@ -110,11 +109,10 @@ export const LoginForm = () => {
             required: email.required,
           })}
         />
-        {errors?.password && (
-          <ErrorMessage>
-            {errors?.password?.message?.toString() || defaultErrorMessage}
-          </ErrorMessage>
-        )}
+
+        <ErrorMessage>
+          {errors?.password && (errors?.password?.message?.toString() || defaultErrorMessage)}
+        </ErrorMessage>
         <PasswordInput
           placeholder={password.placeholder}
           register={config}

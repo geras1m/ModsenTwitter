@@ -47,9 +47,9 @@ export const SignUpForm = () => {
 
   return (
     <Form onSubmit={handleSubmit(handlerOnSubmit)}>
-      {errors?.name && (
-        <ErrorMessage>{errors?.name?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-      )}
+      <ErrorMessage>
+        {errors?.name && (errors?.name?.message?.toString() || defaultErrorMessage)}
+      </ErrorMessage>
       <Input
         data-testid='signup-input-name'
         placeholder={name.placeholder}
@@ -63,9 +63,9 @@ export const SignUpForm = () => {
         })}
       />
 
-      {errors?.phone && (
-        <ErrorMessage>{errors?.phone?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-      )}
+      <ErrorMessage>
+        {errors?.phone && (errors?.phone?.message?.toString() || defaultErrorMessage)}
+      </ErrorMessage>
       <Input
         data-testid='signup-input-phone'
         placeholder={phone.placeholder}
@@ -81,11 +81,9 @@ export const SignUpForm = () => {
         })}
       />
 
-      {errors?.email && (
-        <ErrorMessage data-testid='signup-error-email'>
-          {errors?.email?.message?.toString() || defaultErrorMessage}
-        </ErrorMessage>
-      )}
+      <ErrorMessage data-testid='signup-error-email'>
+        {errors?.email && (errors?.email?.message?.toString() || defaultErrorMessage)}
+      </ErrorMessage>
       <Input
         data-testid='signup-input-email'
         placeholder={email.placeholder}
@@ -99,9 +97,9 @@ export const SignUpForm = () => {
         })}
       />
 
-      {errors?.password && (
-        <ErrorMessage>{errors?.password?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-      )}
+      <ErrorMessage>
+        {errors?.password && (errors?.password?.message?.toString() || defaultErrorMessage)}
+      </ErrorMessage>
       <PasswordInput
         placeholder={password.placeholder}
         register={{
@@ -115,11 +113,10 @@ export const SignUpForm = () => {
         }}
       />
 
-      {errors?.confirmPassword && (
-        <ErrorMessage>
-          {errors?.confirmPassword?.message?.toString() || defaultErrorMessage}
-        </ErrorMessage>
-      )}
+      <ErrorMessage>
+        {errors?.confirmPassword &&
+          (errors?.confirmPassword?.message?.toString() || defaultErrorMessage)}
+      </ErrorMessage>
       <PasswordInput
         placeholder={confirmPassword.placeholder}
         register={{
@@ -137,10 +134,9 @@ export const SignUpForm = () => {
       <DateTitle>Date of birth</DateTitle>
       <PolicyText>{policyText}</PolicyText>
 
-      {errors?.day && (
-        <ErrorMessage>{errors?.day?.message?.toString() || defaultErrorMessage}</ErrorMessage>
-      )}
-
+      <ErrorMessage>
+        {errors?.day && (errors?.day?.message?.toString() || defaultErrorMessage)}
+      </ErrorMessage>
       <DateWrapper>
         <Select
           label='Month'

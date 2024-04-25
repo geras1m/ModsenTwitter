@@ -39,7 +39,7 @@ export const GenderInputWrapper = styled.fieldset`
   border-radius: 6px;
   flex-direction: column;
   padding: 10px 20px;
-  margin-bottom: 15px;
+  margin-top: 10px;
 
   ${mixinFlex({ alignItem: 'start', justifyContent: 'center' })};
 
@@ -74,11 +74,6 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.white1};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
-  margin-bottom: 15px;
-
-  &:last-child {
-    margin-bottom: 0;
-  }
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};

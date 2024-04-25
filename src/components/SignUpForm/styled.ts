@@ -19,7 +19,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.white1};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};
@@ -32,7 +32,7 @@ export const ToPageLink = styled(NavLink)`
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease-out;
-  margin-bottom: 17px;
+  margin: 25px 0 17px;
 
   &:hover {
     opacity: 0.7;
@@ -64,7 +64,9 @@ export const DateWrapper = styled.div`
 export const ErrorMessage = styled.p`
   display: inline-block;
   width: 100%;
+  height: 14px;
   text-align: center;
+  font-size: ${({ theme }) => theme.fontSizes.px14};
   color: ${({ theme }) => theme.colors.red};
 `;
 

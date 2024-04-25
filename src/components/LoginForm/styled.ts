@@ -38,7 +38,7 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.white1};
   font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};
@@ -55,6 +55,7 @@ export const SubmitButton = styled.button`
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
+  margin-top: 25px;
   margin-bottom: 40px;
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
