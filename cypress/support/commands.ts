@@ -10,7 +10,7 @@ Cypress.Commands.add('login', () => {
       cy.get('[data-testid=login-password-input-password]').type(user.password);
       cy.get('[data-testid=login-submit-button]').click();
     })
-    .wait(5000);
+    .wait(2000);
 });
 
 declare namespace Cypress {
