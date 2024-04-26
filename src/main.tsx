@@ -20,27 +20,27 @@ const persistor = persistStore(store);
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
-      <PersistGate
-        loading={
-          <BackgroundLoader>
-            <Spinner
-              width='100px'
-              border='10px'
-            />
-          </BackgroundLoader>
-        }
-        persistor={persistor}
-      >
-        <ErrorBoundary>
-          <ThemeProvider>
+      <ThemeProvider>
+        <PersistGate
+          loading={
+            <BackgroundLoader>
+              <Spinner
+                width='100px'
+                border='10px'
+              />
+            </BackgroundLoader>
+          }
+          persistor={persistor}
+        >
+          <ErrorBoundary>
             <BrowserRouter>
               <ToastProvider>
                 <App />
               </ToastProvider>
             </BrowserRouter>
-          </ThemeProvider>
-        </ErrorBoundary>
-      </PersistGate>
+          </ErrorBoundary>
+        </PersistGate>
+      </ThemeProvider>
     </Provider>
   </React.StrictMode>,
 );

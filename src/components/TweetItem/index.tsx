@@ -38,7 +38,7 @@ export const TweetItem = memo((data: TweetItemType) => {
   } = data;
 
   return (
-    <TweetWrapper>
+    <TweetWrapper data-testid='tweet-post'>
       <ProfileAvatar size='s' />
       <MainTweetContent>
         <UserInformWrapper>

@@ -19,7 +19,10 @@ export const UserCard = memo((data: IUserCardProps) => {
   const { id, name, tag, handleOpenUser } = data;
 
   return (
-    <UserCardWrapper onClick={() => handleOpenUser(id)}>
+    <UserCardWrapper
+      data-testid='users-search-result'
+      onClick={() => handleOpenUser(id)}
+    >
       <ProfileAvatar size='s' />
       <UserInform>
         <UserName>{name}</UserName>

@@ -45,7 +45,10 @@ export const SignUpForm = () => {
   const { name, phone, email, password, confirmPassword } = formInputsTextData;
 
   return (
-    <Form onSubmit={handleSubmit(handlerOnSubmit)}>
+    <Form
+      data-testid='signup-form'
+      onSubmit={handleSubmit(handlerOnSubmit)}
+    >
       <ErrorMessage>
         {errors?.name && (errors?.name?.message?.toString() || defaultErrorMessage)}
       </ErrorMessage>

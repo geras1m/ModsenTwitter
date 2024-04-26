@@ -68,5 +68,5 @@ export const TweetsBlock: FC<ITweetsBlockProps> = ({ page, id }) => {
     },
   );
 
-  return <TweetsBlockWrapper> {tweetPosts} </TweetsBlockWrapper>;
+  return <TweetsBlockWrapper data-testid='tweets-block'> {tweetPosts} </TweetsBlockWrapper>;
 };

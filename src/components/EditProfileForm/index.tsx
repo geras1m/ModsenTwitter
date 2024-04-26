@@ -116,10 +116,12 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
   return (
     <Portal>
       <Background>
-        <EditProfileFormWrapper ref={outsideRef}>
+        <EditProfileFormWrapper
+          data-testid='edit-form'
+          ref={outsideRef}
+        >
           <EditForm onSubmit={handleSubmit(handleSubmitUpdatedUserData)}>
             <CloseButton
-              data-testid='edit-form'
               type='button'
               onClick={closeModal}
             />
@@ -193,6 +195,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
             </ErrorMessage>
 
             <Input
+              data-testid='profile-input-telegram'
               type={telegramLink.type}
               placeholder={telegramLink.placeholder}
               {...register('telegramLink', {

@@ -23,7 +23,10 @@ export const TweetCard = memo((data: ITweetCardProps) => {
   const { authorName, date, text, id, handleOpenTweet } = data;
 
   return (
-    <TweetCardWrapper onClick={() => handleOpenTweet(id)}>
+    <TweetCardWrapper
+      data-testid='tweets-search-result'
+      onClick={() => handleOpenTweet(id)}
+    >
       <ProfileAvatar size='s' />
       <TweetInformWrapper>
         <UserInformWrapper>
