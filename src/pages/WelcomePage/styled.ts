@@ -8,10 +8,13 @@ import { mediaSizes } from '@/constants/theme';
 const { px1500, px1150, px800 } = mediaSizes;
 
 export const SignUpWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 `;
 
 export const Content = styled.section`

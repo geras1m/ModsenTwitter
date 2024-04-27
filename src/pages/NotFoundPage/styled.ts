@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { mixinFlex } from '@/components/ThemeProvider/styled';
 
 export const NotFoundPageWrapper = styled.main`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   flex-direction: column;
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};

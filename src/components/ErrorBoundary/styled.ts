@@ -4,8 +4,11 @@ import { mixinFlex } from '@/components/ThemeProvider/styled';
 import { colors, fontSizes, fontWeight } from '@/constants/theme';
 
 export const ErrorBoundaryWrapper = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 `;

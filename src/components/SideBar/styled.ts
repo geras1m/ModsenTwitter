@@ -17,7 +17,7 @@ export const SideBarWrapper = styled.section<ISideBarWrapperProps>`
 
   @media (max-width: ${px1150}) {
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow-y: scroll;
     position: fixed;
     left: ${({ $isShow }) => ($isShow ? '0' : '-240px')};
