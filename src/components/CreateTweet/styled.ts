@@ -84,9 +84,40 @@ export const Image = styled.img`
 export const UploadImageLabel = styled.label``;
 
 export const Notification = styled.span`
+  position: relative;
   margin-left: 10px;
   color: ${({ theme }) => theme.colors.grey};
   font-size: ${({ theme }) => theme.fontSizes.px16};
+`;
+
+export const ClearAttachedFileButton = styled.button`
+  position: absolute;
+  top: 3px;
+  right: -16px;
+  width: 12px;
+  height: 12px;
+  background-color: ${({ theme }) => theme.colors.red};
+  border: none;
+  cursor: pointer;
+  transition: 0.2s ease-in;
+  clip-path: polygon(
+    20% 0%,
+    0% 20%,
+    30% 50%,
+    0% 80%,
+    20% 100%,
+    50% 70%,
+    80% 100%,
+    100% 80%,
+    70% 50%,
+    100% 20%,
+    80% 0%,
+    50% 30%
+  );
+
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 
 export const AddTweetButton = styled.button`

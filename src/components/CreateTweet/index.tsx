@@ -6,6 +6,7 @@ import { assets } from '@/assets';
 import { errorMessages, inputName, placeholderTextarea } from '@/components/CreateTweet/config';
 import {
   AddTweetButton,
+  ClearAttachedFileButton,
   ControlButtonsWrapper,
   CreateTweetWrapper,
   Image,
@@ -105,6 +106,11 @@ export const CreateTweet = memo(() => {
     }
   };
 
+  const handleRemoveAttachedFile = () => {
+    setIsUploadFile(false);
+    setSelectedImage(null);
+  };
+
   return (
     <CreateTweetWrapper>
       <ProfileAvatar size='s' />
@@ -135,7 +141,15 @@ export const CreateTweet = memo(() => {
             <UploadImageLabel htmlFor='file'>
               <Image src={UploadImageIcon} />
             </UploadImageLabel>
-            {isUploadFile && <Notification>File is attached!</Notification>}
+            {isUploadFile && (
+              <Notification>
+                File is attached!{' '}
+                <ClearAttachedFileButton
+                  type='button'
+                  onClick={handleRemoveAttachedFile}
+                />
+              </Notification>
+            )}
           </UploadWrapper>
 
           {isShowLimitNotification && (
