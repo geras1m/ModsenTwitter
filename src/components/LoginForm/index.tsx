@@ -17,7 +17,7 @@ import {
 import { PasswordInput } from '@/components/PasswordInput';
 import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
-import { defaultErrorMessage, routes, successMessage } from '@/constants';
+import { defaultErrorMessage, routes, successMessage, usersValue } from '@/constants';
 import { passwordPattern } from '@/constants/validation';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
@@ -50,9 +50,9 @@ export const LoginForm = () => {
 
     try {
       const user = await FirebaseService.LogIn(email, password);
-      const userData = await FirebaseService.GetDataItemFromDB(user.uid, 'users');
+      const userData = await FirebaseService.GetDataItemFromDB(user.uid, usersValue);
       if (userData) {
-        const { uis, name, surname, phone, telegramLink, gender, born } = userData;
+        const { uis, name, surname, phone, telegramLink, gender } = userData;
 
         dispatch(
           setUser({
@@ -64,7 +64,6 @@ export const LoginForm = () => {
             phone,
             telegramLink,
             gender,
-            born,
           }),
         );
         toast?.open(successMessage, ToastType.success);
@@ -83,7 +82,7 @@ export const LoginForm = () => {
   };
   const { email, password } = formInputsTextData;
 
-  const config = register('password', {
+  const config = register(password.name, {
     required: password.required,
     pattern: {
       value: passwordPattern,
@@ -105,7 +104,7 @@ export const LoginForm = () => {
         <Input
           data-testid='login-email-input'
           placeholder={email.placeholder}
-          {...register('email', {
+          {...register(email.name, {
             required: email.required,
           })}
         />

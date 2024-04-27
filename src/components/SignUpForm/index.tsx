@@ -57,7 +57,7 @@ export const SignUpForm = () => {
         placeholder={name.placeholder}
         type={name.type}
         maxLength={maxNameInputLength}
-        {...register('name', {
+        {...register(name.name, {
           required: name.required,
           minLength: { value: minNameInputLength, message: name.minLength },
           maxLength: { value: maxNameInputLength, message: name.maxLength },
@@ -73,7 +73,7 @@ export const SignUpForm = () => {
         placeholder={phone.placeholder}
         type={phone.type}
         maxLength={maxPhoneInputLength}
-        {...register('phone', {
+        {...register(phone.name, {
           required: phone.required,
           pattern: {
             value: phoneNumberPattern,
@@ -90,7 +90,7 @@ export const SignUpForm = () => {
         data-testid='signup-input-email'
         placeholder={email.placeholder}
         type={email.type}
-        {...register('email', {
+        {...register(email.name, {
           required: email.required,
           pattern: {
             value: emailPattern,
@@ -105,7 +105,7 @@ export const SignUpForm = () => {
       <PasswordInput
         placeholder={password.placeholder}
         register={{
-          ...register('password', {
+          ...register(password.name, {
             required: password.required,
             pattern: {
               value: passwordPattern,
@@ -122,7 +122,7 @@ export const SignUpForm = () => {
       <PasswordInput
         placeholder={confirmPassword.placeholder}
         register={{
-          ...register('confirmPassword', {
+          ...register(confirmPassword.name, {
             required: confirmPassword.required,
             pattern: {
               value: passwordPattern,

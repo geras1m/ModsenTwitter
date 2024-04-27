@@ -16,7 +16,7 @@ import {
   UserTeg,
 } from '@/components/TweetItem/styled';
 import { useAppSelector } from '@/hooks/reduxHooks';
-import { TweetItemType } from '@/types';
+import { AvatarSizes, TweetItemType } from '@/types';
 
 const { ActiveLikeIcon, DefaultLikeIcon } = assets;
 
@@ -39,7 +39,7 @@ export const TweetItem = memo((data: TweetItemType) => {
 
   return (
     <TweetWrapper data-testid='tweet-post'>
-      <ProfileAvatar size='s' />
+      <ProfileAvatar size={AvatarSizes.small} />
       <MainTweetContent>
         <UserInformWrapper>
           <UserName>{authorName}</UserName>

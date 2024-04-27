@@ -23,9 +23,10 @@ import {
 } from 'firebase/firestore';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 
+import { tweetsValue, usersValue } from '@/constants';
 import { auth, db, googleAuthProvider, storage } from '@/firabase';
 import { IChangeUserDataProps, ICreateNewTweetInDB, ISignUpWithFormProps } from '@/service/types';
-import { ITweetData, IUserData } from '@/types';
+import { ITweetData, IUserData, PathDBType } from '@/types';
 
 export const FirebaseService = {
   async LogIn(email: string, password: string): Promise<FirebaseUser> {
@@ -41,7 +42,7 @@ export const FirebaseService = {
   async SignUpWithGoogle(): Promise<FirebaseUser> {
     const { user } = await signInWithPopup(auth, googleAuthProvider);
 
-    await setDoc(doc(db, 'users', `${user.uid}`), {
+    await setDoc(doc(db, usersValue, `${user.uid}`), {
       uis: user.uid,
       born: null,
       isGoogleAuth: true,
@@ -60,7 +61,7 @@ export const FirebaseService = {
     const { email, name, phone, password, monthBirth, dayBirth, yearBirth } = data;
     const { user } = await createUserWithEmailAndPassword(auth, email, password);
 
-    await setDoc(doc(db, 'users', `${user.uid}`), {
+    await setDoc(doc(db, usersValue, `${user.uid}`), {
       uis: user.uid,
       born: new Date(yearBirth, monthBirth, dayBirth),
       isGoogleAuth: false,
@@ -78,8 +79,8 @@ export const FirebaseService = {
   async ChangeUserData(props: IChangeUserDataProps) {
     const { id, name, gender, surname, email, telegramLink, newPassword, currentPassword } = props;
 
-    const docRef = doc(db, 'users', `${id}`);
-    const userDataFromDB = await this.GetDataItemFromDB(id, 'users');
+    const docRef = doc(db, usersValue, `${id}`);
+    const userDataFromDB = await this.GetDataItemFromDB(id, usersValue);
 
     if (userDataFromDB) {
       await updateDoc(docRef, {
@@ -104,7 +105,7 @@ export const FirebaseService = {
     }
   },
 
-  async GetDataItemFromDB(id: string, databaseName: 'users' | 'tweets') {
+  async GetDataItemFromDB(id: string, databaseName: PathDBType) {
     const docRef = doc(db, databaseName, `${id}`);
     const docSnap = await getDoc(docRef);
 
@@ -113,7 +114,7 @@ export const FirebaseService = {
 
   async CreateNewTweetInDB(data: ICreateNewTweetInDB) {
     const { id, authorId, authorName, authorTag, text, imgLink, date } = data;
-    await setDoc(doc(db, 'tweets', `${id}`), {
+    await setDoc(doc(db, tweetsValue, `${id}`), {
       uis: id,
       authorId,
       authorName,
@@ -126,7 +127,7 @@ export const FirebaseService = {
   },
 
   async UpdateUserDataInTweets(userId: number | string, newName: string, newTag: string) {
-    const q = query(collection(db, 'tweets'), where('authorId', '==', userId));
+    const q = query(collection(db, tweetsValue), where('authorId', '==', userId));
 
     const tweetsSnapshot = await getDocs(q);
 
@@ -146,11 +147,11 @@ export const FirebaseService = {
   },
 
   async RemoveTweet(tweetId: string) {
-    await deleteDoc(doc(db, 'tweets', tweetId));
+    await deleteDoc(doc(db, tweetsValue, tweetId));
   },
 
   async ChangeTweetLike(userId: string, tweetId: string) {
-    const tweetRef = doc(db, 'tweets', tweetId.toString());
+    const tweetRef = doc(db, tweetsValue, tweetId.toString());
 
     const docSnap = await getDoc(tweetRef);
 
@@ -170,7 +171,7 @@ export const FirebaseService = {
     id: string,
     setTweets: Dispatch<SetStateAction<ITweetData | null>>,
   ) {
-    const tweetRef = doc(db, 'tweets', id);
+    const tweetRef = doc(db, tweetsValue, id);
     const unsubscribe = onSnapshot(tweetRef, (snapshot) => {
       setTweets(snapshot.data() as ITweetData);
     });
@@ -183,8 +184,8 @@ export const FirebaseService = {
     setTweets: Dispatch<SetStateAction<ITweetData[]>>,
   ) {
     let queryTweets;
-    if (page === 'home') queryTweets = query(collection(db, 'tweets'));
-    else queryTweets = query(collection(db, 'tweets'), where('authorId', '==', id));
+    if (page === 'home') queryTweets = query(collection(db, tweetsValue));
+    else queryTweets = query(collection(db, tweetsValue), where('authorId', '==', id));
 
     const unsubscribe = onSnapshot(queryTweets, (querySnapshot) => {
       const tweetsFromDB: ITweetData[] = [];
@@ -197,12 +198,12 @@ export const FirebaseService = {
     return unsubscribe;
   },
 
-  async GetQuerySnapshotFromDB(path: 'users' | 'tweets') {
+  async GetQuerySnapshotFromDB(path: PathDBType) {
     return getDocs(collection(db, path));
   },
 
   async GetUserDataCollectionFromDB(debouncedValue: string) {
-    const querySnapshot = await this.GetQuerySnapshotFromDB('users');
+    const querySnapshot = await this.GetQuerySnapshotFromDB(usersValue);
 
     const tweetsDataFromDB: IUserData[] = [];
     querySnapshot.forEach((userDoc) => {
@@ -214,7 +215,7 @@ export const FirebaseService = {
   },
 
   async GetTweetDataCollectionFromDB(debouncedValue: string) {
-    const querySnapshot = await this.GetQuerySnapshotFromDB('tweets');
+    const querySnapshot = await this.GetQuerySnapshotFromDB(tweetsValue);
 
     const tweetsDataFromDB: ITweetData[] = [];
     querySnapshot.forEach((tweetDoc) => {

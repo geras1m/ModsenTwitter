@@ -25,6 +25,7 @@ import { useOutsideClick } from '@/hooks/useOutClick';
 import { FirebaseService } from '@/service';
 import { setIsOpenNavBar } from '@/store/slices/themeSlice';
 import { removeUser } from '@/store/slices/userSlice';
+import { AvatarSizes } from '@/types';
 import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 import { getCutString } from '@/utils/getCutString';
 
@@ -81,7 +82,7 @@ export const SideBar = memo(() => {
       )}
 
       <ProfileInfoBlock>
-        <ProfileAvatar size='s' />
+        <ProfileAvatar size={AvatarSizes.small} />
         <ProfileInfo>
           <ProfileName>{name ? getCutString(name, 12) : noName}</ProfileName>
           <ProfileTag>{telegramLink ? getCutString(telegramLink, 14) : noTelegram}</ProfileTag>

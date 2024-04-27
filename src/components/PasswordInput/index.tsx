@@ -2,6 +2,7 @@ import { memo, useState } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 
 import { assets } from '@/assets';
+import { passwordInputTypes } from '@/components/PasswordInput/config';
 import { Button, EyeImage, Input, PasswordInputWrapper } from '@/components/PasswordInput/styled';
 import { ThemeValue } from '@/constants/theme/types';
 import { useAppSelector } from '@/hooks/reduxHooks';
@@ -27,7 +28,7 @@ export const PasswordInput = memo((config: PasswordInputProps) => {
     <PasswordInputWrapper>
       <Input
         data-testid={`login-password-input-${placeholder.split(' ').join('-').toLowerCase()}`}
-        type={isShowPassword ? 'text' : 'password'}
+        type={isShowPassword ? passwordInputTypes.text : passwordInputTypes.password}
         placeholder={placeholder}
         {...register}
       />

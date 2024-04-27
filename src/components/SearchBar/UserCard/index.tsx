@@ -7,6 +7,7 @@ import {
   UserName,
   UserTag,
 } from '@/components/SearchBar/UserCard/styled';
+import { AvatarSizes } from '@/types';
 
 interface IUserCardProps {
   id: string;
@@ -23,7 +24,7 @@ export const UserCard = memo((data: IUserCardProps) => {
       data-testid='users-search-result'
       onClick={() => handleOpenUser(id)}
     >
-      <ProfileAvatar size='s' />
+      <ProfileAvatar size={AvatarSizes.small} />
       <UserInform>
         <UserName>{name}</UserName>
         <UserTag>{tag}</UserTag>

@@ -54,7 +54,6 @@ export interface ITweetData {
 export interface IUserData {
   id?: string;
   uis?: string;
-  born: string;
   isGoogleAuth: false;
   email: string;
   surname: string;
@@ -92,3 +91,12 @@ export type TweetsType = CommonReturnedSearchType & {
 
 export type UserSearchType = 'users-search';
 export type TweetSearchType = 'tweets-search';
+
+export type PathDBType = 'users' | 'tweets';
+
+export type AvatarSizeType = 's' | 'l';
+
+export const enum AvatarSizes {
+  small = 's',
+  large = 'l',
+}

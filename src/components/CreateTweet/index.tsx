@@ -25,7 +25,7 @@ import { defaultErrorMessage, successMessage } from '@/constants';
 import { useToast } from '@/context/toastContext';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
-import { ErrorsMessages, ToastType } from '@/types';
+import { AvatarSizes, ErrorsMessages, ToastType } from '@/types';
 import { getTweetDateForTweet } from '@/utils/getTweetDateForTweet';
 
 type CreateTweetFormDataType = {
@@ -113,7 +113,7 @@ export const CreateTweet = memo(() => {
 
   return (
     <CreateTweetWrapper>
-      <ProfileAvatar size='s' />
+      <ProfileAvatar size={AvatarSizes.small} />
       <TweetForm onSubmit={handleSubmit(handleCreateTweet)}>
         {errors?.textarea && (
           <ErrorMessage>

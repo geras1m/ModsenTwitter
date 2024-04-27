@@ -18,7 +18,7 @@ export const SearchBarWrapper = styled.section<ISearchBarWrapperProps>`
   @media (max-width: ${px1150}) {
     padding: 60px 10px;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     overflow-y: scroll;
     margin: 0;
     position: fixed;

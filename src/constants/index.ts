@@ -12,6 +12,12 @@ export const routes = {
 export const usersSearchPath = 'users-search';
 export const tweetsSearchPath = 'tweets-search';
 
+export const homeValue = 'home';
+export const profileValue = 'profile';
+
+export const usersValue = 'users';
+export const tweetsValue = 'tweets';
+
 export const successMessage = 'Success!';
 
 export const defaultErrorMessage = 'Error!';

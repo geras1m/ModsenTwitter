@@ -5,6 +5,7 @@ import { CreateTweet } from '@/components/CreateTweet';
 import { ProfileAvatar } from '@/components/ProfileAvatar';
 import { SearchButton } from '@/components/SearchBar/SearchButton';
 import { TweetsBlock } from '@/components/TweetsBlock';
+import { profileValue } from '@/constants';
 import { useAppSelector } from '@/hooks/reduxHooks';
 import { EditProfileButton } from '@/pages/Profile/EditProfileButton';
 import {
@@ -70,7 +71,7 @@ export const Profile = memo(() => {
       </ProfileBlock>
       <CreateTweet />
       <TweetsBlock
-        page='profile'
+        page={profileValue}
         id={id!}
       />
     </ProfileWrapper>

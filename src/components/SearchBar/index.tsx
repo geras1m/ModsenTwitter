@@ -8,13 +8,15 @@ import { routes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { setIsOpenSearchBar } from '@/store/slices/themeSlice';
 
+const tweetSearchPagePath = '/tweets-search';
+
 export const SearchBar = memo(() => {
   const location = useLocation();
   const { isOpenSearchBar } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
 
   const isTweetSearchShow =
-    location.pathname === routes.profile || location.pathname.includes('/tweets-search');
+    location.pathname === routes.profile || location.pathname.includes(tweetSearchPagePath);
 
   return (
     <SearchBarWrapper $isShow={isOpenSearchBar}>

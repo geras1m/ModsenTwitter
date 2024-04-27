@@ -21,7 +21,7 @@ export const maxPhoneInputLength = 17;
 
 export const formInputsTextData = {
   name: {
-    name: 'name',
+    name: 'name' as const,
     placeholder: 'Name',
     type: 'text',
     required: 'Required field',
@@ -29,27 +29,27 @@ export const formInputsTextData = {
     maxLength: `The maximum line length is ${maxNameInputLength}`,
   },
   phone: {
-    name: 'phone',
+    name: 'phone' as const,
     placeholder: 'Phone number',
     type: 'tel',
     required: 'Required field',
     pattern: 'Phone number should follow the pattern +375 (29/25/44/33) 1234567',
   },
   email: {
-    name: 'email',
+    name: 'email' as const,
     placeholder: 'Email',
     type: 'email',
     required: 'Required field',
     pattern: 'Invalid email',
   },
   password: {
-    name: 'password',
+    name: 'password' as const,
     placeholder: 'Password',
     required: 'Required field',
     pattern: 'The password should be at least 6 symbols long and contain a digit',
   },
   confirmPassword: {
-    name: 'confirmPassword',
+    name: 'confirmPassword' as const,
     placeholder: 'Сonfirm password',
     required: 'Required field',
     pattern: 'The password should be at least 6 symbols long and contain a digit',

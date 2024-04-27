@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { FirebaseError } from 'firebase/app';
 
 import {
+  formInputsTextData,
   inputsName,
   messagePasswordsShouldMatch,
   messageToSelectDay,
@@ -17,6 +18,8 @@ import { SingUpFormDataType, ToastType } from '@/types';
 import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 import { getPhoneMask } from '@/utils/getPhoneMask';
+
+const { phone: phoneConst, confirmPassword: confirmPasswordConst } = formInputsTextData;
 
 export const useSignUpFormLogic = () => {
   const navigate = useNavigate();
@@ -75,7 +78,7 @@ export const useSignUpFormLogic = () => {
   const handlerOnSubmit: SubmitHandler<SingUpFormDataType> = async (data) => {
     const { email, name, phone, password, confirmPassword } = data;
     if (password !== confirmPassword) {
-      setError('confirmPassword', { message: messagePasswordsShouldMatch });
+      setError(confirmPasswordConst.name, { message: messagePasswordsShouldMatch });
       return;
     }
 
@@ -127,7 +130,7 @@ export const useSignUpFormLogic = () => {
     if (value.length >= 18) return;
 
     const formattedValue = getPhoneMask(value);
-    setValue('phone', formattedValue);
+    setValue(phoneConst.name, formattedValue);
   };
 
   return {

@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
 import { Option, SelectItem } from '@/components/Select/styled';
+import { inputsName as inputsNameValues } from '@/components/SignUpForm/config';
 
-interface ISelectProps {
+export interface ISelectProps {
   label: string;
   inputsName: string;
   handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
@@ -27,7 +28,7 @@ export const Select = memo((options: ISelectProps) => {
         <Option
           data-testid={`signup-select-${inputsName}-${item}`}
           key={item}
-          value={inputsName === 'month' ? index : Number(item)}
+          value={inputsName === inputsNameValues.month ? index : Number(item)}
         >
           {item}
         </Option>

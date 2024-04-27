@@ -52,7 +52,6 @@ export const SignUpPage = () => {
           phone: user.phoneNumber,
           telegramLink: null,
           gender: null,
-          born: null,
         }),
       );
       navigate(routes.profile);

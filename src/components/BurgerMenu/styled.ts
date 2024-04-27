@@ -20,7 +20,6 @@ export const BurgerWrapper = styled.nav<IBurgerMenuProps>`
   cursor: pointer;
   padding: 0;
   overflow: hidden;
-  //z-index: 2;
 
   div {
     width: 24px;
@@ -67,7 +66,6 @@ export const Menu = styled.div<IBurgerMenuProps>`
   text-align: left;
   padding: 80px 20px;
   position: fixed;
-  //z-index: 0;
   top: 0;
   right: 0;
   transition: ${({ theme }) => theme.transition};

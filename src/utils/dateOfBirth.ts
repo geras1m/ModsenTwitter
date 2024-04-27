@@ -1,5 +1,7 @@
 import { months } from '@/constants';
 
+const overDaysInMonth = 32;
+
 export const getYears = () => {
   const startYear = 1900;
   const endYear = new Date().getFullYear();
@@ -37,7 +39,7 @@ export const getDateDays = (month: number | null, year: number | null) => {
   const currentDate = new Date();
   const currentYear = currentDate.getFullYear();
   const currentMonth = currentDate.getMonth();
-  const daysInCurrentDate = 32 - new Date(year, month, 32).getDate();
+  const daysInCurrentDate = overDaysInMonth - new Date(year, month, overDaysInMonth).getDate();
 
   if (currentYear === year && currentMonth === month) {
     for (let i = 1; i <= currentDate.getDate(); i += 1) {

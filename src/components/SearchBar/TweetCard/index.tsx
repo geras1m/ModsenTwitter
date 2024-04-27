@@ -9,6 +9,7 @@ import {
   UserInformWrapper,
   UserName,
 } from '@/components/SearchBar/TweetCard/styled';
+import { AvatarSizes } from '@/types';
 import { getCutString } from '@/utils/getCutString';
 
 interface ITweetCardProps {
@@ -27,7 +28,7 @@ export const TweetCard = memo((data: ITweetCardProps) => {
       data-testid='tweets-search-result'
       onClick={() => handleOpenTweet(id)}
     >
-      <ProfileAvatar size='s' />
+      <ProfileAvatar size={AvatarSizes.small} />
       <TweetInformWrapper>
         <UserInformWrapper>
           <UserName>{getCutString(authorName, 20)}</UserName>

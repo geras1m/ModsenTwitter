@@ -22,7 +22,7 @@ import { PasswordInput } from '@/components/PasswordInput';
 import { Portal } from '@/components/Portal';
 import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
-import { defaultErrorMessage, successMessage } from '@/constants';
+import { defaultErrorMessage, successMessage, usersValue } from '@/constants';
 import { namePattern, passwordPattern, telegramNicknamePattern } from '@/constants/validation';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
@@ -75,7 +75,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
         newPassword,
       });
 
-      const updatedUserData = await FirebaseService.GetDataItemFromDB(id!, 'users');
+      const updatedUserData = await FirebaseService.GetDataItemFromDB(id!, usersValue);
       if (updatedUserData)
         await FirebaseService.UpdateUserDataInTweets(
           id!,
@@ -94,7 +94,6 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
             gender: updatedUserData.gender,
             phone: updatedUserData.phone,
             email: updatedUserData.email,
-            born: updatedUserData.born,
           }),
         );
 
@@ -111,7 +110,8 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
     reset();
   };
 
-  const { name, surname, telegramLink, currentPassword, newPassword } = editFormInputsTextData;
+  const { name, surname, telegramLink, currentPassword, newPassword, female, male } =
+    editFormInputsTextData;
 
   return (
     <Portal>
@@ -133,7 +133,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               data-testid='profile-input-name'
               type={name.type}
               placeholder={name.placeholder}
-              {...register('name', {
+              {...register(name.name, {
                 minLength: { value: minNameInputLength, message: name.minLength },
                 maxLength: {
                   value: maxNameInputLength,
@@ -153,7 +153,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               data-testid='profile-input-surname'
               type={surname.type}
               placeholder={surname.placeholder}
-              {...register('surname', {
+              {...register(surname.name, {
                 minLength: { value: minNameInputLength, message: surname.minLength },
                 maxLength: {
                   value: maxNameInputLength,
@@ -168,21 +168,21 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
             <GenderInputWrapper>
               <Legend>What is your gender?</Legend>
 
-              <Label htmlFor='female'>
+              <Label htmlFor={female}>
                 <Input
-                  id='female'
+                  id={female}
                   type='radio'
-                  value='female'
+                  value={female}
                   {...register('gender')}
                 />
                 Female
               </Label>
 
-              <Label htmlFor='male'>
+              <Label htmlFor={male}>
                 <Input
-                  id='male'
+                  id={male}
                   type='radio'
-                  value='male'
+                  value={male}
                   {...register('gender')}
                 />
                 Male
@@ -198,7 +198,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               data-testid='profile-input-telegram'
               type={telegramLink.type}
               placeholder={telegramLink.placeholder}
-              {...register('telegramLink', {
+              {...register(telegramLink.name, {
                 minLength: { value: minNameInputLength, message: telegramLink.minLength },
                 maxLength: {
                   value: maxNameInputLength,
@@ -219,7 +219,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               <PasswordInput
                 placeholder={currentPassword.placeholder}
                 register={{
-                  ...register('currentPassword', {
+                  ...register(currentPassword.name, {
                     pattern: {
                       value: passwordPattern,
                       message: currentPassword.pattern,
@@ -237,7 +237,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
               <PasswordInput
                 placeholder={newPassword.placeholder}
                 register={{
-                  ...register('newPassword', {
+                  ...register(newPassword.name, {
                     pattern: {
                       value: passwordPattern,
                       message: newPassword.pattern,
