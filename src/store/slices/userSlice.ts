@@ -4,7 +4,6 @@ import { IUserData } from '@/types';
 
 const initialState: IUserData = {
   id: '',
-  born: '',
   isGoogleAuth: false,
   email: '',
   surname: '',
@@ -14,14 +13,12 @@ const initialState: IUserData = {
   phone: '',
 };
 
-/* eslint-disable no-param-reassign */
 const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
     setUser(state, action) {
       state.id = action.payload.id;
-      state.born = action.payload.born;
       state.isGoogleAuth = action.payload.isGoogleAuth;
       state.email = action.payload.email;
       state.surname = action.payload.surname;
@@ -32,7 +29,6 @@ const userSlice = createSlice({
     },
     removeUser(state) {
       state.id = '';
-      state.born = '';
       state.isGoogleAuth = false;
       state.email = '';
       state.surname = '';

@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-import { persistStore } from 'redux-persist';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { App } from '@/components/App';
@@ -11,11 +10,11 @@ import { BackgroundLoader } from '@/components/Router/styled';
 import { Spinner } from '@/components/Spinner';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { ToastProvider } from '@/context/ToastProvider';
-import { store } from '@/store';
+import { persistor, store } from '@/store';
 
 import '@/firabase';
 
-const persistor = persistStore(store);
+// const persistor = persistStore(store);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

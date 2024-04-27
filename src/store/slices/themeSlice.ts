@@ -8,7 +8,6 @@ const initialState: IThemeState = {
   isOpenSearchBar: false,
 };
 
-/* eslint-disable no-param-reassign */
 const themeSlice = createSlice({
   name: 'theme',
   initialState,
