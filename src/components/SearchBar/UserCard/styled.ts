@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const UserCardWrapper = styled.div`
   margin-bottom: 25px;
@@ -27,11 +27,12 @@ export const UserInform = styled.div`
 
 export const UserName = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'bold' })};
 `;
 
 export const UserTag = styled.p`
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
+
+  ${mixinFontTemplates({ size: 'px18' })};
 `;

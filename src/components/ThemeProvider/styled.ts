@@ -1,5 +1,8 @@
 import { createGlobalStyle, css } from 'styled-components';
 
+import { fontSizes, fontWeight } from '@/constants/theme';
+import { IFontSizes, IFontWeight } from '@/constants/theme/types';
+
 const GlobalStyles = createGlobalStyle`
   * {
     box-sizing: border-box;
@@ -67,6 +70,22 @@ export const mixinFlex = ({ alignItem = 'start', justifyContent = 'flex-start' }
   display: flex;
   align-items: ${alignItem};
   justify-content: ${justifyContent};
+`;
+
+interface IMixinFontTemplates {
+  size: keyof IFontSizes;
+  weight?: keyof IFontWeight;
+  height?: string;
+}
+
+export const mixinFontTemplates = ({
+  size = 'px16',
+  weight = 'normal',
+  height = 'normal',
+}: IMixinFontTemplates) => css`
+  font-size: ${fontSizes[size]};
+  font-weight: ${fontWeight[weight]};
+  line-height: ${height};
 `;
 
 export default GlobalStyles;

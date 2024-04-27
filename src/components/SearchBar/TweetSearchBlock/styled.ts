@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
+import { mixinFontTemplates } from '@/components/ThemeProvider/styled';
+
 export const SuggestionTitle = styled.h3`
   color: ${({ theme }) => theme.colors.text};
   margin-bottom: 30px;
-  font-size: ${({ theme }) => theme.fontSizes.px24};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px24', weight: 'bold' })};
 `;

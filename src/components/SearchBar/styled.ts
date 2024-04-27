@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 
+import { mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { px1150 } = mediaSizes;
@@ -46,9 +47,10 @@ export const Input = styled.input`
   border: 1px solid ${({ theme }) => theme.colors.white1};
   background-color: transparent;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 15px;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 
   &:last-child {
     margin-bottom: 0;
@@ -69,7 +71,8 @@ export const SuggestionBlock = styled.div`
 export const NotFoundMessage = styled.p`
   text-align: center;
   color: ${({ theme }) => theme.colors.red};
-  font-size: ${({ theme }) => theme.fontSizes.px14};
+
+  ${mixinFontTemplates({ size: 'px14' })};
 `;
 
 export const CloseButton = styled.button`

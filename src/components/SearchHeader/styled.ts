@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const Header = styled.header`
   padding: 25px 34px;
@@ -18,9 +18,8 @@ export const LinkItem = styled(NavLink)`
   transition: 0.2s ease-in;
   cursor: pointer;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px24};
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
 
+  ${mixinFontTemplates({ size: 'px24', weight: 'semiBold' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
 
   &:hover {

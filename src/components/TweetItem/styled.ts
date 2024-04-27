@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { px800 } = mediaSizes;
@@ -29,9 +29,9 @@ export const UserInformWrapper = styled.div`
 export const UserName = styled.h3`
   display: inline-block;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px20};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-right: 5px;
+
+  ${mixinFontTemplates({ size: 'px20', weight: 'bold' })};
 
   @media (max-width: ${px800}) {
     font-size: ${({ theme }) => theme.fontSizes.px18};
@@ -39,8 +39,9 @@ export const UserName = styled.h3`
 `;
 
 export const UserTeg = styled.span`
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   color: ${({ theme }) => theme.colors.grey};
+
+  ${mixinFontTemplates({ size: 'px18' })};
 `;
 
 export const TweetText = styled.p`
@@ -49,7 +50,8 @@ export const TweetText = styled.p`
   word-break: break-word;
   margin-bottom: 15px;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
+
+  ${mixinFontTemplates({ size: 'px18' })};
 `;
 
 export const TweetImage = styled.img`

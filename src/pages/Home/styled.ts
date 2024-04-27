@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { px1150 } = mediaSizes;
@@ -19,8 +19,8 @@ export const HomeWrapper = styled.main`
 
 export const PageName = styled.h1`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px24};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px24', weight: 'bold' })};
 `;
 
 export const HomeHeader = styled.header`

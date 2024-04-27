@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { px800 } = mediaSizes;
@@ -30,16 +30,17 @@ export const Textarea = styled.textarea`
   background-color: transparent;
   border-radius: 6px;
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   color: ${({ theme }) => theme.colors.text};
   transition: 0.2s ease-in;
   padding: 10px;
   height: 80px;
 
+  ${mixinFontTemplates({ size: 'px18' })}
+
   &::placeholder {
-    font-weight: ${({ theme }) => theme.fontWeight.semiBold};
-    font-size: ${({ theme }) => theme.fontSizes.px22};
     color: ${({ theme }) => theme.colors.grey};
+
+    ${mixinFontTemplates({ size: 'px22', weight: 'semiBold' })}
   }
 
   &:hover {
@@ -87,7 +88,8 @@ export const Notification = styled.span`
   position: relative;
   margin-left: 10px;
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
+
+  ${mixinFontTemplates({ size: 'px16' })}
 `;
 
 export const ClearAttachedFileButton = styled.button`
@@ -125,10 +127,11 @@ export const AddTweetButton = styled.button`
   border: none;
   border-radius: 76px;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
+
+  ${mixinFontTemplates({ size: 'px18' })}
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 

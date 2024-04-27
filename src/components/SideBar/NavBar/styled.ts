@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const SideBarNav = styled.nav``;
 
@@ -11,12 +11,11 @@ export const LinksList = styled.ul`
 
 export const LinksItem = styled(NavLink)`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   margin: 30px 0;
   transition: 0.2s ease-in;
   cursor: pointer;
 
+  ${mixinFontTemplates({ size: 'px18', weight: 'semiBold' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'start' })};
 
   &:first-child {

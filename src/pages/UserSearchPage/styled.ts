@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { assets } from '@/assets';
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { BannerProfile } = assets;
@@ -46,12 +46,12 @@ export const UserInformBlock = styled.div`
 
 export const UserName = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px24};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px24', weight: 'bold' })};
 `;
 
 export const UserTag = styled.span`
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'bold' })};
 `;

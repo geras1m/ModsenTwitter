@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const NotFoundPageWrapper = styled.main`
   position: absolute;
@@ -15,7 +15,8 @@ export const NotFoundPageWrapper = styled.main`
 
 export const Message = styled.h1`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px24};
+
+  ${mixinFontTemplates({ size: 'px24' })};
 `;
 
 export const ToHomeButton = styled.button`
@@ -26,11 +27,11 @@ export const ToHomeButton = styled.button`
   border: none;
   border-radius: 76px;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
 
+  ${mixinFontTemplates({ size: 'px18' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
   &:hover {

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { px1150 } = mediaSizes;
@@ -122,11 +122,11 @@ export const Button = styled.button`
   border: none;
   border-radius: 76px;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
 
+  ${mixinFontTemplates({ size: 'px18' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
   &:hover {
@@ -147,13 +147,13 @@ export const ProfileInfo = styled.div`
 
 export const ProfileName = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
-  font-weight: ${({ theme }) => theme.fontWeight.semiBold};
   margin-bottom: 5px;
+
+  ${mixinFontTemplates({ size: 'px16', weight: 'semiBold' })};
 `;
 
 export const ProfileTag = styled.p`
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  ${mixinFontTemplates({ size: 'px16' })};
 `;

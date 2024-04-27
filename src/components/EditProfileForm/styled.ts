@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const Background = styled.div`
   position: fixed;
@@ -30,8 +30,9 @@ export const EditForm = styled.form``;
 
 export const Legend = styled.legend`
   margin-left: 20px;
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   color: ${({ theme }) => theme.colors.text};
+
+  ${mixinFontTemplates({ size: 'px18' })}
 `;
 
 export const GenderInputWrapper = styled.fieldset`
@@ -49,11 +50,11 @@ export const GenderInputWrapper = styled.fieldset`
 `;
 
 export const Label = styled.label`
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   color: ${({ theme }) => theme.colors.text};
   cursor: pointer;
   margin-bottom: 10px;
 
+  ${mixinFontTemplates({ size: 'px18' })}
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
   &:last-child {
@@ -72,8 +73,9 @@ export const Input = styled.input`
   background-color: transparent;
   color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
+
+  ${mixinFontTemplates({ size: 'px18' })}
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};
@@ -87,11 +89,11 @@ export const Button = styled.button`
   border: none;
   border-radius: 76px;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
 
+  ${mixinFontTemplates({ size: 'px18' })}
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
   &:hover {

@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 import twitterBannerPath from '@/assets/images/baner-twitter.jpg';
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { px1500, px1150, px800 } = mediaSizes;
@@ -63,27 +63,27 @@ export const TwitterIcon = styled.img`
 
 export const Title = styled.h1`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px80};
-  font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 46px;
 
+  ${mixinFontTemplates({ size: 'px80', weight: 'black' })};
+
   @media (max-width: ${px1500}) {
-    font-size: ${({ theme }) => theme.fontSizes.px60};
+    ${mixinFontTemplates({ size: 'px60' })};
   }
 
   @media (max-width: ${px1150}) {
-    font-size: ${({ theme }) => theme.fontSizes.px40};
+    ${mixinFontTemplates({ size: 'px40' })};
   }
 `;
 
 export const Text = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px42};
-  font-weight: ${({ theme }) => theme.fontWeight.black};
   margin-bottom: 30px;
 
+  ${mixinFontTemplates({ size: 'px42', weight: 'black' })};
+
   @media (max-width: ${px1150}) {
-    font-size: ${({ theme }) => theme.fontSizes.px24};
+    ${mixinFontTemplates({ size: 'px24' })};
   }
 `;
 
@@ -98,8 +98,6 @@ export const ButtonsWrapper = styled.div`
 export const SignUpButton = styled.button`
   position: relative;
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSizes.px20};
-  font-weight: ${({ theme }) => theme.fontWeight.medium};
   padding: 18px 0;
   border-radius: 42px;
   color: ${({ theme }) => theme.colors.text};
@@ -107,6 +105,8 @@ export const SignUpButton = styled.button`
   cursor: pointer;
   background-color: transparent;
   transition: 0.2s ease-in;
+
+  ${mixinFontTemplates({ size: 'px20', weight: 'medium' })};
 
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
@@ -126,11 +126,11 @@ export const SignUpButton = styled.button`
 
 export const PrivacyText = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px14};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
   line-height: 20px;
   max-width: 375px;
   margin-bottom: 20px;
+
+  ${mixinFontTemplates({ size: 'px14' })};
 
   @media (max-width: ${px800}) {
     text-align: center;
@@ -139,8 +139,8 @@ export const PrivacyText = styled.p`
 
 export const LogInText = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  ${mixinFontTemplates({ size: 'px16' })};
 `;
 
 export const PrivacyLink = styled.a`
@@ -165,18 +165,18 @@ export const Footer = styled.footer`
 
 export const FooterLinks = styled.ul`
   width: 100%;
-  font-size: ${({ theme }) => theme.fontSizes.px13};
   flex-wrap: wrap;
 
+  ${mixinFontTemplates({ size: 'px13' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 `;
 
 export const ToLoginPageLink = styled(NavLink)`
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease-out;
+
+  ${mixinFontTemplates({ size: 'px16', weight: 'light' })};
 
   &:hover {
     opacity: 0.7;

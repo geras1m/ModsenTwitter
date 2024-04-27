@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { mixinFontTemplates } from '@/components/ThemeProvider/styled';
+
 export const PasswordInputWrapper = styled.div`
   position: relative;
   width: 100%;
@@ -12,9 +14,10 @@ export const Input = styled.input`
   background-color: transparent;
   color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 10px;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};

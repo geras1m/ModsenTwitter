@@ -152,7 +152,7 @@ export const CreateTweet = memo(() => {
             )}
           </UploadWrapper>
 
-          {isShowLimitNotification && (
+          {isShowLimitNotification && !isUploadFile && (
             <LimitNotificationMessage>
               Remember, the symbol limit is 200 &#128521;
             </LimitNotificationMessage>

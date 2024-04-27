@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const TweetCardWrapper = styled.div`
   margin-bottom: 25px;
@@ -31,17 +31,18 @@ export const UserInformWrapper = styled.div`
 export const UserName = styled.p`
   margin-right: 5px;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'bold' })};
 `;
 
 export const TweetDate = styled.p`
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
+
+  ${mixinFontTemplates({ size: 'px18' })};
 `;
 
 export const TweetText = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px14};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px14', weight: 'bold' })};
 `;

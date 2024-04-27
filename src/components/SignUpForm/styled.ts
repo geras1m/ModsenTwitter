@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 
 export const Form = styled.form`
   width: 100%;
@@ -17,9 +17,10 @@ export const Input = styled.input`
   background-color: transparent;
   color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 10px;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};
@@ -27,12 +28,12 @@ export const Input = styled.input`
 `;
 
 export const ToPageLink = styled(NavLink)`
-  font-weight: ${({ theme }) => theme.fontWeight.light};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease-out;
   margin: 25px 0 17px;
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'light' })};
 
   &:hover {
     opacity: 0.7;
@@ -41,17 +42,19 @@ export const ToPageLink = styled(NavLink)`
 
 export const DateTitle = styled.h2`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   align-self: flex-start;
   margin-bottom: 32px;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 `;
 
 export const PolicyText = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
   line-height: 24px;
   opacity: 0.7;
   margin-bottom: 32px;
+
+  ${mixinFontTemplates({ size: 'px16' })};
 `;
 
 export const DateWrapper = styled.div`
@@ -66,8 +69,9 @@ export const ErrorMessage = styled.p`
   width: 100%;
   height: 14px;
   text-align: center;
-  font-size: ${({ theme }) => theme.fontSizes.px14};
   color: ${({ theme }) => theme.colors.red};
+
+  ${mixinFontTemplates({ size: 'px14' })};
 `;
 
 export const SubmitButton = styled.button`
@@ -76,11 +80,11 @@ export const SubmitButton = styled.button`
   padding: 20px;
   width: 100%;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
 
+  ${mixinFontTemplates({ size: 'px18' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
   &:hover {

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 export const LoginFormWrapper = styled.section`
@@ -17,11 +17,11 @@ export const Icon = styled.img``;
 export const Title = styled.h2`
   margin: 35px 0;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px42};
-  font-weight: ${({ theme }) => theme.fontWeight.black};
+
+  ${mixinFontTemplates({ size: 'px42', weight: 'black' })};
 
   @media (max-width: ${mediaSizes.px500}) {
-    font-size: ${({ theme }) => theme.fontSizes.px30};
+    ${mixinFontTemplates({ size: 'px30' })};
   }
 `;
 
@@ -36,9 +36,10 @@ export const Input = styled.input`
   background-color: transparent;
   color: ${({ theme }) => theme.colors.text};
   border: 1px solid ${({ theme }) => theme.colors.white1};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   transition: 0.3s ease;
   margin-bottom: 10px;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 
   &:hover {
     border: 1px solid ${({ theme }) => theme.colors.blue};
@@ -51,13 +52,13 @@ export const SubmitButton = styled.button`
   padding: 20px;
   width: 100%;
   color: ${({ theme }) => theme.colors.white};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   background-color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease;
   cursor: pointer;
   margin-top: 25px;
   margin-bottom: 40px;
 
+  ${mixinFontTemplates({ size: 'px18' })};
   ${mixinFlex({ alignItem: 'center', justifyContent: 'center' })};
 
   &:hover {
@@ -75,11 +76,12 @@ export const ToPageLink = styled(NavLink)`
   width: 100%;
   text-align: end;
   font-weight: ${({ theme }) => theme.fontWeight.light};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease-out;
   margin-bottom: 17px;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 
   &:hover {
     opacity: 0.7;
