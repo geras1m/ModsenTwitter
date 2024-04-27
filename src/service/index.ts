@@ -201,23 +201,27 @@ export const FirebaseService = {
     return getDocs(collection(db, path));
   },
 
-  async GetUserDataCollectionFromDB() {
+  async GetUserDataCollectionFromDB(debouncedValue: string) {
     const querySnapshot = await this.GetQuerySnapshotFromDB('users');
 
     const tweetsDataFromDB: IUserData[] = [];
     querySnapshot.forEach((userDoc) => {
       tweetsDataFromDB.push(userDoc.data() as IUserData);
     });
-    return tweetsDataFromDB;
+    return tweetsDataFromDB.filter((tweetData) =>
+      tweetData.name.toLowerCase().includes(debouncedValue.toLowerCase()),
+    );
   },
 
-  async GetTweetDataCollectionFromDB() {
+  async GetTweetDataCollectionFromDB(debouncedValue: string) {
     const querySnapshot = await this.GetQuerySnapshotFromDB('tweets');
 
     const tweetsDataFromDB: ITweetData[] = [];
     querySnapshot.forEach((tweetDoc) => {
       tweetsDataFromDB.push(tweetDoc.data() as ITweetData);
     });
-    return tweetsDataFromDB;
+    return tweetsDataFromDB.filter((tweetData) =>
+      tweetData.text.toLowerCase().includes(debouncedValue.toLowerCase()),
+    );
   },
 };

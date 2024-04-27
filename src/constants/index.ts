@@ -9,6 +9,9 @@ export const routes = {
   notFound: '/*',
 } as const;
 
+export const usersSearchPath = 'users-search';
+export const tweetsSearchPath = 'tweets-search';
+
 export const successMessage = 'Success!';
 
 export const defaultErrorMessage = 'Error!';

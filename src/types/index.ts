@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react';
+
 export interface IInputsName {
   year: 'year';
   month: 'month';
@@ -71,3 +73,22 @@ export type TweetItemType = TweetDataWithoutLikesPropType & {
   likes: number;
   isActiveLikeIcon: boolean;
 };
+
+type CommonReturnedSearchType = {
+  isLoading: boolean;
+  searchValue: string;
+  debouncedValue: string;
+  handleChangeValue: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleOpenItemOnNewPage: (id: string) => void;
+};
+
+export type UsersType = CommonReturnedSearchType & {
+  itemsList: IUserData[];
+};
+
+export type TweetsType = CommonReturnedSearchType & {
+  itemsList: ITweetData[];
+};
+
+export type UserSearchType = 'users-search';
+export type TweetSearchType = 'tweets-search';
