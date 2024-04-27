@@ -13,6 +13,7 @@ import {
   WarningText,
 } from '@/components/TweetItem/RemoveTweetButton/styled';
 import { useOutsideClick } from '@/hooks/useOutClick';
+import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 
 const { EllipsisIcon } = assets;
 
@@ -32,7 +33,7 @@ export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTwe
   const outsideRef = useOutsideClick(handleCloseConfirmModal);
 
   useEffect(() => {
-    document.body.style.overflow = isOpenConfirmModal ? 'hidden' : 'auto';
+    changeDocumentBodyOverflow(isOpenConfirmModal);
   }, [isOpenConfirmModal]);
 
   const handleRemove = () => {

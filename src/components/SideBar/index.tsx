@@ -25,6 +25,7 @@ import { useOutsideClick } from '@/hooks/useOutClick';
 import { FirebaseService } from '@/service';
 import { setIsOpenNavBar } from '@/store/slices/themeSlice';
 import { removeUser } from '@/store/slices/userSlice';
+import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 import { getCutString } from '@/utils/getCutString';
 
 export const SideBar = memo(() => {
@@ -41,7 +42,7 @@ export const SideBar = memo(() => {
   const outsideRef = useOutsideClick(handleOpenCloseTweetModal);
 
   useEffect(() => {
-    document.body.style.overflow = isOpenModal ? 'hidden' : 'auto';
+    changeDocumentBodyOverflow(isOpenModal);
   }, [isOpenModal]);
 
   const handleLogOut = async () => {

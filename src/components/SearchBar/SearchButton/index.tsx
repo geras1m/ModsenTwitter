@@ -9,6 +9,7 @@ import {
 } from '@/components/SearchBar/SearchButton/styled';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { setIsOpenSearchBar } from '@/store/slices/themeSlice';
+import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 
 const { SearchIcon } = assets;
 
@@ -17,7 +18,7 @@ export const SearchButton = () => {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    document.body.style.overflow = isOpenSearchBar ? 'hidden' : 'auto';
+    changeDocumentBodyOverflow(isOpenSearchBar);
   }, [isOpenSearchBar]);
 
   const handleOpenSearchBar = () => {
