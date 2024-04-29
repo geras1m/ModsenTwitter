@@ -15,7 +15,7 @@ import {
   UserTag,
 } from '@/pages/UserSearchPage/styled';
 import { FirebaseService } from '@/service';
-import { IUserData, ToastType } from '@/types';
+import { AvatarSizes, IUserData, ToastType } from '@/types';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 export const UserSearchPage = memo(() => {
@@ -44,7 +44,7 @@ export const UserSearchPage = memo(() => {
       <ProfileBanner />
       <UserInformBlock>
         <AvatarContainer>
-          <ProfileAvatar size='l' />
+          <ProfileAvatar size={AvatarSizes.large} />
         </AvatarContainer>
         {user && (
           <UserName>
