@@ -3,7 +3,12 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { FirebaseError } from 'firebase/app';
 
 import { assets } from '@/assets';
-import { errorMessages, inputName, placeholderTextarea } from '@/components/CreateTweet/config';
+import {
+  errorMessages,
+  inputName,
+  maxValueLength,
+  placeholderTextarea,
+} from '@/components/CreateTweet/config';
 import {
   AddTweetButton,
   ClearAttachedFileButton,
@@ -48,6 +53,7 @@ export const CreateTweet = memo(() => {
     reset,
     setError,
     clearErrors,
+    setValue,
   } = useForm<CreateTweetFormDataType>({ mode: 'onBlur' });
 
   const { UploadImageIcon } = assets;
@@ -57,7 +63,6 @@ export const CreateTweet = memo(() => {
 
     if (textarea.length === 0) {
       setError(inputName, { message: errorMessages.textarea });
-      return;
     }
 
     setIsLoading(true);
@@ -111,20 +116,31 @@ export const CreateTweet = memo(() => {
     setSelectedImage(null);
   };
 
+  const handleChangeInputValue = (e: ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+
+    if (value.length > maxValueLength) {
+      setError(inputName, { message: errorMessages.symbolLimit });
+      setValue(inputName, value.slice(0, maxValueLength));
+      return;
+    }
+    clearErrors();
+  };
+
   return (
     <CreateTweetWrapper>
       <ProfileAvatar size={AvatarSizes.small} />
       <TweetForm onSubmit={handleSubmit(handleCreateTweet)}>
-        {errors?.textarea && (
-          <ErrorMessage>
-            {errors?.textarea?.message?.toString() || defaultErrorMessage}
-          </ErrorMessage>
-        )}
+        <ErrorMessage>
+          {errors?.textarea && (errors?.textarea?.message?.toString() || defaultErrorMessage)}
+        </ErrorMessage>
+
         <Textarea
           data-testid='tweet-textarea-input'
           placeholder={placeholderTextarea}
           {...register(inputName, {
-            maxLength: { value: 200, message: errorMessages.symbolLimit },
+            maxLength: { value: maxValueLength, message: errorMessages.symbolLimit },
+            onChange: handleChangeInputValue,
           })}
           onBlur={() => setIsShowLimitNotification(false)}
           onFocus={() => setIsShowLimitNotification(true)}
