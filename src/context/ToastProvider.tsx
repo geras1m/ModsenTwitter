@@ -13,13 +13,13 @@ interface IToastData {
 export const ToastProvider = ({ children }: { children: ReactNode }) => {
   const [toasts, setToasts] = useState<[] | IToastData[]>([]);
 
-  const open = (message: string, type: string) =>
+  const openToast = (message: string, type: string) =>
     setToasts((currentToasts) => [...currentToasts, { message, type, id: Date.now() }]);
 
-  const close = (id: number) =>
+  const closeToast = (id: number) =>
     setToasts((currentToasts) => currentToasts.filter((toast) => toast.id !== id));
 
-  const contextValue = useMemo(() => ({ open, close }), []);
+  const contextValue = useMemo(() => ({ open: openToast, close: closeToast }), []);
 
   return (
     <ToastContext.Provider value={contextValue}>
@@ -31,7 +31,7 @@ export const ToastProvider = ({ children }: { children: ReactNode }) => {
               key={toast.id}
               message={toast.message}
               type={toast.type}
-              close={() => close(toast.id)}
+              close={() => closeToast(toast.id)}
             />
           ))}
         </div>
