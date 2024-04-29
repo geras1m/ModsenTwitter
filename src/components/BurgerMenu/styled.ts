@@ -8,12 +8,14 @@ interface IBurgerMenuProps {
 
 const { px1150 } = mediaSizes;
 
+const widthValue = '24px';
+
 export const BurgerWrapper = styled.nav<IBurgerMenuProps>`
   position: relative;
   display: none;
   flex-direction: column;
   justify-content: space-around;
-  width: 24px;
+  width: ${widthValue};
   height: 24px;
   background: transparent;
   border: none;
@@ -22,7 +24,7 @@ export const BurgerWrapper = styled.nav<IBurgerMenuProps>`
   overflow: hidden;
 
   div {
-    width: 24px;
+    width: ${widthValue};
     height: 4px;
     background-color: ${({ theme }) => theme.colors.toggle};
     border-radius: 10px;
@@ -48,7 +50,7 @@ export const BurgerWrapper = styled.nav<IBurgerMenuProps>`
     display: flex;
 
     div {
-      width: 24px;
+      width: ${widthValue};
       height: 2px;
     }
   }
