@@ -8,8 +8,16 @@ export const ThemeToggle = () => {
   const dispatch = useAppDispatch();
 
   const handleSwitchTheme = (currentTheme: ThemeType) => {
-    const themeValue = currentTheme === ThemeValue.light ? ThemeValue.dark : ThemeValue.light;
-    dispatch(setTheme(themeValue));
+    switch (currentTheme) {
+      case ThemeValue.light: {
+        dispatch(setTheme(ThemeValue.dark));
+        break;
+      }
+      default: {
+        dispatch(setTheme(ThemeValue.light));
+        break;
+      }
+    }
   };
 
   return (

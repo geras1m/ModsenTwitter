@@ -41,6 +41,14 @@ module.exports = {
   },
 },
   rules: {
+    indent: [
+      'error',
+      2,
+      {
+        SwitchCase: 1,
+        ignoredNodes: ['ConditionalExpression'],
+      },
+    ],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
@@ -65,10 +73,6 @@ module.exports = {
     "semi": [
       "error",
       "always"
-    ],
-    "indent": [
-      "error",
-      2
     ],
     "prefer-const": "error",
     "no-console": "warn",
