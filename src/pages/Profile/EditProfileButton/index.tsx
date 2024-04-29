@@ -1,18 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { EditProfileForm } from '@/components/EditProfileForm';
+import { useChangeDocumentBodyOverflow } from '@/hooks/useChangeDocumentBodyOverflow';
 import { EditButton } from '@/pages/Profile/EditProfileButton/styled';
-import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 
 export const EditProfileButton = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  useChangeDocumentBodyOverflow(isOpenModal);
+
   const handleOpenEditModal = () => {
     setIsOpenModal(!isOpenModal);
   };
-
-  useEffect(() => {
-    changeDocumentBodyOverflow(isOpenModal);
-  }, [isOpenModal]);
 
   return (
     <>

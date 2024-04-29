@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 
 import { assets } from '@/assets';
 import { Portal } from '@/components/Portal';
@@ -12,8 +12,8 @@ import {
   RemoveButton,
   WarningText,
 } from '@/components/TweetItem/RemoveTweetButton/styled';
+import { useChangeDocumentBodyOverflow } from '@/hooks/useChangeDocumentBodyOverflow';
 import { useOutsideClick } from '@/hooks/useOutClick';
-import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 
 const { EllipsisIcon } = assets;
 
@@ -25,16 +25,12 @@ interface IRemoveTweetButtonProps {
 export const RemoveTweetButton: FC<IRemoveTweetButtonProps> = ({ handleRemoveTweet, tweetId }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [isOpenConfirmModal, setIsOpenConfirmModal] = useState<boolean>(false);
-
+  useChangeDocumentBodyOverflow(isOpenConfirmModal);
   const handleCloseConfirmModal = () => {
     setIsOpenConfirmModal(false);
   };
 
   const outsideRef = useOutsideClick(handleCloseConfirmModal);
-
-  useEffect(() => {
-    changeDocumentBodyOverflow(isOpenConfirmModal);
-  }, [isOpenConfirmModal]);
 
   const handleRemove = () => {
     handleRemoveTweet(tweetId);

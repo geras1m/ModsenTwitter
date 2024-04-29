@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import TwitterIconPath from '@/assets/icons/twitter-icon.svg';
@@ -21,12 +21,12 @@ import {
 } from '@/components/SideBar/styled';
 import { routes } from '@/constants';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
+import { useChangeDocumentBodyOverflow } from '@/hooks/useChangeDocumentBodyOverflow';
 import { useOutsideClick } from '@/hooks/useOutClick';
 import { FirebaseService } from '@/service';
 import { setIsOpenNavBar } from '@/store/slices/themeSlice';
 import { removeUser } from '@/store/slices/userSlice';
 import { AvatarSizes } from '@/types';
-import { changeDocumentBodyOverflow } from '@/utils/changeDocumentBodyOverflow';
 import { getCutString } from '@/utils/getCutString';
 
 export const SideBar = memo(() => {
@@ -35,16 +35,13 @@ export const SideBar = memo(() => {
   const { name, telegramLink } = useAppSelector((state) => state.user);
   const { isOpenNavBar } = useAppSelector((state) => state.theme);
   const dispatch = useAppDispatch();
+  useChangeDocumentBodyOverflow(isOpenModal);
 
   const handleOpenCloseTweetModal = () => {
     setIsOpenModal(!isOpenModal);
   };
 
   const outsideRef = useOutsideClick(handleOpenCloseTweetModal);
-
-  useEffect(() => {
-    changeDocumentBodyOverflow(isOpenModal);
-  }, [isOpenModal]);
 
   const handleLogOut = async () => {
     await FirebaseService.LogOut();

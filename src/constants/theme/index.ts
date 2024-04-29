@@ -71,5 +71,3 @@ export const mediaSizes = {
   px800: '800px',
   px500: '500px',
 };
-
-export const fontsTemplate = {};
