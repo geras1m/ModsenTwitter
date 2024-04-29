@@ -75,13 +75,12 @@ export const ToPageLink = styled(NavLink)`
   display: inline-block;
   width: 100%;
   text-align: end;
-  font-weight: ${({ theme }) => theme.fontWeight.light};
   text-decoration: underline;
   color: ${({ theme }) => theme.colors.blue};
   transition: 0.2s ease-out;
   margin-bottom: 17px;
 
-  ${mixinFontTemplates({ size: 'px18' })};
+  ${mixinFontTemplates({ size: 'px18', weight: 'light' })};
 
   &:hover {
     opacity: 0.7;

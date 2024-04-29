@@ -32,6 +32,7 @@ export interface IColors {
 }
 
 export interface IFontWeight {
+  light: string;
   normal: string;
   medium: string;
   semiBold: string;

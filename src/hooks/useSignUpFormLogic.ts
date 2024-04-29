@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { FirebaseError } from 'firebase/app';
 
 import {
   formInputsTextData,
@@ -12,11 +11,11 @@ import {
 import { routes, successMessage } from '@/constants';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
+import { useSetToastError } from '@/hooks/useSetToastError';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
 import { SingUpFormDataType, ToastType } from '@/types';
 import { getDateDays, getMonths, getYears } from '@/utils/dateOfBirth';
-import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 import { getPhoneMask } from '@/utils/getPhoneMask';
 
 const { phone: phoneConst, confirmPassword: confirmPasswordConst } = formInputsTextData;
@@ -29,6 +28,7 @@ export const useSignUpFormLogic = () => {
   const [yearBirth, setYearBirth] = useState<null | number>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const toast = useToast();
+  const { setToastError } = useSetToastError();
   const {
     register,
     formState: { errors },
@@ -53,7 +53,7 @@ export const useSignUpFormLogic = () => {
       const isThereDayInDaysList =
         dayBirth !== null && getNewDaysListForSelectedMonth.includes(dayBirth);
 
-      if (selectName === month && yearBirth) {
+      if (selectName === month && yearBirth && dayBirth) {
         setMonthBirth(Number(e.target.value));
 
         if (!isThereDayInDaysList) {
@@ -114,11 +114,7 @@ export const useSignUpFormLogic = () => {
       toast?.open(successMessage, ToastType.success);
       navigate(routes.profile);
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
-      } else {
-        console.error(error);
-      }
+      setToastError(error);
     }
 
     setIsLoading(false);

@@ -1,21 +1,18 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { FirebaseError } from 'firebase/app';
 
 import { usersSearchPath } from '@/constants';
-import { useToast } from '@/context/toastContext';
 import { useDebounce } from '@/hooks/useDebounce';
+import { useSetToastError } from '@/hooks/useSetToastError';
 import { FirebaseService } from '@/service';
 import {
   ITweetData,
   IUserData,
-  ToastType,
   TweetSearchType,
   TweetsType,
   UserSearchType,
   UsersType,
 } from '@/types';
-import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 export function useSearchBlockLogic(navigatePath: UserSearchType): UsersType;
 export function useSearchBlockLogic(navigatePath: TweetSearchType): TweetsType;
@@ -25,7 +22,7 @@ export function useSearchBlockLogic(navigatePath: unknown): unknown {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const debouncedValue = useDebounce(searchValue);
   const navigate = useNavigate();
-  const toast = useToast();
+  const { setToastError } = useSetToastError();
 
   const handleChangeValue = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.target.value);
@@ -54,11 +51,7 @@ export function useSearchBlockLogic(navigatePath: unknown): unknown {
         }
       }
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
-      } else {
-        console.error(error);
-      }
+      setToastError(error);
     }
   }, [debouncedValue]);
 

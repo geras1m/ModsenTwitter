@@ -1,6 +1,5 @@
 import { ChangeEvent, memo, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { FirebaseError } from 'firebase/app';
 
 import { assets } from '@/assets';
 import {
@@ -30,8 +29,9 @@ import { Spinner } from '@/components/Spinner';
 import { defaultErrorMessage, successMessage } from '@/constants';
 import { useToast } from '@/context/toastContext';
 import { useAppSelector } from '@/hooks/reduxHooks';
+import { useSetToastError } from '@/hooks/useSetToastError';
 import { FirebaseService } from '@/service';
-import { AvatarSizes, ErrorsMessages, ToastType } from '@/types';
+import { AvatarSizes, ToastType } from '@/types';
 import { getTweetDateForTweet } from '@/utils/getTweetDateForTweet';
 
 type CreateTweetFormDataType = {
@@ -47,6 +47,7 @@ export const CreateTweet = memo(() => {
   const { id: userId, name: authorName, telegramLink } = useAppSelector((state) => state.user);
   const [isShowLimitNotification, setIsShowLimitNotification] = useState<boolean>(false);
   const toast = useToast();
+  const { setToastError } = useSetToastError();
   const {
     register,
     formState: { errors },
@@ -87,11 +88,7 @@ export const CreateTweet = memo(() => {
       });
       toast?.open(successMessage, ToastType.success);
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        toast?.open(ErrorsMessages.unexpectedError, ToastType.error);
-      } else {
-        console.error(error);
-      }
+      setToastError(error);
     }
 
     reset();

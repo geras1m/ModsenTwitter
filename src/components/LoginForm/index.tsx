@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { FirebaseError } from 'firebase/app';
 
 import TwitterIcon from '@/assets/icons/twitter-icon.svg';
 import { formInputsTextData } from '@/components/LoginForm/config';
@@ -21,10 +20,10 @@ import { defaultErrorMessage, routes, successMessage, usersValue } from '@/const
 import { emailPattern, passwordPattern } from '@/constants/validation';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
+import { useSetToastError } from '@/hooks/useSetToastError';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
 import { ToastType } from '@/types';
-import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
 
 type FormDataType = {
   email: string;
@@ -36,6 +35,7 @@ export const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const { setToastError } = useSetToastError();
   const {
     register,
     formState: { errors },
@@ -70,11 +70,7 @@ export const LoginForm = () => {
         navigate(routes.profile);
       }
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        toast?.open(getFirebaseErrorMessage(error), ToastType.error);
-      } else {
-        console.error(error);
-      }
+      setToastError(error);
     }
 
     setIsLoading(false);

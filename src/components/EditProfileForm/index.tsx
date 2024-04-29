@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { FirebaseError } from 'firebase/app';
 
 import {
   editFormInputsTextData,
@@ -27,9 +26,10 @@ import { namePattern, passwordPattern, telegramNicknamePattern } from '@/constan
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch, useAppSelector } from '@/hooks/reduxHooks';
 import { useOutsideClick } from '@/hooks/useOutClick';
+import { useSetToastError } from '@/hooks/useSetToastError';
 import { FirebaseService } from '@/service';
 import { setUser } from '@/store/slices/userSlice';
-import { ErrorsMessages, ToastType } from '@/types';
+import { ToastType } from '@/types';
 
 interface IEditProfileFormProps {
   closeModal: () => void;
@@ -50,6 +50,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
   const dispatch = useAppDispatch();
   const { id, email, isGoogleAuth } = useAppSelector((state) => state.user);
   const outsideRef = useOutsideClick(closeModal);
+  const { setToastError } = useSetToastError();
 
   const {
     register,
@@ -99,11 +100,7 @@ export const EditProfileForm = ({ closeModal }: IEditProfileFormProps) => {
 
       toast?.open(successMessage, ToastType.success);
     } catch (error) {
-      if (error instanceof FirebaseError) {
-        toast?.open(ErrorsMessages.unexpectedError, ToastType.error);
-      } else {
-        console.error(error);
-      }
+      setToastError(error);
     }
 
     setIsLoading(false);
