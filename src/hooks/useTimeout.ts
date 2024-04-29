@@ -8,11 +8,11 @@ export const useTimeout = (callback: () => void, delay: number) => {
   }, [callback]);
 
   useEffect(() => {
-    if (delay === null) return;
+    if (delay !== null) {
+      const id = setTimeout(() => savedCallback.current(), delay);
 
-    const id = setTimeout(() => savedCallback.current(), delay);
-
-    // eslint-disable-next-line consistent-return
-    return () => clearTimeout(id);
+      return () => clearTimeout(id);
+    }
+    return () => {};
   }, [delay]);
 };
