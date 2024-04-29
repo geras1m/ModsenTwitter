@@ -53,7 +53,7 @@ export const useSignUpFormLogic = () => {
       const isThereDayInDaysList =
         dayBirth !== null && getNewDaysListForSelectedMonth.includes(dayBirth);
 
-      if (selectName === month) {
+      if (selectName === month && yearBirth) {
         setMonthBirth(Number(e.target.value));
 
         if (!isThereDayInDaysList) {

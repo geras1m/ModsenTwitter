@@ -18,7 +18,7 @@ import { PasswordInput } from '@/components/PasswordInput';
 import { ErrorMessage } from '@/components/SignUpForm/styled';
 import { Spinner } from '@/components/Spinner';
 import { defaultErrorMessage, routes, successMessage, usersValue } from '@/constants';
-import { passwordPattern } from '@/constants/validation';
+import { emailPattern, passwordPattern } from '@/constants/validation';
 import { useToast } from '@/context/toastContext';
 import { useAppDispatch } from '@/hooks/reduxHooks';
 import { FirebaseService } from '@/service';
@@ -41,7 +41,7 @@ export const LoginForm = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<FormDataType>({ mode: 'onBlur' });
+  } = useForm<FormDataType>({ mode: 'onChange' });
 
   const handlerOnSubmit: SubmitHandler<FormDataType> = async (data) => {
     const { email, password } = data;
@@ -106,6 +106,10 @@ export const LoginForm = () => {
           placeholder={email.placeholder}
           {...register(email.name, {
             required: email.required,
+            pattern: {
+              value: emailPattern,
+              message: email.pattern,
+            },
           })}
         />
 

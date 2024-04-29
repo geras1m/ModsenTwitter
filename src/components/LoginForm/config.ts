@@ -4,6 +4,7 @@ export const formInputsTextData = {
     placeholder: 'Email address',
     type: 'email',
     required: 'Required field',
+    pattern: 'Invalid email',
   },
   password: {
     name: 'password' as const,
