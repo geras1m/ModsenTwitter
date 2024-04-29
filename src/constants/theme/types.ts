@@ -15,24 +15,23 @@ export interface IFontSizes {
 
 export interface IColors {
   black: string;
-  black1: string;
-  black2: string;
-  black3: string;
+  lightBlack: string;
+  opacityBlack: string;
+  opacityLightBlack: string;
   white: string;
-  white1: string;
-  white2: string;
-  white3: string;
-  white4: string;
+  lightWhite: string;
+  darkWhite: string;
+  darkGrey: string;
+  opacityWhite: string;
   grey: string;
   red: string;
   blue: string;
-  blue1: string;
+  darkBlue: string;
   lightGreen: string;
   lightRed: string;
 }
 
 export interface IFontWeight {
-  light: string;
   normal: string;
   medium: string;
   semiBold: string;

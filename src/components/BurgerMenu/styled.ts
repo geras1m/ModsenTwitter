@@ -83,5 +83,5 @@ export const Background = styled.div`
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: ${({ theme }) => theme.colors.black2};
+  background-color: ${({ theme }) => theme.colors.opacityBlack};
 `;

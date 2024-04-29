@@ -16,7 +16,6 @@ export const fontSizes: IFontSizes = {
 };
 
 export const fontWeight: IFontWeight = {
-  light: '300',
   normal: '400',
   medium: '500',
   semiBold: '600',
@@ -27,18 +26,18 @@ export const fontWeight: IFontWeight = {
 
 export const colors: IColors = {
   black: '#030304',
-  black1: '#272727FF',
-  black2: '#070505BC',
-  black3: '#00000080',
+  lightBlack: '#272727FF',
+  opacityBlack: '#070505BC',
+  opacityLightBlack: '#00000080',
   white: '#ffffff',
-  white1: '#E4EAED',
-  white2: '#F7F9F9',
-  white3: '#ffffff29',
-  white4: '#FDFDFDCC',
+  lightWhite: '#E4EAED',
+  darkWhite: '#F7F9F9',
+  darkGrey: '#ffffff29',
+  opacityWhite: '#FDFDFDCC',
   grey: '#afafaf',
   red: '#ff0000',
   blue: '#1da1f2',
-  blue1: '#141D26FF',
+  darkBlue: '#141D26FF',
   lightGreen: '#01810160',
   lightRed: '#D9003360',
 };
@@ -46,8 +45,8 @@ export const colors: IColors = {
 export const lightTheme: ITheme = {
   colors: {
     ...colors,
-    bgLoader: colors.white4,
-    bgSuggestion: colors.white2,
+    bgLoader: colors.opacityWhite,
+    bgSuggestion: colors.darkWhite,
     text: colors.black,
     bg: colors.white,
     toggle: colors.black,
@@ -57,10 +56,10 @@ export const lightTheme: ITheme = {
 export const darkTheme: ITheme = {
   colors: {
     ...colors,
-    bgLoader: colors.black3,
-    bgSuggestion: colors.white3,
+    bgLoader: colors.opacityLightBlack,
+    bgSuggestion: colors.darkGrey,
     text: colors.white,
-    bg: colors.blue1,
+    bg: colors.darkBlue,
     toggle: colors.white,
   },
 };
