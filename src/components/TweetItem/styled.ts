@@ -34,7 +34,7 @@ export const UserName = styled.h3`
   ${mixinFontTemplates({ size: 'px20', weight: 'bold' })};
 
   @media (max-width: ${px800}) {
-    font-size: ${({ theme }) => theme.fontSizes.px18};
+    ${mixinFontTemplates({ size: 'px18' })};
   }
 `;
 

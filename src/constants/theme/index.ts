@@ -44,8 +44,6 @@ export const colors: IColors = {
 };
 
 export const lightTheme: ITheme = {
-  fontSizes: { ...fontSizes },
-  fontWeight: { ...fontWeight },
   colors: {
     ...colors,
     bgLoader: colors.white4,
@@ -57,8 +55,6 @@ export const lightTheme: ITheme = {
 };
 
 export const darkTheme: ITheme = {
-  fontSizes: { ...fontSizes },
-  fontWeight: { ...fontWeight },
   colors: {
     ...colors,
     bgLoader: colors.black3,

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-import { mixinFlex } from '@/components/ThemeProvider/styled';
-import { colors, fontSizes, fontWeight } from '@/constants/theme';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
+import { colors } from '@/constants/theme';
 
 export const ErrorBoundaryWrapper = styled.div`
   position: absolute;
@@ -15,7 +15,6 @@ export const ErrorBoundaryWrapper = styled.div`
 
 export const Button = styled.button`
   margin-top: 20px;
-  font-size: ${fontSizes.px18};
   font-weight: bold;
   padding: 10px 15px;
   border-radius: 10px;
@@ -25,6 +24,8 @@ export const Button = styled.button`
   cursor: pointer;
   opacity: 0.8;
   transition: 0.2s ease;
+
+  ${mixinFontTemplates({ size: 'px18' })};
 
   &:hover {
     opacity: 1;
@@ -40,6 +41,6 @@ export const ErrorWrapper = styled.div`
 
 export const ErrorMessage = styled.div`
   color: ${colors.black};
-  font-size: ${fontSizes.px18};
-  font-weight: ${fontWeight.semiBold};
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'semiBold' })};
 `;

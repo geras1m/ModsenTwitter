@@ -146,6 +146,7 @@ export const AddTweetButton = styled.button`
 
   @media (max-width: ${px800}) {
     padding: 10px 15px;
-    font-size: ${({ theme }) => theme.fontSizes.px16};
+
+    ${mixinFontTemplates({ size: 'px16' })};
   }
 `;

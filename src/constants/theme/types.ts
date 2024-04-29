@@ -50,8 +50,6 @@ interface IThemeColorsExtensions extends IColors {
 }
 
 export interface ITheme {
-  fontSizes: IFontSizes;
-  fontWeight: IFontWeight;
   colors: IThemeColorsExtensions;
 }
 

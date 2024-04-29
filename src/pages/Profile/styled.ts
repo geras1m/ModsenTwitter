@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { assets } from '@/assets';
-import { mixinFlex } from '@/components/ThemeProvider/styled';
+import { mixinFlex, mixinFontTemplates } from '@/components/ThemeProvider/styled';
 import { mediaSizes } from '@/constants/theme';
 
 const { BannerProfile } = assets;
@@ -36,9 +36,9 @@ export const HeaderInfoWrapper = styled.div`
 
 export const ProfileHeaderName = styled.p`
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px20};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
   margin-bottom: 5px;
+
+  ${mixinFontTemplates({ size: 'px20', weight: 'bold' })};
 
   @media (max-width: ${px1150}) {
     margin-right: 20px;
@@ -48,8 +48,8 @@ export const ProfileHeaderName = styled.p`
 
 export const ProfileTweetsCount = styled.p`
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  ${mixinFontTemplates({ size: 'px16', weight: 'normal' })};
 `;
 
 export const ProfileBanner = styled.div`
@@ -79,22 +79,22 @@ export const AvatarContainer = styled.div`
 export const Name = styled.h1`
   margin-top: 65px;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px24};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px24', weight: 'bold' })};
 `;
 
 export const Tag = styled.h2`
   margin-top: 5px;
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px16};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  ${mixinFontTemplates({ size: 'px16', weight: 'normal' })};
 `;
 
 export const UserTextData = styled.p`
   margin: 17px 0;
   color: ${({ theme }) => theme.colors.text};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'normal' })};
 
   &:last-child {
     margin-bottom: 57px;
@@ -107,9 +107,9 @@ export const FollowersWrapper = styled.div`
 
 export const FollowersText = styled.p`
   color: ${({ theme }) => theme.colors.grey};
-  font-size: ${({ theme }) => theme.fontSizes.px18};
-  font-weight: ${({ theme }) => theme.fontWeight.normal};
   margin-right: 30px;
+
+  ${mixinFontTemplates({ size: 'px18', weight: 'normal' })};
 
   &:last-child {
     margin-right: 0;
@@ -118,5 +118,6 @@ export const FollowersText = styled.p`
 
 export const Count = styled.span`
   color: ${({ theme }) => theme.colors.text};
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
+
+  ${mixinFontTemplates({ size: 'px16', weight: 'bold' })};
 `;
