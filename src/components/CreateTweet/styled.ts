@@ -57,7 +57,7 @@ export const LimitNotificationMessage = styled.p`
   text-align: center;
 
   @media (max-width: ${px800}) {
-    font-size: ${({ theme }) => theme.fontSizes.px14};
+    ${mixinFontTemplates({ size: 'px14' })}
   }
 `;
 

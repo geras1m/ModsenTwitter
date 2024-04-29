@@ -1,5 +1,7 @@
 export const inputName = 'textarea';
 
+export const notificationMessage = 'Remember, the symbol limit is 200';
+
 export const placeholderTextarea = 'What’s happening';
 
 export const maxValueLength = 200;

@@ -7,6 +7,7 @@ import {
   errorMessages,
   inputName,
   maxValueLength,
+  notificationMessage,
   placeholderTextarea,
 } from '@/components/CreateTweet/config';
 import {
@@ -100,14 +101,16 @@ export const CreateTweet = memo(() => {
   };
 
   const handleUploadFile = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-      if (2 * bytesInMb < e.target.files[0].size) {
+    const file = e.target.files?.[0];
+
+    if (file) {
+      if (2 * bytesInMb < file.size) {
         setError(inputName, { message: errorMessages.maxWeightOfFile });
         return;
       }
       clearErrors();
       setIsUploadFile(true);
-      setSelectedImage(e.target.files[0]);
+      setSelectedImage(file);
     }
   };
 
@@ -169,9 +172,7 @@ export const CreateTweet = memo(() => {
           </UploadWrapper>
 
           {isShowLimitNotification && !isUploadFile && (
-            <LimitNotificationMessage>
-              Remember, the symbol limit is 200 &#128521;
-            </LimitNotificationMessage>
+            <LimitNotificationMessage>{notificationMessage}</LimitNotificationMessage>
           )}
 
           <AddTweetButton
