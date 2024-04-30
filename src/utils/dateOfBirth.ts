@@ -28,17 +28,28 @@ export const getMonths = (year: null | number) => {
 export const getDateDays = (month: number | null, year: number | null) => {
   const days = [];
   const defaultDaysInMonth = 31;
+  const defaultYear = 2023;
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+
+  if (!year && month) {
+    const daysInCurrentDate =
+      overDaysInMonth - new Date(defaultYear, month, overDaysInMonth).getDate();
+    for (let i = 1; i <= daysInCurrentDate; i += 1) {
+      days.push(i);
+    }
+    return [...days];
+  }
 
   if (!month || !year) {
     for (let i = 1; i <= defaultDaysInMonth; i += 1) {
       days.push(i);
     }
-    return days;
+    return [...days];
   }
 
-  const currentDate = new Date();
-  const currentYear = currentDate.getFullYear();
-  const currentMonth = currentDate.getMonth();
   const daysInCurrentDate = overDaysInMonth - new Date(year, month, overDaysInMonth).getDate();
 
   if (currentYear === year && currentMonth === month) {
@@ -46,11 +57,11 @@ export const getDateDays = (month: number | null, year: number | null) => {
       days.push(i);
     }
 
-    return days;
+    return [...days];
   }
 
   for (let i = 1; i <= daysInCurrentDate; i += 1) {
     days.push(i);
   }
-  return days;
+  return [...days];
 };

@@ -43,28 +43,36 @@ export const useSignUpFormLogic = () => {
   const months = getMonths(yearBirth);
   const years = getYears();
 
+  const isSetWarningToSelectDayAgain = (month: number | null, year: number | null) => {
+    const { day } = inputsName;
+    const getNewDaysListForSelectedMonth = getDateDays(month, year);
+    const isThereDayInDaysList =
+      dayBirth !== null && getNewDaysListForSelectedMonth.includes(dayBirth);
+
+    if (!isThereDayInDaysList && dayBirth) {
+      setError(day, { message: messageToSelectDay });
+      setDayBirth(null);
+    }
+    if (isThereDayInDaysList) {
+      clearErrors(day);
+    }
+  };
+
   const handleChange = useCallback(
     (e: React.ChangeEvent<HTMLSelectElement>) => {
       const { name: selectName, value } = e.target;
 
       const { year, month, day } = inputsName;
 
-      const getNewDaysListForSelectedMonth = getDateDays(Number(value), yearBirth);
-      const isThereDayInDaysList =
-        dayBirth !== null && getNewDaysListForSelectedMonth.includes(dayBirth);
-
-      if (selectName === month && yearBirth && dayBirth) {
+      if (selectName === month) {
         setMonthBirth(Number(e.target.value));
 
-        if (!isThereDayInDaysList) {
-          setError(day, { message: messageToSelectDay });
-          setDayBirth(null);
-        } else {
-          clearErrors(day);
-        }
+        isSetWarningToSelectDayAgain(Number(value), yearBirth);
       }
       if (selectName === year) {
         setYearBirth(Number(e.target.value));
+
+        isSetWarningToSelectDayAgain(monthBirth, Number(value));
       }
       if (selectName === day) {
         setDayBirth(Number(e.target.value));
