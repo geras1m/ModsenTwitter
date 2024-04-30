@@ -1,5 +1,6 @@
 import { FirebaseError } from 'firebase/app';
 
+import { defaultErrorMessage } from '@/constants';
 import { useToast } from '@/context/toastContext';
 import { ToastType } from '@/types';
 import { getFirebaseErrorMessage } from '@/utils/getFirebaseErrorMessage';
@@ -11,7 +12,7 @@ export const useSetToastError = () => {
     if (error instanceof FirebaseError) {
       toast?.open(getFirebaseErrorMessage(error), ToastType.error);
     } else {
-      console.error(error);
+      toast?.open(defaultErrorMessage, ToastType.error);
     }
   };
 

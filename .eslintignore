@@ -10,3 +10,4 @@ __tests__
 vite.config.ts
 cypress.config.ts
 cypress
+
